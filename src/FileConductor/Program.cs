@@ -16,7 +16,7 @@ namespace FileConductor
             {
                 serviceConfig.Service<FileConductorService>(serviceInstance =>
                 {
-                    serviceInstance.ConstructsUsing(() => new FileConductorService());
+                    serviceInstance.ConstructUsing(() => new FileConductorService());
                     serviceInstance.WhenStarted(execute => execute.Start());
                     serviceInstance.WhenStopped(execute => execute.Stop());
 
