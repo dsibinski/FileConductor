@@ -24,7 +24,7 @@ namespace FileConductor
 
                 serviceConfig.SetServiceName("FileConductor");
                 serviceConfig.SetDisplayName("File Conductor Service");
-                serviceConfig.SetDescription("Windows Service observing local/remote files and moves/processes them.");
+                serviceConfig.SetDescription("Service observing local/remote files and moves/processes them.");
                 serviceConfig.StartAutomatically();
             });
         }
