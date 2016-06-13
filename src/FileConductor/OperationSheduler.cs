@@ -13,6 +13,7 @@ namespace FileConductor
         public OperationSheduler()
         {
             _readyOperations = new Queue<Operation>();
+            _operations = new List<Operation>();
             _timer = new Timer(Constants.ShedulerIntervaltime);
             _timer.Elapsed += OnElapsedTime;
             _timer.Start();
@@ -20,7 +21,7 @@ namespace FileConductor
 
         private void OnElapsedTime(object sender, ElapsedEventArgs e)
         {
-            while (_operations.Any())
+            while (_readyOperations.Any())
             {
                 var currentOperation = _readyOperations.Dequeue();
                 currentOperation.Execute();
@@ -30,10 +31,10 @@ namespace FileConductor
         public void AssignOperation(Operation operation)
         {
             _operations.Add(operation);
-            operation.OnTimeElapsed += AddOperationDoQueue;
+            operation.OnTimeElapsed += AddOperationToQueue;
         }
 
-        private void AddOperationDoQueue(Operation sender, ElapsedEventArgs e)
+        private void AddOperationToQueue(Operation sender, ElapsedEventArgs e)
         {
             _readyOperations.Enqueue(sender);
         }

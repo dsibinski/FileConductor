@@ -6,8 +6,7 @@ namespace FileConductor
     {
         public bool Start()
         {
-            var operation = new Operation(new LocalProtocol(), new OperationProperties() {ShedulerTimer =  new Timer()});
-
+            var operation = new Operation(new LocalProtocol(), new OperationProperties() {ShedulerTimer =  new Timer(10)});
             var operatio = new OperationSheduler();
             operatio.AssignOperation(operation);
             // Service's initialization logic

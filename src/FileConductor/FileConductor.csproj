@@ -50,7 +50,6 @@
     <Compile Include="Constants.cs" />
     <Compile Include="FileConductorService.cs" />
     <Compile Include="IProtocol.cs" />
-    <Compile Include="LocalFileDetector.cs" />
     <Compile Include="LocalProtocol.cs" />
     <Compile Include="Operation.cs" />
     <Compile Include="OperationProperties.cs" />
