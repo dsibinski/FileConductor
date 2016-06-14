@@ -6,7 +6,15 @@ namespace FileConductor
     {
         public bool Start()
         {
-            var operation = new Operation(new LocalProtocol(), new OperationProperties() {ShedulerTimer =  new Timer(10)});
+            var operationProp = new OperationProperties()
+            {
+                ShedulerTimer = new Timer(10),
+                DestinyPath = "C:/Destiny/",
+                SourcePath = "C:/Source/",
+                Regex = "*csv"
+            };
+
+            var operation = new Operation(new LocalProtocol(), operationProp);
             var operatio = new OperationSheduler();
             operatio.AssignOperation(operation);
             // Service's initialization logic

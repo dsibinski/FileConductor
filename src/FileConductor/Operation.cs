@@ -14,6 +14,7 @@ namespace FileConductor
             _protocol = protocol;
             _properties = properties;
             _properties.ShedulerTimer.Elapsed += ShedulerExecute;
+            protocol.Properties = _properties;
         }
 
         private void ShedulerExecute(object sender, ElapsedEventArgs e)
