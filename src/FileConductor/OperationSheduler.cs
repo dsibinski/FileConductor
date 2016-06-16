@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 
@@ -6,13 +7,13 @@ namespace FileConductor
 {
     public class OperationSheduler
     {
-        private readonly Queue<Operation> _readyOperations;
+        private readonly ConcurrentQueue<Operation> _readyOperations;
         private readonly List<Operation> _operations;
         private readonly Timer _timer;
 
         public OperationSheduler()
         {
-            _readyOperations = new Queue<Operation>();
+            _readyOperations = new ConcurrentQueue<Operation>();
             _operations = new List<Operation>();
             _timer = new Timer(Constants.ShedulerIntervaltime);
             _timer.Elapsed += OnElapsedTime;
@@ -21,10 +22,14 @@ namespace FileConductor
 
         private void OnElapsedTime(object sender, ElapsedEventArgs e)
         {
-            while (_readyOperations.Any())
+            lock (_readyOperations)
             {
-                var currentOperation = _readyOperations.Dequeue();
-                currentOperation.Execute();
+                while (_readyOperations.Any())
+                {
+                    Operation currentOperation = null;
+                    _readyOperations.TryDequeue(out currentOperation);//Dequeue();
+                    currentOperation?.Execute();
+                }
             }
         }
 

@@ -34,7 +34,8 @@ namespace FileConductor
 
             foreach (var file in files)
             {
-                File.Move(sourcePath + file, destinyPath);
+                string fileName = Path.GetFileName(file);
+                File.Move(file, destinyPath+fileName);
             }
         }
     }
