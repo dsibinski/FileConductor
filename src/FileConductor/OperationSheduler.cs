@@ -10,6 +10,7 @@ namespace FileConductor
         private readonly ConcurrentQueue<Operation> _readyOperations;
         private readonly List<Operation> _operations;
         private readonly Timer _timer;
+        private readonly object _locker = new object();
 
         public OperationSheduler()
         {
@@ -22,7 +23,7 @@ namespace FileConductor
 
         private void OnElapsedTime(object sender, ElapsedEventArgs e)
         {
-            lock (_readyOperations)
+            lock (_locker)
             {
                 while (_readyOperations.Any())
                 {
