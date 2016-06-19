@@ -1,6 +1,6 @@
 ﻿using System.Timers;
 
-namespace FileConductor.Operation
+namespace FileConductor
 {
     /// <summary>
     /// </summary>

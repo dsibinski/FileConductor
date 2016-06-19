@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Timers;
 
-namespace FileConductor.Schedule
+namespace FileConductor
 {
-    public class ShedulerProperties
+    public class SchedulerProperties
     {
         public Timer ShedulerTimer;
         public DateTime Date;

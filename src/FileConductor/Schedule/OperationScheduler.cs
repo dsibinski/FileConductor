@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 
-namespace FileConductor.Schedule
+namespace FileConductor
 {
     public class OperationScheduler
     {

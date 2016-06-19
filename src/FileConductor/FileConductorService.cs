@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Timers;
 using FileConductor.Protocols;
-using FileConductor.Schedule;
 
 namespace FileConductor
 {

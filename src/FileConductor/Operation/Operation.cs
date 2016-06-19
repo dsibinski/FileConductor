@@ -1,7 +1,7 @@
 ﻿using System.Timers;
 using FileConductor.Protocols;
 
-namespace FileConductor.Operation
+namespace FileConductor
 {
     public class Operation
     {
