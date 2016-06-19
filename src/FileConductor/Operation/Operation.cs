@@ -7,16 +7,14 @@ namespace FileConductor
     {
         public delegate void OperationElapsedEventHandler(Operation sender, ElapsedEventArgs e);
 
-        private readonly OperationProperties _properties;
         private readonly IProtocol _protocol;
 
         public Operation(IProtocol protocol, OperationProperties properties)
         {
             _protocol = protocol;
-            _properties = properties;
-            _properties.SchedulerTimer.Elapsed += SchedulerExecute;
-            _properties.SchedulerTimer.Start();
-            protocol.Properties = _properties;
+            protocol.Properties = properties;
+            protocol.Properties.SchedulerTimer.Elapsed += SchedulerExecute;
+            protocol.Properties.SchedulerTimer.Start();
         }
 
         public event OperationElapsedEventHandler OnTimeElapsed;
