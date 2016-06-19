@@ -8,6 +8,6 @@ namespace FileConductor
 {
    public class Constants
    {
-       public const double ShedulerIntervaltime = 5000;
+       public const double SchedulerIntervaltime = 5000;
    }
 }

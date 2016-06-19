@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using System.Timers;
+using FileConductor.Protocols;
+using FileConductor.Schedule;
 
 namespace FileConductor
 {
@@ -10,7 +12,7 @@ namespace FileConductor
 
             var operationProp = new OperationProperties()
             {
-                ShedulerTimer = new Timer(10000),
+                SchedulerTimer = new Timer(10000),
                 DestinyPath = "C:/Destiny/",
                 SourcePath = "C:/Source/",
                 Regex = "*.csv"
@@ -18,7 +20,7 @@ namespace FileConductor
 
             var operation2Prop = new OperationProperties()
             {
-                ShedulerTimer = new Timer(10000),
+                SchedulerTimer = new Timer(10000),
                 DestinyPath = "C:/Source/",
                 SourcePath = "C:/Destiny/",
                 Regex = "*.csv"
@@ -26,7 +28,7 @@ namespace FileConductor
 
             var operation = new Operation(new LocalProtocol(), operationProp);
             var operation2 = new Operation(new LocalProtocol(), operation2Prop);
-            var operatio = new OperationSheduler();
+            var operatio = new OperationScheduler();
             operatio.AssignOperation(operation);
             operatio.AssignOperation(operation2);
             // Service's initialization logic

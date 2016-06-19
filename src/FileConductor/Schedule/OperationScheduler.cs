@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 
-namespace FileConductor
+namespace FileConductor.Schedule
 {
-    public class OperationSheduler
+    public class OperationScheduler
     {
         private readonly ConcurrentQueue<Operation> _readyOperations;
         private readonly List<Operation> _operations;
         private readonly Timer _timer;
         private readonly object _locker = new object();
 
-        public OperationSheduler()
+        public OperationScheduler()
         {
             _readyOperations = new ConcurrentQueue<Operation>();
             _operations = new List<Operation>();
-            _timer = new Timer(Constants.ShedulerIntervaltime);
+            _timer = new Timer(Constants.SchedulerIntervaltime);
             _timer.Elapsed += OnElapsedTime;
             _timer.Start();
         }

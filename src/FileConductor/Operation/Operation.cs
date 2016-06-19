@@ -1,6 +1,7 @@
 ﻿using System.Timers;
+using FileConductor.Protocols;
 
-namespace FileConductor
+namespace FileConductor.Operation
 {
     public class Operation
     {
@@ -13,14 +14,14 @@ namespace FileConductor
         {
             _protocol = protocol;
             _properties = properties;
-            _properties.ShedulerTimer.Elapsed += ShedulerExecute;
-            _properties.ShedulerTimer.Start();
+            _properties.SchedulerTimer.Elapsed += SchedulerExecute;
+            _properties.SchedulerTimer.Start();
             protocol.Properties = _properties;
         }
 
         public event OperationElapsedEventHandler OnTimeElapsed;
 
-        private void ShedulerExecute(object sender, ElapsedEventArgs e)
+        private void SchedulerExecute(object sender, ElapsedEventArgs e)
         {
             OnTimeElapsed?.Invoke(this, e);
         }
