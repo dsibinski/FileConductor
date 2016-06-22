@@ -13,13 +13,15 @@ namespace FileConductor
         {
             _protocol = protocol;
             protocol.Properties = properties;
-            protocol.Properties.SchedulerTimer.Elapsed += SchedulerExecute;
-            protocol.Properties.SchedulerTimer.Start();
+            //protocol.Properties.SchedulerTimer.Elapsed += NotificationExecute;
+            //protocol.Properties.SchedulerTimer.Start();
+            protocol.Properties.NotificationSettings.OnElapsed += NotificationExecute;
+           // protocol.Properties.SchedulerTimer.Start();
         }
 
         public event OperationElapsedEventHandler OnTimeElapsed;
 
-        private void SchedulerExecute(object sender, ElapsedEventArgs e)
+        private void NotificationExecute(object sender, ElapsedEventArgs e)
         {
             OnTimeElapsed?.Invoke(this, e);
         }

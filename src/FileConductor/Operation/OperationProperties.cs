@@ -9,6 +9,7 @@ namespace FileConductor
         public string SourcePath;
         public string DestinyPath;
         public string Regex;
-        public Timer SchedulerTimer;  
+        //public Timer SchedulerTimer;  
+        public OperationNotificator NotificationSettings;
     }
 }
