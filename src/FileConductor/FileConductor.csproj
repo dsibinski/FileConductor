@@ -48,13 +48,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Configurator.cs" />
+    <Compile Include="Configuration\XmlData\ConfigurationData.cs" />
+    <Compile Include="Configuration\XmlData\DatabaseData.cs" />
+    <Compile Include="Configuration\XmlData\ScheduleData.cs" />
+    <Compile Include="Configuration\XmlData\ServerData.cs" />
+    <Compile Include="Configuration\XmlData\TargetData.cs" />
+    <Compile Include="Configuration\XmlData\WatcherData.cs" />
+    <Compile Include="Configuration\XmlData\WatcherRoutingData.cs" />
+    <Compile Include="Configuration\XmlFileDeserializer.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="FileConductorService.cs" />
     <Compile Include="Protocols\IProtocol.cs" />
     <Compile Include="Protocols\LocalProtocol.cs" />
     <Compile Include="Operation\Operation.cs" />
     <Compile Include="Operation\OperationProperties.cs" />
+    <Compile Include="Protocols\ProtocolType.cs" />
     <Compile Include="Schedule\OperationScheduler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,7 +73,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\Config.xml" />
+    <Content Include="Configuration\Config.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

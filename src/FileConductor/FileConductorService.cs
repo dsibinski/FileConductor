@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using System.Timers;
+using FileConductor.Configuration;
+using FileConductor.Configuration.XmlData;
 using FileConductor.Protocols;
 
 namespace FileConductor
@@ -8,6 +10,9 @@ namespace FileConductor
     {
         public bool Start()
         {
+            var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
+            deserializer.Deserialize();
+
 
             var operationProp = new OperationProperties()
             {
