@@ -2,16 +2,25 @@
 using System.Timers;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
+using FileConductor.Properties;
 using FileConductor.Protocols;
+using NLog;
 
 namespace FileConductor
 {
     internal class FileConductorService
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public bool Start()
         {
+            logger.Trace(Resources.InfoServiceInitializationStarted);
+            logger.Trace(Resources.InfoConfigFileReadingStarted);
+
             var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
             deserializer.Deserialize();
+
+            logger.Trace(Resources.InfoConfigFileReadingFinished);
 
 
             var operationProp = new OperationProperties()
@@ -35,13 +44,14 @@ namespace FileConductor
             var operatio = new OperationScheduler();
             operatio.AssignOperation(operation);
             operatio.AssignOperation(operation2);
-            // Service's initialization logic
-            // Executed when the service starts
+
+            logger.Trace(Resources.InfoServiceInitializationFinished);
             return true;
         }
 
         public bool Stop()
         {
+            logger.Trace(Resources.InfoServiceStopped);
             // Service's disposing logic
             // Executed when the service is stopped/closed
             return true;
