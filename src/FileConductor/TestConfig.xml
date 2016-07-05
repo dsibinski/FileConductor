@@ -49,7 +49,7 @@
       <path>C:/Interface1/Import</path>
     </target>
   </targets>
-
+  
   <schedules>
     <schedule>
       <id>1</id>
@@ -75,6 +75,7 @@
       <id>2</id>
       <name>Interface1_FTP_Exporter</name>
       <databaseId>1</databaseId>
+      <inteval>10s</inteval>
       <watcherRouting>
         <sourceTargetId>2</sourceTargetId>
         <destinationTargetId>1</destinationTargetId>
@@ -83,6 +84,6 @@
     </watcher>
 
   </watchers>
-
-
+  
+  
 </configuration>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 
@@ -6,70 +7,55 @@ namespace FileConductor
 {
     public class SpecifiedTimeNotification : OperationNotificator
     {
-        private readonly TimeSpan _executionTime;
-        private readonly Timer _interval;
         private readonly int[] _days;
-        private int _executedDay = -1;
-        private int Today => (int) DateTime.Now.DayOfWeek;
+        private readonly TimeSpan _executionTime;
+        private Timer _interval;
+        private int _previousExecutionDay = -1;
 
 
         public SpecifiedTimeNotification(int[] days, TimeSpan executionTime)
         {
             _days = days;
             _executionTime = executionTime;
-            CalculateRequiredTime();
-            _interval = new Timer(Constants.Secund);
+            CalculateNextRequiredTime();
             _interval.Elapsed += OnIntervalElapsed;
             _interval.Start();
         }
 
-        private void CalculateRequiredTime()
+        private int Today => (int) DateTime.Now.DayOfWeek;
+
+        private void CalculateNextRequiredTime()
         {
-            int closestDay = FindClosestDay();
-            TimeSpan nextExecutionTime = new TimeSpan(closestDay,_executionTime.Hours,_executionTime.Days);
-            TimeSpan currentTime = DateTime.Now.TimeOfDay;
+            var closestDay = FindClosestDay();
+            var nextExecutionTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, closestDay, _executionTime.Hours,
+                _executionTime.Minutes, _executionTime.Seconds);
 
-
+            var timeDiffrence = nextExecutionTime.Subtract(DateTime.Now);
+            _interval = new Timer(timeDiffrence.TotalMilliseconds);
         }
 
         private int FindClosestDay()
         {
-            int[] tempDays = _days;
+            List<int> daysToClosestDay = new List<int>(_days);
 
-            for (int i=0;i<tempDays.Length;i++)
+            for (var i = 0; i < daysToClosestDay.Count; i++)
             {
-                tempDays[i] -= Today;
-                tempDays[i] = Math.Abs(tempDays[i]);
+                daysToClosestDay[i] -= Today;
+                daysToClosestDay[i] = daysToClosestDay[i];
             }
-            int closestDayIndex = Array.IndexOf(tempDays, tempDays.Min());
-            return tempDays[closestDayIndex];
+            daysToClosestDay.ToList().Sort();
+
+            int closestDay = daysToClosestDay.First(x=>x != _previousExecutionDay && x >= 0);
+         
+            return DateTime.Now.Day + closestDay;
         }
 
         private void OnIntervalElapsed(object sender, ElapsedEventArgs e)
         {
-            int today = (int)DateTime.Today.DayOfWeek;
-
-            if (today == _executedDay) return;
-
-            if (CheckIfShouldBeExecutedToday(today))
-            {
-                if (CheckIfShouldBeExecutedNow())
-                {
-                    Execute();
-                    _executedDay = today;
-                }
-            }
+            _previousExecutionDay = Today;
+            Execute();
+            CalculateNextRequiredTime();
         }
 
-        private bool CheckIfShouldBeExecutedNow()
-        {
-            return DateTime.Now.TimeOfDay < _executionTime;
-        }
-
-        private bool CheckIfShouldBeExecutedToday(int today)
-        {
-            return _days.Where(x => x == today).Any();
-        }
-
-    }
+      }
 }

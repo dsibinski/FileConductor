@@ -13,7 +13,7 @@ namespace FileConductor
 
        protected void Execute()
        {
-         OnElapsed.Invoke(null,null);
+            OnElapsed.Invoke(this,null);
        }
    }
 }
