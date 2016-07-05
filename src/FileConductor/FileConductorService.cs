@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Timers;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
@@ -23,9 +24,13 @@ namespace FileConductor
             logger.Trace(Resources.InfoConfigFileReadingFinished);
 
 
+            var tee = DateTime.Now.TimeOfDay;
+            var tmp1 = DateTime.Now.Hour;
+            var tmp2 = DateTime.Now.Minute;
             var operationProp = new OperationProperties()
             {
-                SchedulerTimer = new Timer(10000),
+
+                NotificationSettings = new SpecifiedTimeNotification(new int[] {0,1,2,3,4,5,6}, new TimeSpan(20,45,0)),
                 DestinyPath = "C:/Destiny/",
                 SourcePath = "C:/Source/",
                 Regex = "*.csv"
@@ -33,15 +38,18 @@ namespace FileConductor
 
             var operation2Prop = new OperationProperties()
             {
-                SchedulerTimer = new Timer(10000),
+
+                NotificationSettings = new SpecifiedTimeNotification(new int[] { 0, 1, 2, 3, 4, 5, 6 }, new TimeSpan(20, 46, 0)),
                 DestinyPath = "C:/Source/",
                 SourcePath = "C:/Destiny/",
                 Regex = "*.csv"
             };
 
             var operation = new Operation(new LocalProtocol(), operationProp);
+
+
             var operation2 = new Operation(new LocalProtocol(), operation2Prop);
-            var operatio = new OperationScheduler();
+            var operatio = new OperationProcessor();
             operatio.AssignOperation(operation);
             operatio.AssignOperation(operation2);
 

@@ -5,14 +5,14 @@ using System.Timers;
 
 namespace FileConductor
 {
-    public class OperationScheduler
+    public class OperationProcessor
     {
         private readonly ConcurrentQueue<Operation> _readyOperations;
         private readonly List<Operation> _operations;
         private readonly Timer _timer;
         private readonly object _locker = new object();
 
-        public OperationScheduler()
+        public OperationProcessor()
         {
             _readyOperations = new ConcurrentQueue<Operation>();
             _operations = new List<Operation>();
