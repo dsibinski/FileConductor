@@ -19,7 +19,6 @@ namespace FileConductor
             _executionTime = executionTime;
             CalculateNextRequiredTime();
             _interval.Elapsed += OnIntervalElapsed;
-            _interval.Start();
         }
 
         private int Today => (int) DateTime.Now.DayOfWeek;
@@ -29,9 +28,17 @@ namespace FileConductor
             var closestDay = FindClosestDay();
             var nextExecutionTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, closestDay, _executionTime.Hours,
                 _executionTime.Minutes, _executionTime.Seconds);
-
             var timeDiffrence = nextExecutionTime.Subtract(DateTime.Now);
-            _interval = new Timer(timeDiffrence.TotalMilliseconds);
+            if(timeDiffrence.TotalMilliseconds < 0)
+            {
+                _previousExecutionDay = 0;
+                CalculateNextRequiredTime();
+            }
+            else
+            {
+                _interval = new Timer(timeDiffrence.TotalMilliseconds);
+                _interval.Start();
+            }   
         }
 
         private int FindClosestDay()
@@ -52,7 +59,8 @@ namespace FileConductor
 
         private void OnIntervalElapsed(object sender, ElapsedEventArgs e)
         {
-            _previousExecutionDay = Today;
+            _interval.Stop();
+            _previousExecutionDay = 0;
             Execute();
             CalculateNextRequiredTime();
         }
