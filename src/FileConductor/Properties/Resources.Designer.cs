@@ -61,6 +61,33 @@ namespace FileConductor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding operation to queue &lt;id:{0}&gt;.
+        /// </summary>
+        internal static string Adding_operation_to_queue {
+            get {
+                return ResourceManager.GetString("Adding_operation_to_queue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assigning operation &lt;id:{0}&gt;.
+        /// </summary>
+        internal static string Assigning_operation {
+            get {
+                return ResourceManager.GetString("Assigning_operation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Executing operation &lt;id:{0}&gt;.
+        /// </summary>
+        internal static string Executing_operation__id {
+            get {
+                return ResourceManager.GetString("Executing_operation__id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Config file reading finished..
         /// </summary>
         internal static string InfoConfigFileReadingFinished {
@@ -102,6 +129,15 @@ namespace FileConductor.Properties {
         internal static string InfoServiceStopped {
             get {
                 return ResourceManager.GetString("InfoServiceStopped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation &lt;id:{0}&gt; executed without errors.
+        /// </summary>
+        internal static string Operation_executed_without_errors {
+            get {
+                return ResourceManager.GetString("Operation_executed_without_errors", resourceCulture);
             }
         }
     }

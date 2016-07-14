@@ -3,21 +3,13 @@ using System.IO;
 
 namespace FileConductor.Protocols
 {
-    public class LocalProtocol : IProtocol
+    public class LocalProtocol : Protocol
     {
-        public OperationProperties Properties { get; set; }
+       // public OperationProperties Properties { get; set; }
 
-        public void ExecuteProcess()
+        public override void Execute()
         {
-            try
-            {
                 TryToMove();
-            }
-            catch (Exception ex)
-            {
-                //TODO: Here some loging mechanism 
-                throw;
-            }
         }
 
         private void TryToMove()

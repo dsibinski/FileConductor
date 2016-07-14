@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using NLog;
 
 namespace FileConductor
 {
@@ -11,7 +12,9 @@ namespace FileConductor
    {
        public event ElapsedEventHandler OnElapsed;
 
-       protected void Execute()
+       protected static Logger logger = LogManager.GetCurrentClassLogger();
+
+        protected void Execute()
        {
             OnElapsed.Invoke(this,null);
        }

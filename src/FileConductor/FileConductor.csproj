@@ -60,6 +60,7 @@
     <Compile Include="Configuration\XmlData\WatcherData.cs" />
     <Compile Include="Configuration\XmlData\WatcherRoutingData.cs" />
     <Compile Include="Configuration\XmlFileDeserializer.cs" />
+    <Compile Include="Helpers\FileConductorInitializer.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="FileConductorService.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -67,8 +68,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-	<Compile Include="OperationProcessor.cs" />
-    <Compile Include="Protocols\IProtocol.cs" />
+    <Compile Include="OperationProcessor.cs" />
+    <Compile Include="Protocols\Protocol.cs" />
     <Compile Include="Protocols\LocalProtocol.cs" />
     <Compile Include="Operation\Operation.cs" />
     <Compile Include="Operation\OperationProperties.cs" />

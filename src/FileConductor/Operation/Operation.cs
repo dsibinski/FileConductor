@@ -5,18 +5,17 @@ namespace FileConductor
 {
     public class Operation
     {
+        public int Id { get; set; }
+
         public delegate void OperationElapsedEventHandler(Operation sender, ElapsedEventArgs e);
 
-        private readonly IProtocol _protocol;
+        private readonly Protocol _protocol;
 
-        public Operation(IProtocol protocol, OperationProperties properties)
+        public Operation(Protocol protocol, OperationProperties properties)
         {
             _protocol = protocol;
             protocol.Properties = properties;
-            //protocol.Properties.SchedulerTimer.Elapsed += NotificationExecute;
-            //protocol.Properties.SchedulerTimer.Start();
             protocol.Properties.NotificationSettings.OnElapsed += NotificationExecute;
-           // protocol.Properties.SchedulerTimer.Start();
         }
 
         public event OperationElapsedEventHandler OnTimeElapsed;
