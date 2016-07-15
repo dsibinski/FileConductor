@@ -10,5 +10,6 @@ namespace FileConductor
    {
        public const double SchedulerIntervaltime = 5000;
        public const double Secund = 1000;
-    }
+       public const char DaysSeparator = ';';
+   }
 }

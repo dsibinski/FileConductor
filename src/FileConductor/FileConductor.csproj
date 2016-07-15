@@ -63,6 +63,7 @@
     <Compile Include="Helpers\FileConductorInitializer.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="FileConductorService.cs" />
+    <Compile Include="Helpers\ProtocolFactory.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
