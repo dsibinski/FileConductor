@@ -36,9 +36,9 @@ namespace FileConductor.Helpers
                     DestinyPath = destinationTarget.Path,
 
                     NotificationSettings =
-                        new SpecifiedTimeNotification(days, new TimeSpan()), //TODO: WHAT HERE?   seperator ;   
+                        new SpecifiedTimeNotification(days, new TimeSpan()), //TODO: WHAT HERE?   seperator ;   // DS: Yes, semicolon-separated values
                     SourcePath = sourceTarget.Path,
-                    Regex = destinationTarget.Name   //TODO: REGEX?
+                    Regex = watcher.FileNameRegex
                 };
                 var operation = new Operation(ProtocolFactory.GetProtocol(destinationServer.Protocol), operationPropTmp);
 

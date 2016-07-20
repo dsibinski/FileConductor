@@ -69,6 +69,7 @@
         <destinationTargetId>2</destinationTargetId>
       </watcherRouting>
       <scheduleId>1</scheduleId>
+      <fileNameRegex>*.csv</fileNameRegex>
     </watcher>
 
     <watcher>
@@ -80,6 +81,7 @@
         <destinationTargetId>1</destinationTargetId>
       </watcherRouting>
       <scheduleId>1</scheduleId>
+      <fileNameRegex>*.csv</fileNameRegex>
     </watcher>
 
   </watchers>

@@ -19,8 +19,6 @@ namespace FileConductor.Configuration
         public XmlFileDeserializer(string xmlFilePath)
         {
             FilePath = xmlFilePath;
-            
-
         }
 
         public void Deserialize()
@@ -30,8 +28,6 @@ namespace FileConductor.Configuration
                 XmlData = (T)Serializer.Deserialize(reader);
                 reader.Close();
             }
-            
-            
         }
         
     }

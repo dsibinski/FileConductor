@@ -21,5 +21,8 @@ namespace FileConductor.Configuration.XmlData
         [XmlElement("scheduleId")]
         public int ScheduleId { get; set; }
 
+        [XmlElement("fileNameRegex")]
+        public string FileNameRegex { get; set; }
+
     }
 }
