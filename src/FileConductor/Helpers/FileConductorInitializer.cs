@@ -15,9 +15,9 @@ namespace FileConductor.Helpers
         {
             var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
             deserializer.Deserialize();
-
-
             var configurationData = deserializer.XmlData;
+
+            var operationProcessor = new OperationProcessor();
 
             foreach (var watcher in configurationData.Watchers)
             {
@@ -29,24 +29,39 @@ namespace FileConductor.Helpers
                     configurationData.Targets.First(x => x.Id == watcher.WatcherRouting.DestinationTargetId);
                 var destinationServer = configurationData.Servers.First(x => x.Id == destinationTarget.ServerId);
 
-                var days = shedule.DaysOfWeek.Split(Constants.DaysSeparator).Cast<int>().ToArray();
-               // var hour = DateTime.TryParse(shedule.Hours,);
-                var operationPropTmp = new OperationProperties()
-                {
-                    DestinyPath = destinationTarget.Path,
+                var days = GetDaysArray(shedule);
+                DateTime time;
+                DateTime.TryParseExact(shedule.Hours, "HHmm", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out time);
 
-                    NotificationSettings =
-                        new SpecifiedTimeNotification(days, new TimeSpan()), //TODO: WHAT HERE?   seperator ;   // DS: Yes, semicolon-separated values
-                    SourcePath = sourceTarget.Path,
-                    Regex = watcher.FileNameRegex
-                };
-                var operation = new Operation(ProtocolFactory.GetProtocol(destinationServer.Protocol), operationPropTmp);
+                var operationProperties = FillOperationsProperties(destinationTarget, days, time, sourceTarget, watcher);
 
+                operationProcessor.AssignOperation(new Operation(ProtocolFactory.GetProtocol(destinationServer.Protocol), operationProperties));
             }
+       
+           
+        }
 
+        private static int[] GetDaysArray(ScheduleData shedule)
+        {
+            var days = shedule.DaysOfWeek.Split(Constants.DaysSeparator)
+                .ToList()
+                .ConvertAll(Convert.ToInt32)
+                .ToArray();
+            return days;
+        }
 
-            var operatio = new OperationProcessor();
-            //operatio.AssignOperation(operation);
+        private static OperationProperties FillOperationsProperties(TargetData destinationTarget, int[] days, DateTime time,
+            TargetData sourceTarget, WatcherData watcher)
+        {
+            var operationProperties = new OperationProperties()
+            {
+                DestinyPath = destinationTarget.Path,
+                NotificationSettings =
+                    new SpecifiedTimeNotification(days, new TimeSpan(0, time.Hour, time.Minute, 0)),
+                SourcePath = sourceTarget.Path,
+                Regex = watcher.FileNameRegex
+            };
+            return operationProperties;
         }
     }
 }

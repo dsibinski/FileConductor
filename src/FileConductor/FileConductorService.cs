@@ -3,6 +3,7 @@ using System.IO;
 using System.Timers;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
+using FileConductor.Helpers;
 using FileConductor.Properties;
 using FileConductor.Protocols;
 using NLog;
@@ -15,6 +16,9 @@ namespace FileConductor
 
         public bool Start()
         {
+            FileConductorInitializer initializer = new FileConductorInitializer();
+            initializer.InitializeOperations();
+
             logger.Trace(Resources.InfoServiceInitializationStarted);
             logger.Trace(Resources.InfoConfigFileReadingStarted);
 
