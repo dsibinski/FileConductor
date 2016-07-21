@@ -11,11 +11,12 @@ namespace FileConductor
 
         private readonly Protocol _protocol;
 
-        public Operation(Protocol protocol, OperationProperties properties)
+        public Operation(Protocol protocol, OperationProperties properties,int id)
         {
             _protocol = protocol;
             protocol.Properties = properties;
             protocol.Properties.NotificationSettings.OnElapsed += NotificationExecute;
+            Id = id;
         }
 
         public event OperationElapsedEventHandler OnTimeElapsed;

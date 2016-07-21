@@ -28,6 +28,7 @@ namespace FileConductor.Helpers
                 var destinationTarget =
                     configurationData.Targets.First(x => x.Id == watcher.WatcherRouting.DestinationTargetId);
                 var destinationServer = configurationData.Servers.First(x => x.Id == destinationTarget.ServerId);
+                int operationId = watcher.Id;
 
                 var days = GetDaysArray(shedule);
                 DateTime time;
@@ -35,7 +36,7 @@ namespace FileConductor.Helpers
 
                 var operationProperties = FillOperationsProperties(destinationTarget, days, time, sourceTarget, watcher);
 
-                operationProcessor.AssignOperation(new Operation(ProtocolFactory.GetProtocol(destinationServer.Protocol), operationProperties));
+                operationProcessor.AssignOperation(new Operation(ProtocolFactory.GetProtocol(destinationServer.Protocol), operationProperties,operationId));
             }
        
            
