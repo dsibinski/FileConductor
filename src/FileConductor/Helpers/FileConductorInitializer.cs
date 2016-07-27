@@ -34,7 +34,7 @@ namespace FileConductor.Helpers
                 DateTime time;
                 DateTime.TryParseExact(shedule.Hours, "HHmm", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out time);
 
-                var operationProperties = FillOperationsProperties(destinationTarget, days, time, sourceTarget, watcher);
+                var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, days, time, sourceTarget, sourceServer, watcher);
 
                 operationProcessor.AssignOperation(new Operation(ProtocolFactory.GetProtocol(destinationServer.Protocol), operationProperties,operationId));
             }
@@ -51,15 +51,17 @@ namespace FileConductor.Helpers
             return days;
         }
 
-        private static OperationProperties FillOperationsProperties(TargetData destinationTarget, int[] days, DateTime time,
-            TargetData sourceTarget, WatcherData watcher)
+        private static OperationProperties FillOperationsProperties(TargetData destinationTarget, ServerData destinationServer, int[] days, DateTime time,
+            TargetData sourceTarget, ServerData sourceServer, WatcherData watcher)
         {
             var operationProperties = new OperationProperties()
             {
-                DestinyPath = destinationTarget.Path,
+                DestinationServer = destinationServer,
+                DestinationTarget = destinationTarget,
                 NotificationSettings =
                     new SpecifiedTimeNotification(days, new TimeSpan(0, time.Hour, time.Minute, 0)),
-                SourcePath = sourceTarget.Path,
+                SourceServer = sourceServer,
+                SourceTarget = sourceTarget,
                 Regex = watcher.FileNameRegex
             };
             return operationProperties;

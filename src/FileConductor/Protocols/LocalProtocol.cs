@@ -14,8 +14,8 @@ namespace FileConductor.Protocols
 
         private void TryToMove()
         {
-            string sourcePath = Properties.SourcePath;
-            string destinyPath = Properties.DestinyPath;
+            string sourcePath = Properties.SourceTarget.Path;
+            string destinyPath = Properties.DestinationTarget.Path;
             string regex = Properties.Regex;
 
             string[] files = Directory.GetFiles(sourcePath, regex);

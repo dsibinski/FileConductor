@@ -11,7 +11,7 @@ namespace FileConductor
 
         private readonly Protocol _protocol;
 
-        public Operation(Protocol protocol, OperationProperties properties,int id)
+        public Operation(Protocol protocol, OperationProperties properties, int id)
         {
             _protocol = protocol;
             protocol.Properties = properties;
