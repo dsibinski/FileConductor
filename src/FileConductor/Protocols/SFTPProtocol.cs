@@ -7,7 +7,7 @@ using Renci.SshNet;
 
 namespace FileConductor.Protocols
 {
-    /*public class SFTPProtocol : Protocol
+    public class SFTPProtocol : Protocol
     {
         public override void Execute()
         {
@@ -32,5 +32,5 @@ namespace FileConductor.Protocols
 
             }
         }
-    }*/
+    }
 }
