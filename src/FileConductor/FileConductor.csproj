@@ -74,10 +74,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="OperationProcessor.cs" />
-    <Compile Include="Protocols\Protocol.cs" />
+    <Compile Include="Protocols\IProtocol.cs" />
     <Compile Include="Protocols\LocalProtocol.cs" />
     <Compile Include="Operation\Operation.cs" />
     <Compile Include="Operation\OperationProperties.cs" />
+    <Compile Include="Protocols\ProtocolExecutor.cs" />
     <Compile Include="Protocols\ProtocolType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

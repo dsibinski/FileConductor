@@ -1,29 +1,22 @@
 ﻿using System;
 using System.IO;
+using FileConductor.Configuration.XmlData;
 
 namespace FileConductor.Protocols
 {
-    public class LocalProtocol : Protocol
+    public class LocalProtocol : IProtocol
     {
-       // public OperationProperties Properties { get; set; }
-
-        public override void Execute()
+        public void Execute(TargetData sourceData, TargetData destinationData, string regex)
         {
-                TryToMove();
-        }
-
-        private void TryToMove()
-        {
-            string sourcePath = Properties.SourceTarget.Path;
-            string destinyPath = Properties.DestinationTarget.Path;
-            string regex = Properties.Regex;
+            string sourcePath = sourceData.Path;
+            string destinyPath = destinationData.Path;
 
             string[] files = Directory.GetFiles(sourcePath, regex);
 
             foreach (var file in files)
             {
                 string fileName = Path.GetFileName(file);
-                File.Move(file, destinyPath+fileName);
+                File.Move(file, destinyPath + fileName);
             }
         }
     }

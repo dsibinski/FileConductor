@@ -31,7 +31,7 @@ namespace FileConductor
             {
                 while (_readyOperations.Any())
                 {
-                    Operation currentOperation = null;
+                    Operation currentOperation;
                     _readyOperations.TryDequeue(out currentOperation);
 
                     if (currentOperation != null)

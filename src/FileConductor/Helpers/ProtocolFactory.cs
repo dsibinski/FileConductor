@@ -10,7 +10,7 @@ namespace FileConductor.Helpers
 {
     public class ProtocolFactory
     {
-        public static Protocol GetProtocol(ProtocolType type)
+        public static IProtocol GetProtocol(ProtocolType type)
         {
             switch (type)
             {
