@@ -8,7 +8,7 @@ namespace FileConductor
 {
    public static class Constants
    {
-       public const double SchedulerIntervaltime = 5000;
+       public const int SchedulerIntervaltime = 5000;
        public const char DaysSeparator = ';';
    }
 }

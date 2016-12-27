@@ -36,6 +36,8 @@ namespace FileConductor.Helpers
 
                 var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, days, time, sourceTarget, sourceServer, watcher);
 
+
+
                 operationProcessor.AssignOperation(new Operation(ProtocolFactory.GetProtocol(destinationServer.Protocol), operationProperties,operationId));
             }
        

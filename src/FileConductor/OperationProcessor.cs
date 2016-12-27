@@ -4,25 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using FileConductor.Properties;
+using FileConductor.Schedule;
 using NLog;
 
 namespace FileConductor
 {
     public class OperationProcessor
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
-        private readonly ConcurrentQueue<Operation> _readyOperations;
-        private readonly List<Operation> _operations;
-        private readonly Timer _timer;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly object _locker = new object();
+        private readonly List<Operation> _operations;
+        private readonly ConcurrentQueue<Operation> _readyOperations;
+        private readonly IntervalScheduler _sheduler;
 
         public OperationProcessor()
         {
             _readyOperations = new ConcurrentQueue<Operation>();
             _operations = new List<Operation>();
-            _timer = new Timer(Constants.SchedulerIntervaltime);
-            _timer.Elapsed += OnElapsedTime;
-            _timer.Start();
+            _sheduler = new IntervalScheduler(Constants.SchedulerIntervaltime, OnElapsedTime);
         }
 
         private void OnElapsedTime(object sender, ElapsedEventArgs e)
@@ -36,24 +35,24 @@ namespace FileConductor
 
                     if (currentOperation != null)
                     {
-                        _logger.Info(String.Format(Resources.Executing_operation__id, currentOperation.Id));
+                        Logger.Info(String.Format(Resources.Executing_operation__id, currentOperation.Id));
                         currentOperation.Execute();
-                        _logger.Info(String.Format(Resources.Operation_executed_without_errors, currentOperation.Id));
-                    }   
+                        Logger.Info(String.Format(Resources.Operation_executed_without_errors, currentOperation.Id));
+                    }
                 }
             }
         }
 
         public void AssignOperation(Operation operation)
         {
-            _logger.Info(String.Format(Resources.Assigning_operation, operation.Id));
+            Logger.Info(String.Format(Resources.Assigning_operation, operation.Id));
             _operations.Add(operation);
             operation.OnTimeElapsed += AddOperationToQueue;
         }
 
         private void AddOperationToQueue(Operation sender, ElapsedEventArgs e)
         {
-            _logger.Info(String.Format(Resources.Adding_operation_to_queue, sender.Id));
+            Logger.Info(String.Format(Resources.Adding_operation_to_queue, sender.Id));
             _readyOperations.Enqueue(sender);
         }
     }

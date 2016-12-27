@@ -12,26 +12,26 @@ namespace FileConductor
 {
     internal class FileConductorService
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public bool Start()
         {
 
-            logger.Trace(Resources.InfoServiceInitializationStarted);
-            logger.Trace(Resources.InfoConfigFileReadingStarted);
+            Logger.Trace(Resources.InfoServiceInitializationStarted);
+            Logger.Trace(Resources.InfoConfigFileReadingStarted);
 
             FileConductorInitializer initializer = new FileConductorInitializer();
             initializer.InitializeOperations();
 
-            logger.Trace(Resources.InfoConfigFileReadingFinished);
+            Logger.Trace(Resources.InfoConfigFileReadingFinished);
 
-            logger.Trace(Resources.InfoServiceInitializationFinished);
+            Logger.Trace(Resources.InfoServiceInitializationFinished);
             return true;
         }
 
         public bool Stop()
         {
-            logger.Trace(Resources.InfoServiceStopped);
+            Logger.Trace(Resources.InfoServiceStopped);
             // Service's disposing logic
             // Executed when the service is stopped/closed
             return true;
