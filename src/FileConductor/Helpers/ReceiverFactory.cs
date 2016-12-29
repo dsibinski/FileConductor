@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileConductor.FileTransport;
+using FileConductor.FileTransport.Implementations;
 using FileConductor.Protocols;
 
 namespace FileConductor.Helpers
 {
-    public class ProtocolFactory
+    public class ReceiverFactory
     {
-        public static IProtocol GetProtocol(ProtocolType type)
+        public static IReceiver GetReceiver(TransferType type)
         {
             switch (type)
             {
-                case ProtocolType.Local:
-                    return new LocalProtocol();
+                case TransferType.Local:
+                    return new LocalReceiver();
                 default:
                     throw new Exception("No protocol with specified type!");
             }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
+using FileConductor.FileTransport;
 using FileConductor.Protocols;
 
 namespace FileConductor.Helpers
@@ -32,16 +33,18 @@ namespace FileConductor.Helpers
 
                 var days = GetDaysArray(shedule);
                 DateTime time;
-                DateTime.TryParseExact(shedule.Hours, "HHmm", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out time);
+                DateTime.TryParseExact(shedule.Hours, "HHmm", System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None, out time);
 
-                var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, days, time, sourceTarget, sourceServer, watcher);
+                var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, days, time,
+                    sourceTarget, sourceServer, watcher);
 
+                var receiver = ReceiverFactory.GetReceiver(sourceServer.Protocol);
+                var sender = SenderFactory.Getsender(destinationServer.Protocol);
+                var protocol = new Protocol(receiver, sender);
 
-
-                operationProcessor.AssignOperation(new Operation(ProtocolFactory.GetProtocol(destinationServer.Protocol), operationProperties,operationId));
+                operationProcessor.AssignOperation(new Operation(protocol, operationProperties, operationId));
             }
-       
-           
         }
 
         private static int[] GetDaysArray(ScheduleData shedule)
@@ -53,17 +56,19 @@ namespace FileConductor.Helpers
             return days;
         }
 
-        private static OperationProperties FillOperationsProperties(TargetData destinationTarget, ServerData destinationServer, int[] days, DateTime time,
+        private static OperationProperties FillOperationsProperties(TargetData destinationTarget,
+            ServerData destinationServer, int[] days, DateTime time,
             TargetData sourceTarget, ServerData sourceServer, WatcherData watcher)
         {
             var operationProperties = new OperationProperties()
             {
-                DestinationServer = destinationServer,
-                DestinationTarget = destinationTarget,
+                DestinationTarget =
+                    new TargetTransformData(destinationServer.Ip, destinationTarget.Path, destinationServer.User,
+                        destinationServer.Password),
                 NotificationSettings =
                     new SpecifiedTimeNotification(days, new TimeSpan(0, time.Hour, time.Minute, 0)),
-                SourceServer = sourceServer,
-                SourceTarget = sourceTarget,
+                SourceTarget =
+                    new TargetTransformData(sourceServer.Ip, sourceTarget.Path, sourceServer.User, sourceServer.Password),
                 Regex = watcher.FileNameRegex
             };
             return operationProperties;

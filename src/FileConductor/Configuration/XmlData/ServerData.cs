@@ -11,7 +11,7 @@ namespace FileConductor.Configuration.XmlData
         public int Id { get; set; }
 
         [XmlElement("protocol")]
-        public ProtocolType Protocol { get; set; }
+        public TransferType Protocol { get; set; }
 
         [XmlElement("ip")]
         public string Ip  { get; set; }

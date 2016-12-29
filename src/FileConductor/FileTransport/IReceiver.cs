@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileConductor.FileTransport
 {
-    public interface IReceive
+    public interface IReceiver : ITransfer
     {
-        void Receive(string ip, string path, string fileName);
     }
 }

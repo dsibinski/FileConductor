@@ -689,7 +689,7 @@
         </xs:attribute>
         <xs:attribute name="error" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether to send the log messages to the standard error instead of the standard output.</xs:documentation>
+            <xs:documentation>Indicates whether to Sender the log messages to the standard error instead of the standard output.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="encoding" type="xs:string">
@@ -1468,12 +1468,12 @@
         </xs:attribute>
         <xs:attribute name="html" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether to send message as HTML instead of plain text.</xs:documentation>
+            <xs:documentation>Indicates whether to Sender message as HTML instead of plain text.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="encoding" type="xs:string">
           <xs:annotation>
-            <xs:documentation>Encoding to be used for sending e-mail.</xs:documentation>
+            <xs:documentation>Encoding to be used for Sendering e-mail.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="addNewLines" type="xs:boolean">
@@ -1498,7 +1498,7 @@
         </xs:attribute>
         <xs:attribute name="body" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Mail message body (repeated for each log message send in one mail).</xs:documentation>
+            <xs:documentation>Mail message body (repeated for each log message Sender in one mail).</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="subject" type="SimpleLayoutAttribute">
@@ -1508,7 +1508,7 @@
         </xs:attribute>
         <xs:attribute name="from" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Sender's email address (e.g. joe@domain.com).</xs:documentation>
+            <xs:documentation>Senderer's email address (e.g. joe@domain.com).</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="replaceNewlineWithBrTagInHtml" type="xs:boolean">
@@ -1518,7 +1518,7 @@
         </xs:attribute>
         <xs:attribute name="priority" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Priority used for sending mails.</xs:documentation>
+            <xs:documentation>Priority used for Sendering mails.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="timeout" type="xs:integer">
@@ -1528,7 +1528,7 @@
         </xs:attribute>
         <xs:attribute name="smtpServer" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>SMTP Server to be used for sending.</xs:documentation>
+            <xs:documentation>SMTP Server to be used for Sendering.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="smtpAuthentication" type="NLog.Targets.SmtpAuthenticationMode">

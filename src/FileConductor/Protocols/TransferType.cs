@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace FileConductor.Protocols
 {
-    public enum ProtocolType
+    public enum TransferType
     {
         [XmlEnum(Name = "Local")]
         Local,

@@ -64,27 +64,30 @@
     <Compile Include="Configuration\XmlData\WatcherData.cs" />
     <Compile Include="Configuration\XmlData\WatcherRoutingData.cs" />
     <Compile Include="Configuration\XmlFileDeserializer.cs" />
-    <Compile Include="FileTransport\IReceive.cs" />
-    <Compile Include="FileTransport\ISend.cs" />
+    <Compile Include="FileTransport\IReceiver.cs" />
+    <Compile Include="FileTransport\ISender.cs" />
+    <Compile Include="FileTransport\LocalFileTransport\LocalReceiver.cs" />
+    <Compile Include="FileTransport\LocalFileTransport\LocalSender.cs" />
+    <Compile Include="FileTransport\ITransfer.cs" />
+    <Compile Include="FileTransport\Protocol.cs" />
     <Compile Include="Helpers\FileConductorInitializer.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="FileConductorService.cs" />
-    <Compile Include="Helpers\ProtocolFactory.cs" />
+    <Compile Include="Helpers\ReceiverFactory.cs" />
+    <Compile Include="Helpers\ProxyFile.cs" />
+    <Compile Include="Helpers\SenderFactory.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="OperationProcessor.cs" />
-    <Compile Include="Protocols\IProtocol.cs" />
-    <Compile Include="Protocols\LocalProtocol.cs" />
     <Compile Include="Operation\Operation.cs" />
     <Compile Include="Operation\OperationProperties.cs" />
     <Compile Include="Protocols\ProtocolExecutor.cs" />
-    <Compile Include="Protocols\ProtocolType.cs" />
+    <Compile Include="Protocols\TransferType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protocols\SFTPProtocol.cs" />
     <Compile Include="Schedule\IntervalScheduler.cs" />
     <Compile Include="Schedule\OperationNotificator.cs" />
     <Compile Include="Schedule\IntervalNotification.cs" />
@@ -116,6 +119,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
