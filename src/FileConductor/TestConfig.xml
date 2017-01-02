@@ -38,24 +38,24 @@
     <target>
       <id>1</id>
       <name>Interface1_FTP</name>
-      <serverId>1</serverId>
-      <path>Interfaces/Folder1</path>
+      <serverId>2</serverId>
+      <path>:\Source</path>
     </target>
 
     <target>
       <id>2</id>
       <name>Interface1_Local</name>
       <serverId>2</serverId>
-      <path>C:/Interface1/Import</path>
+      <path>C:\Destiny</path>
     </target>
   </targets>
-  
+
   <schedules>
     <schedule>
       <id>1</id>
       <interval></interval>
-      <daysOfWeek>0;5;6</daysOfWeek>
-      <hours>1700</hours>
+      <daysOfWeek>0;1;2;3;4;5;6</daysOfWeek>
+      <hours>1540</hours>
     </schedule>
   </schedules>
 
@@ -69,21 +69,22 @@
         <destinationTargetId>2</destinationTargetId>
       </watcherRouting>
       <scheduleId>1</scheduleId>
+      <fileNameRegex>*.csv</fileNameRegex>
     </watcher>
 
     <watcher>
       <id>2</id>
       <name>Interface1_FTP_Exporter</name>
       <databaseId>1</databaseId>
-      <inteval>10s</inteval>
       <watcherRouting>
         <sourceTargetId>2</sourceTargetId>
         <destinationTargetId>1</destinationTargetId>
       </watcherRouting>
       <scheduleId>1</scheduleId>
+      <fileNameRegex>*.csv</fileNameRegex>
     </watcher>
 
   </watchers>
-  
-  
+
+
 </configuration>

@@ -10,14 +10,14 @@ using FileConductor.Protocols;
 
 namespace FileConductor.Helpers
 {
-    public class ReceiverFactory
+    public class TransferFactory
     {
-        public static IReceiver GetReceiver(TransferType type)
+        public static ITransfer GetTransfer(TransferType type)
         {
             switch (type)
             {
                 case TransferType.Local:
-                    return new LocalReceiver();
+                    return new LocalTransfer();
                 default:
                     throw new Exception("No protocol with specified type!");
             }

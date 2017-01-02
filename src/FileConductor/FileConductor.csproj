@@ -64,18 +64,14 @@
     <Compile Include="Configuration\XmlData\WatcherData.cs" />
     <Compile Include="Configuration\XmlData\WatcherRoutingData.cs" />
     <Compile Include="Configuration\XmlFileDeserializer.cs" />
-    <Compile Include="FileTransport\IReceiver.cs" />
-    <Compile Include="FileTransport\ISender.cs" />
-    <Compile Include="FileTransport\LocalFileTransport\LocalReceiver.cs" />
-    <Compile Include="FileTransport\LocalFileTransport\LocalSender.cs" />
+    <Compile Include="FileTransport\LocalFileTransport\LocalTransfer.cs" />
     <Compile Include="FileTransport\ITransfer.cs" />
     <Compile Include="FileTransport\Protocol.cs" />
     <Compile Include="Helpers\FileConductorInitializer.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="FileConductorService.cs" />
-    <Compile Include="Helpers\ReceiverFactory.cs" />
+    <Compile Include="Helpers\TransferFactory.cs" />
     <Compile Include="Helpers\ProxyFile.cs" />
-    <Compile Include="Helpers\SenderFactory.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

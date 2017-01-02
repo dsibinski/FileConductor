@@ -39,8 +39,8 @@ namespace FileConductor.Helpers
                 var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, days, time,
                     sourceTarget, sourceServer, watcher);
 
-                var receiver = ReceiverFactory.GetReceiver(sourceServer.Protocol);
-                var sender = SenderFactory.Getsender(destinationServer.Protocol);
+                var receiver = TransferFactory.GetTransfer(sourceServer.Protocol);
+                var sender = TransferFactory.GetTransfer(destinationServer.Protocol);
                 var protocol = new Protocol(receiver, sender);
 
                 operationProcessor.AssignOperation(new Operation(protocol, operationProperties, operationId));

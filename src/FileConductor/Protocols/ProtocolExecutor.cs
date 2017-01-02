@@ -29,8 +29,8 @@ namespace FileConductor.Protocols
         {
             try
             {
-                _protocol.Receiver.Transfer(_properties.SourceTarget,_properties.Regex);
-                _protocol.Sender.Transfer(_properties.DestinationTarget,_properties.Regex);
+                var receivedFiles = _protocol.Receiver.Receive(_properties.SourceTarget,_properties.Regex);
+                _protocol.Sender.Send(_properties.DestinationTarget, receivedFiles, _properties.Regex);
             }
             catch (Exception ex)
             {

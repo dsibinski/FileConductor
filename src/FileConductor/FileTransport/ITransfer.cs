@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace FileConductor.FileTransport
 {
-    //TODO: Maybe absolete
     public interface ITransfer
     {
-        void Transfer(TargetTransformData targetData,string regex);
+        List<string> Receive(TargetTransformData targetData,string regex);
+        void Send(TargetTransformData targetData,List<string> files,string regex);
+
     }
 }
