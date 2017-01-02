@@ -53,7 +53,7 @@
   <schedules>
     <schedule>
       <id>1</id>
-      <interval></interval>
+      <interval>10000</interval>
       <daysOfWeek>0;1;2;3;4;5;6</daysOfWeek>
       <hours>0758</hours>
     </schedule>

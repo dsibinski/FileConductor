@@ -5,16 +5,18 @@ using System.Timers;
 
 namespace FileConductor
 {
-    public class SpecifiedTimeNotification : OperationNotificator
+    public class SpecifiedTimeScheduler 
     {
         private readonly int[] _days;
         private readonly TimeSpan _executionTime;
         private Timer _interval;
         private int _previousExecutionDay = -1;
+        private ElapsedEventHandler _scheduleElapsed;
 
 
-        public SpecifiedTimeNotification(int[] days, TimeSpan executionTime)
+        public SpecifiedTimeScheduler(int[] days, TimeSpan executionTime, ElapsedEventHandler scheduleElapsed)
         {
+            _scheduleElapsed = scheduleElapsed;
             _days = days;
             _executionTime = executionTime;
             CalculateNextRequiredTime();
@@ -61,7 +63,7 @@ namespace FileConductor
         {
             _interval.Stop();
             _previousExecutionDay = 0;
-            Execute();
+            _scheduleElapsed(sender,e);
             CalculateNextRequiredTime();
         }
 

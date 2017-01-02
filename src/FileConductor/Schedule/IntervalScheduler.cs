@@ -13,13 +13,13 @@ namespace FileConductor.Schedule
         private readonly Timer _interval;
 
         /// <param name="sheduldingTime">shedulding time in miliseconds</param>
-        /// <param name="onIntervalElapsedHandler"> handler for action after each interval</param>
+        /// <param name="scheduleElapsed"> handler for action after each interval</param>
         /// <param name="startImmediately"></param>
-        public IntervalScheduler(int interval, ElapsedEventHandler onIntervalElapsedHandler,
+        public IntervalScheduler(int interval, ElapsedEventHandler scheduleElapsed,
             bool startImmediately = true)
         {
             _interval = new Timer(interval);
-            _interval.Elapsed += onIntervalElapsedHandler;
+            _interval.Elapsed += scheduleElapsed;
             if (startImmediately)
                 _interval.Start();
         }

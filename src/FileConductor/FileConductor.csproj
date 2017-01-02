@@ -85,9 +85,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule\IntervalScheduler.cs" />
-    <Compile Include="Schedule\OperationNotificator.cs" />
-    <Compile Include="Schedule\IntervalNotification.cs" />
-    <Compile Include="Schedule\SpecifiedTimeNotification.cs" />
+    <Compile Include="Schedule\OperationSchedule\OperationSchedule.cs" />
+    <Compile Include="Schedule\OperationSchedule\IntervalSchedule.cs" />
+    <Compile Include="Schedule\OperationSchedule\SpecifiedTimeSchedule.cs" />
+    <Compile Include="Schedule\ScheduleFactory.cs" />
+    <Compile Include="Schedule\SpecifiedTimeScheduler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

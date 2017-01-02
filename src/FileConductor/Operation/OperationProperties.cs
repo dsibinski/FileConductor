@@ -9,7 +9,7 @@ namespace FileConductor
         // public WatcherData Data;
         //  public ServerData DestinationServer;
         public TargetTransformData DestinationTarget;
-        public OperationNotificator NotificationSettings;
+        public OperationSchedule NotificationSettings;
         public string Regex;
         //public ServerData SourceServer;
         public TargetTransformData SourceTarget;
