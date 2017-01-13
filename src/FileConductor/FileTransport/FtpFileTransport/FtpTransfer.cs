@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Management.Automation;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using FileConductor.Helpers;
+
+namespace FileConductor.FileTransport.FtpFileTransport
+{
+    public class FtpTransfer : ITransfer
+    {
+        public List<string> Receive(TargetTransformData sourceData, string targetPath, string regex)
+        {
+            var allFiles = GetFileList(sourceData);
+
+            WildcardPattern wildCard = new WildcardPattern(regex);
+
+            List<string> files = allFiles.Where(x => wildCard.IsMatch(x)).ToList();
+
+            List<string> result = new List<string>();
+            foreach (var file in files)
+            {
+                var pathName = sourceData.IpAddress + sourceData.Path + file;
+                FtpWebRequest request = (FtpWebRequest) WebRequest.Create(pathName);
+
+                request.Method = WebRequestMethods.Ftp.DownloadFile;
+                request.Credentials = new NetworkCredential();
+                string proxyFile = targetPath + file;
+                if (File.Exists(proxyFile)) throw new Exception(String.Format("file <{0}> already exists", proxyFile));
+
+                using (FtpWebResponse response = (FtpWebResponse) request.GetResponse())
+                using (Stream responseStream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(responseStream))
+                using (StreamWriter destination = new StreamWriter(proxyFile))
+                {
+                    destination.Write(reader.ReadToEnd());
+                    destination.Flush();
+                }
+
+                request = (FtpWebRequest) WebRequest.Create(pathName);
+                request.Method = WebRequestMethods.Ftp.DeleteFile;
+                request.Credentials = new NetworkCredential();
+                using (var response = (FtpWebResponse) request.GetResponse()) ;
+                result.Add(proxyFile);
+            }
+            return result;
+        }
+
+
+        public void Send(TargetTransformData targetData, List<string> files, string regex)
+        {
+            throw new NotImplementedException();
+        }
+
+        private List<string> GetFileList(TargetTransformData sourceData)
+        {
+            List<string> result = new List<string>();
+            WebResponse response = null;
+            StreamReader reader = null;
+
+
+            var url = sourceData.IpAddress + sourceData.Path;
+            FtpWebRequest reqFTP = (FtpWebRequest) FtpWebRequest.Create(new Uri(url));
+            reqFTP.UseBinary = true;
+            reqFTP.Credentials = new NetworkCredential();
+            reqFTP.Method = WebRequestMethods.Ftp.ListDirectory;
+            reqFTP.Proxy = null;
+            reqFTP.KeepAlive = false;
+            reqFTP.UsePassive = false;
+            response = reqFTP.GetResponse();
+            using (reader = new StreamReader(response.GetResponseStream()))
+            {
+                string line = reader.ReadLine();
+                while (line != null)
+                {
+                    result.Add(line);
+                    line = reader.ReadLine();
+                }
+            }
+            return result;
+        }
+    }
+}

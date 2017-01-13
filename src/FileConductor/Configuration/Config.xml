@@ -19,7 +19,7 @@
     <server>
       <id>1</id>
       <protocol>FTP</protocol>
-      <ip>10.0.0.1</ip>
+      <ip>ftp://localhost</ip>
       <user>admin</user>
       <password>admin</password>
       <port>22</port>
@@ -38,8 +38,8 @@
     <target>
       <id>1</id>
       <name>Interface1_FTP</name>
-      <serverId>2</serverId>
-      <path>C:\Source</path>
+      <serverId>1</serverId>
+      <path>/</path>
     </target>
 
     <target>
@@ -72,7 +72,7 @@
       <fileNameRegex>*.csv</fileNameRegex>
     </watcher>
 
-    <watcher>
+    <!--<watcher>
       <id>2</id>
       <name>Interface1_FTP_Exporter</name>
       <databaseId>1</databaseId>
@@ -82,7 +82,7 @@
       </watcherRouting>
       <scheduleId>1</scheduleId>
       <fileNameRegex>*.csv</fileNameRegex>
-    </watcher>
+    </watcher>-->
 
   </watchers>
 

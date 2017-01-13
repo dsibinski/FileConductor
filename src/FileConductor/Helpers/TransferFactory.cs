@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileConductor.FileTransport;
+using FileConductor.FileTransport.FtpFileTransport;
 using FileConductor.FileTransport.Implementations;
 using FileConductor.Protocols;
 
@@ -18,6 +19,8 @@ namespace FileConductor.Helpers
             {
                 case TransferType.Local:
                     return new LocalTransfer();
+                case TransferType.Ftp:
+                    return new FtpTransfer();
                 default:
                     throw new Exception("No protocol with specified type!");
             }

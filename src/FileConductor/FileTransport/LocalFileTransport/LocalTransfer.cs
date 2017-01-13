@@ -10,10 +10,10 @@ namespace FileConductor.FileTransport.Implementations
 {
     public class LocalTransfer : ITransfer
     {
-        public List<string> Receive(TargetTransformData targetData, string regex)
+
+        public List<string> Receive(TargetTransformData sourceData, string targetPath, string regex)
         {
-            string sourcePath = targetData.Path;
-            string destinyPath = ProxyFile.ProxyPath;
+            string sourcePath = sourceData.Path;
 
             string[] files = Directory.GetFiles(sourcePath, regex);
 
@@ -21,7 +21,7 @@ namespace FileConductor.FileTransport.Implementations
             foreach (var file in files)
             {
                 string fileName = Path.GetFileName(file);
-                string combinedName = Path.Combine(destinyPath, fileName);
+                string combinedName = Path.Combine(targetPath, fileName);
                 File.Move(file, combinedName);
 
                 movedFiles.Add(combinedName);

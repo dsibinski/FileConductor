@@ -22,7 +22,7 @@ namespace FileConductor.Helpers
 
                     string localPath = new Uri(assemblyPath).LocalPath;
 
-                    var combined = Path.Combine(localPath, "Files");
+                    var combined = Path.Combine(localPath, "Files/");
 
                     System.IO.Directory.CreateDirectory(combined);
 

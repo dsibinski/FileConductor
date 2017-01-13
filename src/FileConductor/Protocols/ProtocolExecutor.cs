@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using FileConductor.FileTransport;
+using FileConductor.Helpers;
 using NLog;
 
 namespace FileConductor.Protocols
@@ -27,16 +28,34 @@ namespace FileConductor.Protocols
 
         public void ExecuteProtocol()
         {
+            List<string> receivedFiles = ReceiveFiles();
+            SendFiles(receivedFiles);
+        }
+
+        private void SendFiles(List<string> receivedFiles)
+        {
             try
             {
-                var receivedFiles = _protocol.Receiver.Receive(_properties.SourceTarget,_properties.Regex);
                 _protocol.Sender.Send(_properties.DestinationTarget, receivedFiles, _properties.Regex);
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                throw new Exception("Exception occured durind sending files", ex);
             }
         }
 
+        private List<string> ReceiveFiles()
+        {
+            List<string> receivedFiles = null;
+            try
+            {
+                receivedFiles = _protocol.Receiver.Receive(_properties.SourceTarget, ProxyFile.ProxyPath, _properties.Regex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception occured durind receiving files", ex);
+            }
+            return receivedFiles;
+        }
     }
 }
