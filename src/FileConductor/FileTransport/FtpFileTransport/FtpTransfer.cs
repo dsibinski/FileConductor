@@ -51,9 +51,38 @@ namespace FileConductor.FileTransport.FtpFileTransport
         }
 
 
-        public void Send(TargetTransformData targetData, List<string> files, string regex)
+        public void Send(TargetTransformData targetData, List<string> files)
         {
-            throw new NotImplementedException();
+            foreach (var file in files)
+            {
+                var fileName = Path.GetFileName(file);
+                var pathName = targetData.IpAddress;
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(pathName + fileName);
+                request.Method = WebRequestMethods.Ftp.UploadFile;
+                request.Credentials = new NetworkCredential();
+
+                FileInfo fi = new FileInfo(file);
+                request.ContentLength = fi.Length;
+                byte[] buffer = new byte[4097];
+                int bytes = 0;
+                int total_bytes = (int)fi.Length;
+                using (FileStream fs = fi.OpenRead())
+                using (Stream rs = request.GetRequestStream())
+                {
+                    while (total_bytes > 0)
+                    {
+                        bytes = fs.Read(buffer, 0, buffer.Length);
+                        rs.Write(buffer, 0, bytes);
+                        total_bytes = total_bytes - bytes;
+                    }
+                }
+
+                using (FtpWebResponse uploadResponse = (FtpWebResponse)request.GetResponse())
+                {
+                    var response = uploadResponse.StatusDescription;
+                }
+                File.Delete(file);
+            }
         }
 
         private List<string> GetFileList(TargetTransformData sourceData)
@@ -61,7 +90,6 @@ namespace FileConductor.FileTransport.FtpFileTransport
             List<string> result = new List<string>();
             WebResponse response = null;
             StreamReader reader = null;
-
 
             var url = sourceData.IpAddress + sourceData.Path;
             FtpWebRequest reqFTP = (FtpWebRequest) FtpWebRequest.Create(new Uri(url));

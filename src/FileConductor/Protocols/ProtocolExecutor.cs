@@ -36,7 +36,7 @@ namespace FileConductor.Protocols
         {
             try
             {
-                _protocol.Sender.Send(_properties.DestinationTarget, receivedFiles, _properties.Regex);
+                _protocol.Sender.Send(_properties.DestinationTarget, receivedFiles);
             }
             catch (Exception ex)
             {

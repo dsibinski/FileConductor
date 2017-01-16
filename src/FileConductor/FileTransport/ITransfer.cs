@@ -10,7 +10,7 @@ namespace FileConductor.FileTransport
     public interface ITransfer
     {
         List<string> Receive(TargetTransformData sourceData,string targetPath,string regex);
-        void Send(TargetTransformData targetData,List<string> files,string regex);
+        void Send(TargetTransformData targetData,List<string> files);
 
     }
 }

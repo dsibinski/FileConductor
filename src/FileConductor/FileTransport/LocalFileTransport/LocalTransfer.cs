@@ -29,7 +29,7 @@ namespace FileConductor.FileTransport.Implementations
             return movedFiles;
         }
 
-        public void Send(TargetTransformData targetData, List<string> files, string regex)
+        public void Send(TargetTransformData targetData, List<string> files)
         {
             string destinyPath = targetData.Path;
 
