@@ -77,14 +77,15 @@
     <Compile Include="FileConductorService.cs" />
     <Compile Include="Helpers\TransferFactory.cs" />
     <Compile Include="Helpers\ProxyFile.cs" />
+    <Compile Include="Operations\TargetTransformData.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="OperationProcessor.cs" />
-    <Compile Include="Operation\Operation.cs" />
-    <Compile Include="Operation\OperationProperties.cs" />
+    <Compile Include="Operations\Operation.cs" />
+    <Compile Include="Operations\OperationProperties.cs" />
     <Compile Include="Protocols\ProtocolExecutor.cs" />
     <Compile Include="Protocols\TransferType.cs" />
     <Compile Include="Program.cs" />

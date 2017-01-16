@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FileConductor.Helpers;
+using FileConductor.Operations;
 
-namespace FileConductor.FileTransport.Implementations
+namespace FileConductor.FileTransport.LocalFileTransport
 {
     public class LocalTransfer : ITransfer
     {
@@ -29,7 +25,7 @@ namespace FileConductor.FileTransport.Implementations
             return movedFiles;
         }
 
-        public void Send(TargetTransformData targetData, List<string> files)
+        public void Send(TargetTransformData targetData, IList<string> files)
         {
             string destinyPath = targetData.Path;
 

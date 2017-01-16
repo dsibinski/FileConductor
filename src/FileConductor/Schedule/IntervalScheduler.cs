@@ -12,9 +12,9 @@ namespace FileConductor.Schedule
     {
         private readonly Timer _interval;
 
-        /// <param name="sheduldingTime">shedulding time in miliseconds</param>
-        /// <param name="scheduleElapsed"> handler for action after each interval</param>
-        /// <param name="startImmediately"></param>
+        /// <param name="interval">Schedulding time in miliseconds</param>
+        /// <param name="scheduleElapsed">Handler for action after each interval</param>
+        /// <param name="startImmediately">If true, starts scheduling just after constructing, otherwise waits for Start method's first call</param>
         public IntervalScheduler(int interval, ElapsedEventHandler scheduleElapsed,
             bool startImmediately = true)
         {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FileConductor.FileTransport;
 using FileConductor.FileTransport.FtpFileTransport;
-using FileConductor.FileTransport.Implementations;
+using FileConductor.FileTransport.LocalFileTransport;
 using FileConductor.Protocols;
 
 namespace FileConductor.Helpers

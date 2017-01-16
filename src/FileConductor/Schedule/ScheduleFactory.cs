@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration.XmlData;
+using FileConductor.Operations;
 using FileConductor.Schedule.OperationShedule;
 
 namespace FileConductor.Schedule

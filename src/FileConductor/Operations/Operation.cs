@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Timers;
 using FileConductor.FileTransport;
+using FileConductor.Operations;
 using FileConductor.Protocols;
 
 namespace FileConductor
