@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Helpers;
+using FileConductor.Protocols;
 
 namespace FileConductor.FileTransport.Implementations
 {
     public class LocalTransfer : ITransfer
     {
+        public string Name => "Local";
 
         public List<string> Receive(TargetTransformData sourceData, string targetPath, string regex)
         {

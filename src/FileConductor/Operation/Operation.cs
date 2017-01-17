@@ -14,10 +14,10 @@ namespace FileConductor
         public Operation(Protocol protocol, OperationProperties properties, int id)
         {
             _protocolExecutor = new ProtocolExecutor(protocol, properties, NotificationHandler);
-            Id = id;
+           Id = id;
         }
 
-        public int Id { get; set; }
+       public int Id { get; set; }
 
         public event OperationElapsedEventHandler OnTimeElapsed;
 

@@ -46,7 +46,7 @@
       <id>2</id>
       <name>Interface1_Local</name>
       <serverId>2</serverId>
-      <path>C:\Destiny</path>
+      <path>C:\Source</path>
     </target>
   </targets>
 
@@ -65,8 +65,8 @@
       <name>Interface1_FTP_Importer</name>
       <databaseId>1</databaseId>
       <watcherRouting>
-        <sourceTargetId>1</sourceTargetId>
-        <destinationTargetId>2</destinationTargetId>
+        <sourceTargetId>2</sourceTargetId>
+        <destinationTargetId>1</destinationTargetId>
       </watcherRouting>
       <scheduleId>1</scheduleId>
       <fileNameRegex>*.csv</fileNameRegex>

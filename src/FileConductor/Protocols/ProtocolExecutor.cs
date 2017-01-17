@@ -40,7 +40,7 @@ namespace FileConductor.Protocols
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception occured durind sending files", ex);
+                throw new Exception("Exception occured during sending files", ex);
             }
         }
 
@@ -53,7 +53,7 @@ namespace FileConductor.Protocols
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception occured durind receiving files", ex);
+                throw new Exception("Exception occured during receiving files", ex);
             }
             return receivedFiles;
         }

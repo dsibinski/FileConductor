@@ -8,11 +8,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FileConductor.Helpers;
+using FileConductor.Protocols;
 
 namespace FileConductor.FileTransport.FtpFileTransport
 {
     public class FtpTransfer : ITransfer
     {
+        public string Name => "Ftp";
+
         public List<string> Receive(TargetTransformData sourceData, string targetPath, string regex)
         {
             var allFiles = GetFileList(sourceData);
@@ -57,7 +60,7 @@ namespace FileConductor.FileTransport.FtpFileTransport
             {
                 var fileName = Path.GetFileName(file);
                 var pathName = targetData.IpAddress;
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(pathName + fileName);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(pathName + '/' +fileName);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
                 request.Credentials = new NetworkCredential();
 
