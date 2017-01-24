@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using FileConductor.FileTransport;
 using FileConductor.Helpers;
+using FileConductor.Operations;
 using NLog;
 
 namespace FileConductor.Protocols
@@ -32,7 +33,7 @@ namespace FileConductor.Protocols
             SendFiles(receivedFiles);
         }
 
-        private void SendFiles(List<string> receivedFiles)
+        private void SendFiles(IList<string> receivedFiles)
         {
             try
             {

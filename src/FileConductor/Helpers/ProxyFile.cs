@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace FileConductor.Helpers
 {
+    /// <summary>
+    /// Represents a proxy file used as a temporary file during various operations
+    /// (e.g. copying between different types of targets, where direct copying is not possible)
+    /// </summary>
     public class ProxyFile
     {
         private static string _proxyPath;
@@ -17,14 +21,13 @@ namespace FileConductor.Helpers
             {
                 if (String.IsNullOrEmpty(_proxyPath))
                 {
-                    string assemblyPath = System.IO.Path.GetDirectoryName(
-                        System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+                    var assemblyPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
 
-                    string localPath = new Uri(assemblyPath).LocalPath;
+                    var localPath = new Uri(assemblyPath).LocalPath;
 
                     var combined = Path.Combine(localPath, "Files/");
 
-                    System.IO.Directory.CreateDirectory(combined);
+                    Directory.CreateDirectory(combined);
 
                     _proxyPath = combined;
                 }

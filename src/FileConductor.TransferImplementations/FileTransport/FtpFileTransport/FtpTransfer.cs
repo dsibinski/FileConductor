@@ -8,12 +8,22 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FileConductor.Helpers;
-using FileConductor.Protocols;
+using FileConductor.Operations;
 
 namespace FileConductor.FileTransport.FtpFileTransport
 {
+    /// <summary>
+    /// FTP transferable provider
+    /// </summary>
     public class FtpTransfer : ITransfer
     {
+        /// <summary>
+        /// Used for getting files from sourceData into targetPath
+        /// </summary>
+        /// <param name="sourceData"></param>
+        /// <param name="targetPath"></param>
+        /// <param name="regex"></param>
+        /// <returns></returns>
         public string Name => "Ftp";
 
         public List<string> Receive(TargetTransformData sourceData, string targetPath, string regex)
@@ -47,14 +57,14 @@ namespace FileConductor.FileTransport.FtpFileTransport
                 request = (FtpWebRequest) WebRequest.Create(pathName);
                 request.Method = WebRequestMethods.Ftp.DeleteFile;
                 request.Credentials = new NetworkCredential();
-                using (var response = (FtpWebResponse) request.GetResponse()) ;
+                using ((FtpWebResponse) request.GetResponse()){}
                 result.Add(proxyFile);
             }
             return result;
         }
 
 
-        public void Send(TargetTransformData targetData, List<string> files)
+        public void Send(TargetTransformData targetData, IList<string> files)
         {
             foreach (var file in files)
             {

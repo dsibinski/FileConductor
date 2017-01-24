@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FileConductor.FileTransport
 {
+    /// <summary>
+    /// Repsesents a sender-receiver entity called Protocol
+    /// </summary>
     public class Protocol
     {
         public Protocol(ITransfer receiver, ITransfer sender)

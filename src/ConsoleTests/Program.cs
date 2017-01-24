@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FileConductor;
 using FileConductor.Helpers;
+using FileConductor.Operations;
 
 namespace ConsoleTests
 {
@@ -104,8 +105,7 @@ namespace ConsoleTests
                 request = (FtpWebRequest)WebRequest.Create(pathName);
                 request.Method = WebRequestMethods.Ftp.DeleteFile;
                 request.Credentials = new NetworkCredential();
-                using (var response = (FtpWebResponse)request.GetResponse()) ;
-
+                using ((FtpWebResponse)request.GetResponse()){}
             }
             return result;
         }
@@ -139,16 +139,10 @@ namespace ConsoleTests
                 result.Remove(result.ToString().LastIndexOf('\n'), 1);
                 return result.ToString().Split('\n');
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-                if (response != null)
-                {
-                    response.Close();
-                }
+                reader?.Close();
+                response?.Close();
                 downloadFiles = null;
                 return downloadFiles;
             }

@@ -1,9 +1,10 @@
-﻿using System.Diagnostics;
-using System.Timers;
-using FileConductor.Configuration.XmlData;
+﻿using System.Timers;
 
-namespace FileConductor
+namespace FileConductor.Operations
 {
+    /// <summary>
+    /// Stores information about the Operation (source/destination targets, regex to look for files etc.)
+    /// </summary>
     public class OperationProperties
     {
         // public WatcherData Data;
@@ -19,4 +20,5 @@ namespace FileConductor
             NotificationSettings.OnElapsed += afterOperationElapsedHandler;
         }
     }
+    
 }

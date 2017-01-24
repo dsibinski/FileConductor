@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using FileConductor.FileTransport;
+using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.Schedule;
 using FileConductor.Schedule.OperationShedule;
@@ -22,6 +23,11 @@ namespace FileConductor.Helpers
 
             var operationProcessor = new OperationProcessor();
 
+            InitializeOperations(configurationData, operationProcessor);
+        }
+
+        private void InitializeOperations(ConfigurationData configurationData, OperationProcessor operationProcessor)
+        {
             foreach (var watcher in configurationData.Watchers)
             {
                 var schedule = configurationData.Schedules.First(x => x.Id == watcher.ScheduleId);
@@ -33,7 +39,7 @@ namespace FileConductor.Helpers
                 var destinationServer = configurationData.Servers.First(x => x.Id == destinationTarget.ServerId);
                 int operationId = watcher.Id;
 
-                var operationProperties = FillOperationsProperties(destinationTarget, destinationServer,schedule,
+                var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, schedule,
                     sourceTarget, sourceServer, watcher);
 
                 var receiver = TransferFactory.GetTransfer(sourceServer.Protocol);
