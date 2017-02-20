@@ -17,5 +17,8 @@ namespace FileConductor.Configuration.XmlData
 
         [XmlElement("hours")]
         public string Hours { get; set; }
+
+        [XmlElement("name")]
+        public string Name { get; set; }
     }
 }

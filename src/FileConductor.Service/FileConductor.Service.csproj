@@ -4,15 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B2EBBB4D-91DF-4E29-B864-1B36AA46EE28}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{D031AD4E-296C-4464-8886-C2F3A7D3FC31}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileConductor</RootNamespace>
-    <AssemblyName>FileConductor</AssemblyName>
+    <RootNamespace>FileConductor.Service</RootNamespace>
+    <AssemblyName>FileConductor.Service</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,6 +36,10 @@
   <ItemGroup>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.0.0-beta2\lib\net40\Renci.SshNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -46,48 +54,40 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Topshelf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Topshelf.4.0.1\lib\net452\Topshelf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\XmlData\ConfigurationData.cs" />
-    <Compile Include="Configuration\XmlData\DatabaseData.cs" />
-    <Compile Include="Configuration\XmlData\ScheduleData.cs" />
-    <Compile Include="Configuration\XmlData\ServerData.cs" />
-    <Compile Include="Configuration\XmlData\TargetData.cs" />
-    <Compile Include="Configuration\XmlData\WatcherData.cs" />
-    <Compile Include="Configuration\XmlData\WatcherRoutingData.cs" />
-    <Compile Include="Configuration\XmlFileDeserializer.cs" />
-    <Compile Include="FileTransport\FtpFileTransport\FtpTransfer.cs" />
-    <Compile Include="FileTransport\ITransfer.cs" />
-    <Compile Include="FileTransport\LocalFileTransport\LocalTransfer.cs" />
-    <Compile Include="FileTransport\Protocol.cs" />
-    <Compile Include="FileTransport\TransportFactory.cs" />
-    <Compile Include="FileTransport\TransportManager.cs" />
-    <Compile Include="Helpers\Constants.cs" />
-    <Compile Include="FileConductor.cs" />
-    <Compile Include="Helpers\ProxyFile.cs" />
-    <Compile Include="OperationProcessor.cs" />
-    <Compile Include="Operation\Operation.cs" />
-    <Compile Include="Operation\OperationProperties.cs" />
-    <Compile Include="Operation\TargetTransformData.cs" />
+    <Compile Include="FileConductorService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Protocols\ProtocolExecutor.cs" />
-    <Compile Include="Schedule\IntervalScheduler.cs" />
-    <Compile Include="Schedule\OperationSchedule\IntervalSchedule.cs" />
-    <Compile Include="Schedule\OperationSchedule\OperationSchedule.cs" />
-    <Compile Include="Schedule\OperationSchedule\SpecifiedTimeSchedule.cs" />
-    <Compile Include="Schedule\ScheduleFactory.cs" />
-    <Compile Include="Schedule\SpecifiedTimeScheduler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="Configuration\Config.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -96,10 +96,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\Config.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\FileConductor\FileConductor.csproj">
+      <Project>{b2ebbb4d-91df-4e29-b864-1b36aa46ee28}</Project>
+      <Name>FileConductor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

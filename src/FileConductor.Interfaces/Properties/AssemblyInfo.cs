@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FileConductor")]
+[assembly: AssemblyTitle("FileConductor.Interfaces")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FileConductor")]
+[assembly: AssemblyProduct("FileConductor.Interfaces")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b2ebbb4d-91df-4e29-b864-1b36aa46ee28")]
+[assembly: Guid("7428c70b-0d1a-4efb-b91c-dcce6177c196")]
 
 // Version information for an assembly consists of the following four values:
 //

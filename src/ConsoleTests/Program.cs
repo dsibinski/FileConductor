@@ -8,7 +8,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FileConductor;
 using FileConductor.Helpers;
-using FileConductor.Operations;
 
 namespace ConsoleTests
 {

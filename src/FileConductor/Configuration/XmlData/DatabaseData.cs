@@ -18,5 +18,8 @@ namespace FileConductor.Configuration.XmlData
 
         [XmlElement("password")]
         public string Password { get; set; }
+
+        [XmlElement("name")]
+        public string Name { get; set; }
     }
 }

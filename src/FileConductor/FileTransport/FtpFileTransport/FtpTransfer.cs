@@ -4,11 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using FileConductor.Helpers;
-using FileConductor.Operations;
 
 namespace FileConductor.FileTransport.FtpFileTransport
 {
