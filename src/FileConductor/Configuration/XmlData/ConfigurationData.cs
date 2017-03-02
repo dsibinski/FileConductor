@@ -28,12 +28,5 @@ namespace FileConductor.Configuration.XmlData
         [XmlArrayItem("watcher")]
         public WatcherData[] Watchers { get; set; }
 
-
-        public TargetData SelectedTarget { get; set; }
-        public DatabaseData SelectedDatabase { get; set; }
-        public ScheduleData SelectedSchedule { get; set; }
-
-
-
     }
 }

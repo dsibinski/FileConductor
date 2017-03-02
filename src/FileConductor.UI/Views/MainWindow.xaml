@@ -4,55 +4,68 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileConductorUI.UI"
+        xmlns:viewModels="clr-namespace:FileConductorUI.UI.ViewModels"
+        xmlns:views="clr-namespace:FileConductorUI.UI.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="700">
- 
 
-    <Grid Style="{StaticResource MainGridStyle}"  >
+<!--    <Window.Resources>-->
+<!--        <DataTemplate DataType="{x:Type viewModels:DatabaseEditViewModel}">-->
+<!--            <views:DatabaseEditView/>-->
+<!--        </DataTemplate>-->
+<!--    </Window.Resources>-->
 
-        <Grid VerticalAlignment="Top"  >
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button x:Name="btnLaunch" Margin="10" Content="Launch" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
-                <Button x:Name="btnInstallation" Margin="10" Content="Install" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding InstallService}"/>
-                <Button x:Name="settings" Margin="10" Content="Settings" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding SettingsHandler}"/>
-            </StackPanel>
-        </Grid>
-        <Grid HorizontalAlignment="Stretch"  VerticalAlignment="Bottom" Width="auto" Height="400" Margin="20" >
+    <Grid>
+       
+        <!--Style="{ MainGridStyle}">-->
+        <DockPanel>
 
-            <StackPanel DataContext="{Binding ConfigData}" Orientation="Vertical" VerticalAlignment="top" HorizontalAlignment="Stretch">
-                <Grid>
-                    <Label Content="Targets :" Margin="10" HorizontalAlignment="Left"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <ComboBox Margin="10"   Width="150" ItemsSource="{Binding Targets}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedTarget}"/>
-                        <Button Content="Edit" Margin="10" Width="100"/>
-                        <Button Content="Add" Margin="10" Width="100"/>
-                        <Button Content="Delete" Margin="10" Width="100"  />
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                <Grid VerticalAlignment="Top" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <Button x:Name="btnLaunch" Margin="10" Content="Launch" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
+                        <Button x:Name="btnInstallation" Margin="10" Content="Install" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding InstallService}"/>
+                        <Button x:Name="settings" Margin="10" Content="Settings" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding NewTabCommand}"/>
                     </StackPanel>
                 </Grid>
+                <TabControl  DockPanel.Dock="Top" ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}">
+                    <TabControl.Resources>
+                        <DataTemplate DataType="{x:Type viewModels:DatabaseEditTabViewModel}">
+                            <views:DatabaseEditView/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:MainTabViewModel}">
+                            <local:MainTabView/>
+                        </DataTemplate>
+                    </TabControl.Resources>
+                    <TabControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:ITab}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock> <Run Text="{Binding Name}"/></TextBlock>
+                                <Image Source="/Icons/error.png" />
+                            </StackPanel>
+                          
 
-                <Grid>
-                    <Label Content="Databases :" Margin="10" HorizontalAlignment="Left"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <ComboBox  Margin="10"   Width="150" ItemsSource="{Binding Databases}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDatabase}"/>
-                        <Button Content="Edit" Margin="10" Width="100"/>
-                        <Button Content="Add" Margin="10" Width="100"/>
-                        <Button Content="Delete" Margin="10" Width="100"  />
-                    </StackPanel>
-                </Grid>
+<!--                            <Hyperlink Command="{Binding CloseCommand}">-->
+<!--                                <Image Source="/Icons/error.png" />-->
+<!--                            </Hyperlink>-->
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                </TabControl>
+                
+        </StackPanel>
 
-                <Grid>
-                    <Label Content="Schedules :" Margin="10" HorizontalAlignment="Left"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <ComboBox  Margin="10"   Width="150" ItemsSource="{Binding Schedules}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedSchedule}" />
-                        <Button Content="Edit" Margin="10" Width="100"/>
-                        <Button Content="Add" Margin="10" Width="100"/>
-                        <Button Content="Delete" Margin="10" Width="100"  />
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
-
-        </Grid>
-
+     <!--       <DockPanel Width="400" Dock="Bottom" Margin="20">
+                <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}"/>
+            </DockPanel>-->
+            
+        </DockPanel>
     </Grid>
-
+   
 </Window>
+
+
+
+
+
+
+

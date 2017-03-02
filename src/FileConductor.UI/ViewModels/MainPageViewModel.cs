@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -9,52 +11,93 @@ using System.Security.Cryptography;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using FileConductor.UI.Annotations;
+using FileConductorUI.UI.Entities;
+using FileConductorUI.UI.Services;
+using FileConductorUI.UI.ViewModels;
+using FileConductorUI.UI.Views;
+using Microsoft.Expression.Interactivity.Core;
 
 namespace FileConductorUI.UI
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
         public const string ServiceName = "FileConductor";
+        private readonly ObservableCollection<ITab> tabs;
+        private ITab _selectedTab;
 
-
-        private ConfigurationData _configData;
-        public ConfigurationData ConfigData
-
+        public ITab SelectedTab
         {
-            get { return _configData; }
+            get { return _selectedTab; }
             set
             {
-                _configData = value;
-                ConfigData.SelectedTarget = ConfigData.Targets.FirstOrDefault();
-                ConfigData.SelectedDatabase = ConfigData.Databases.FirstOrDefault();
-                ConfigData.SelectedSchedule = ConfigData.Schedules.FirstOrDefault();
-                OnPropertyChanged("ConfigData");
-        
+                _selectedTab = value;
+                OnPropertyChanged(nameof(SelectedTab));
             }
         }
-
-
 
         public MainPageViewModel()
         {
             InstallService = new CommandHandler(InstallServiceLogic);
-            SettingsHandler = new CommandHandler(OpenSettingsView);
-
-            var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
-            deserializer.Deserialize();
-             ConfigData = deserializer.XmlData;
+            NewTabCommand = new ActionCommand(x => NewTab());
+            tabs = new ObservableCollection<ITab>();
+            tabs.CollectionChanged += Tabs_CollectionChanged;
+            Tabs = tabs;
+            OpenTab(new MainTabViewModel());
         }
+
+        public ConfigurationDataCollection ConfigurationData { get; set; } = new ConfigurationDataCollection();
+
+        public ICommand NewTabCommand { get; }
+        public ICollection<ITab> Tabs { get; }
+
 
         public string ServiceStatus => GetServiceStatus();
 
         public CommandHandler InstallService { get; set; }
-        public CommandHandler SettingsHandler { get; set; }       
+        public CommandHandler SettingsHandler { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private void Tabs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            ITab tab;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    tab = (ITab) e.NewItems[0];
+                    tab.CloseRequested += OnTabCloseRequested;
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    tab = (ITab) e.OldItems[0];
+                    tab.CloseRequested -= OnTabCloseRequested;
+                    break;
+            }
+        }
+
+        private void OnTabCloseRequested(object sender, EventArgs e)
+        {
+            Tabs.Remove((ITab) sender);
+           
+        }
+
+        private void NewTab()
+        {
+           OpenTab(new DatabaseEditTabViewModel());
+        }
+
+        private void OpenTab(ITab tab)
+        {
+            Tabs.Add(tab);
+            SelectedTab = tab;
+        }
 
         public string GetServiceStatus()
         {
@@ -75,11 +118,6 @@ namespace FileConductorUI.UI
                 }
                 return builder.ToString();
             }
-        }
-
-        private void OpenSettingsView()
-        {
-            //  SettingsView settingsView = new SettingsView();
         }
 
         private void InstallServiceLogic()
@@ -123,10 +161,9 @@ namespace FileConductorUI.UI
 
         protected void OnPropertyChanged(string name)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
+            if (PropertyChanged != null)
             {
-                handler(this, new PropertyChangedEventArgs(name));
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
     }
