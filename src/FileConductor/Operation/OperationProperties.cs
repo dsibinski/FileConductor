@@ -17,7 +17,8 @@ namespace FileConductor.Operations
 
         public void AssignOperationHandler(ElapsedEventHandler afterOperationElapsedHandler)
         {
-            NotificationSettings.OnElapsed += afterOperationElapsedHandler;
+            if (NotificationSettings != null)
+                NotificationSettings.OnElapsed += afterOperationElapsedHandler;
         }
     }
     

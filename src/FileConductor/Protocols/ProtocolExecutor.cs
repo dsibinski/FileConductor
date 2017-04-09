@@ -29,7 +29,9 @@ namespace FileConductor.Protocols
 
         public void ExecuteProtocol()
         {
+            //todo: add logging here
             List<string> receivedFiles = ReceiveFiles();
+            if(receivedFiles.Count != 0)
             SendFiles(receivedFiles);
         }
 

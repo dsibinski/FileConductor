@@ -34,6 +34,10 @@
       <HintPath>..\packages\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.0.0\lib\net40\Renci.SshNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -56,10 +60,11 @@
     <Compile Include="Configuration\XmlData\WatcherData.cs" />
     <Compile Include="Configuration\XmlData\WatcherRoutingData.cs" />
     <Compile Include="Configuration\XmlFileDeserializer.cs" />
-    <Compile Include="FileTransport\FtpFileTransport\FtpTransfer.cs" />
+    <Compile Include="FileTransport\Ftp\FtpTransfer.cs" />
     <Compile Include="FileTransport\ITransfer.cs" />
-    <Compile Include="FileTransport\LocalFileTransport\LocalTransfer.cs" />
+    <Compile Include="FileTransport\Local\LocalTransfer.cs" />
     <Compile Include="FileTransport\Protocol.cs" />
+    <Compile Include="FileTransport\SFTP\SftpTransfer.cs" />
     <Compile Include="FileTransport\TransportFactory.cs" />
     <Compile Include="FileTransport\TransportManager.cs" />
     <Compile Include="Helpers\Constants.cs" />
