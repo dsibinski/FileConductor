@@ -1,9 +1,13 @@
 ﻿using System.Linq;
+using System.Reflection;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using FileConductor.FileTransport;
+using FileConductor.Helpers;
+using FileConductor.Ninject;
 using FileConductor.Operations;
 using FileConductor.Schedule;
+using Ninject;
 
 namespace FileConductor
 {
@@ -13,7 +17,7 @@ namespace FileConductor
         public void Initialize(ConfigurationData configurationData)
         {
             TransportManager.Initialize();
-            var operationProcessor = new OperationProcessor();
+            var operationProcessor = IoC.Resolve<IOperationProcessor>();
             foreach (var watcher in configurationData.Watchers)
             {
                 var schedule = configurationData.Schedules.First(x => x.Id == watcher.ScheduleId);
@@ -22,7 +26,7 @@ namespace FileConductor
                 var destinationTarget =
                     configurationData.Targets.First(x => x.Id == watcher.WatcherRouting.DestinationTargetId);
                 var destinationServer = configurationData.Servers.First(x => x.Id == destinationTarget.ServerId);
-                int operationId = watcher.Id;
+                string operationCode = watcher.Code;
 
                 var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, schedule,
                     sourceTarget, sourceServer, watcher);
@@ -31,7 +35,7 @@ namespace FileConductor
                 var sender = TransportFactory.GetTransfer(destinationServer.Protocol);
                 var protocol = new Protocol(receiver, sender);
 
-                operationProcessor.AssignOperation(new Operation(protocol, operationProperties, operationId));
+                operationProcessor.AssignOperation(new Operation(protocol, operationProperties, operationCode));
             }
         }
 

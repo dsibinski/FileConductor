@@ -6,8 +6,8 @@ namespace FileConductor.Configuration.XmlData
     [Serializable]
     public class WatcherData
     {
-        [XmlElement("id")]
-        public int Id { get; set; }
+        [XmlElement("code")]
+        public string Code { get; set; }
 
         [XmlElement("name")]
         public string Name { get; set; }

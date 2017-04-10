@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Timers;
 using FileConductor.FileTransport;
+using FileConductor.Helpers;
+using FileConductor.LoggingService;
 using FileConductor.Operations;
 using FileConductor.Protocols;
 
@@ -12,13 +14,13 @@ namespace FileConductor
 
         private readonly ProtocolExecutor _protocolExecutor;
 
-        public Operation(Protocol protocol, OperationProperties properties, int id)
+        public Operation(Protocol protocol, OperationProperties properties, string code)
         {
             _protocolExecutor = new ProtocolExecutor(protocol, properties, NotificationHandler);
-           Id = id;
+           Code = code;
         }
 
-       public int Id { get; set; }
+       public string Code { get; set; }
 
         public event OperationElapsedEventHandler OnTimeElapsed;
 

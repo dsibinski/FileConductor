@@ -14,8 +14,6 @@ namespace FileConductor.Protocols
     public class ProtocolExecutor
     {
 
-        protected static Logger logger = LogManager.GetCurrentClassLogger();
-
         private OperationProperties _properties { get; set; }
         private readonly Protocol _protocol;
 
