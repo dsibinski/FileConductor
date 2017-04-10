@@ -4,12 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Net;
+using FileConductor.Attributes;
 
 namespace FileConductor.FileTransport.FtpFileTransport
 {
     /// <summary>
     /// FTP transferable provider
     /// </summary>
+    [FileTransferType]
     public class FtpTransfer : ITransfer
     {
         /// <summary>

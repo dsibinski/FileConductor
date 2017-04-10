@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using FileConductor.Attributes;
 
 namespace FileConductor.FileTransport.LocalFileTransport
 {
+    [FileTransferType]
     public class LocalTransfer : ITransfer
     {
         public string Name => "Local";

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\FileTransferTypeAttribute.cs" />
     <Compile Include="Configuration\XmlData\ConfigurationData.cs" />
     <Compile Include="Configuration\XmlData\DatabaseData.cs" />
     <Compile Include="Configuration\XmlData\ScheduleData.cs" />

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Net;
+using FileConductor.Attributes;
 using Renci.SshNet;
 
 namespace FileConductor.FileTransport.FtpFileTransport
@@ -11,6 +12,7 @@ namespace FileConductor.FileTransport.FtpFileTransport
     /// <summary>
     /// FTP transferable provider
     /// </summary>
+    [FileTransferType]
     public class SftpTransfer : ITransfer
     {
         /// <summary>
