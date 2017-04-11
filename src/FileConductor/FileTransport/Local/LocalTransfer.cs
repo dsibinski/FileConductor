@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using FileConductor.Attributes;
+using FileConductor.Operation;
 
-namespace FileConductor.FileTransport.LocalFileTransport
+namespace FileConductor.FileTransport.Local
 {
     [FileTransferType]
     public class LocalTransfer : ITransfer

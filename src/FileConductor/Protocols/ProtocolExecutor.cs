@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 using System.Timers;
 using FileConductor.FileTransport;
 using FileConductor.Helpers;
-using FileConductor.Operations;
+using FileConductor.Operation;
 using NLog;
 
 namespace FileConductor.Protocols
 {
     public class ProtocolExecutor
     {
-
         private OperationProperties _properties { get; set; }
         private readonly Protocol _protocol;
-
 
         public ProtocolExecutor(Protocol protocol ,OperationProperties properties, ElapsedEventHandler afterOperationElapsedHandler)
         {

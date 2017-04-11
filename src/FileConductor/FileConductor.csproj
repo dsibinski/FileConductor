@@ -68,7 +68,7 @@
     <Compile Include="FileTransport\Ftp\FtpTransfer.cs" />
     <Compile Include="FileTransport\ITransfer.cs" />
     <Compile Include="FileTransport\Local\LocalTransfer.cs" />
-    <Compile Include="FileTransport\Protocol.cs" />
+    <Compile Include="Protocols\Protocol.cs" />
     <Compile Include="FileTransport\SFTP\SftpTransfer.cs" />
     <Compile Include="FileTransport\TransportFactory.cs" />
     <Compile Include="FileTransport\TransportManager.cs" />

@@ -5,8 +5,9 @@ using System.Linq;
 using System.Management.Automation;
 using System.Net;
 using FileConductor.Attributes;
+using FileConductor.Operation;
 
-namespace FileConductor.FileTransport.FtpFileTransport
+namespace FileConductor.FileTransport.Ftp
 {
     /// <summary>
     /// FTP transferable provider

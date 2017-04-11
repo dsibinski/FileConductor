@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration.XmlData;
-using FileConductor.Operations;
-using FileConductor.Schedule.OperationShedule;
+using FileConductor.Helpers;
+using FileConductor.Operation;
+using FileConductor.Schedule.OperationSchedule;
 
 namespace FileConductor.Schedule
 {
     public static class ScheduleFactory
     {
-        public static OperationSchedule GetSchedule(ScheduleData schedule)
+        public static OperationSchedule.OperationSchedule GetSchedule(ScheduleData schedule)
         {
 
             int interval;

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Timers;
-using FileConductor.Schedule;
-
-namespace FileConductor
+﻿namespace FileConductor.Schedule.OperationSchedule
 {
-    public class IntervalSchedule : OperationSchedule
+    public class IntervalSchedule : global::FileConductor.Schedule.OperationSchedule.OperationSchedule
     {
         private readonly IntervalScheduler _sheduler;
 

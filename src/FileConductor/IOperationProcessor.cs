@@ -8,6 +8,6 @@ namespace FileConductor
 {
     public interface IOperationProcessor
     {
-        void AssignOperation(Operation operation);
+        void AssignOperation(Operation.Operation operation);
     }
 }

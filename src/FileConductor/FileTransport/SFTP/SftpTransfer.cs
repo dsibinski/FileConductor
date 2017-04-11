@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Management.Automation;
-using System.Net;
 using FileConductor.Attributes;
+using FileConductor.Operation;
 using Renci.SshNet;
 
-namespace FileConductor.FileTransport.FtpFileTransport
+namespace FileConductor.FileTransport.SFTP
 {
     /// <summary>
     /// FTP transferable provider

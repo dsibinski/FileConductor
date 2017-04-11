@@ -5,7 +5,8 @@ using FileConductor.Configuration.XmlData;
 using FileConductor.FileTransport;
 using FileConductor.Helpers;
 using FileConductor.Ninject;
-using FileConductor.Operations;
+using FileConductor.Operation;
+using FileConductor.Protocols;
 using FileConductor.Schedule;
 using Ninject;
 
@@ -35,7 +36,7 @@ namespace FileConductor
                 var sender = TransportFactory.GetTransfer(destinationServer.Protocol);
                 var protocol = new Protocol(receiver, sender);
 
-                operationProcessor.AssignOperation(new Operation(protocol, operationProperties, operationCode));
+                operationProcessor.AssignOperation(new Operation.Operation(protocol, operationProperties, operationCode));
             }
         }
 

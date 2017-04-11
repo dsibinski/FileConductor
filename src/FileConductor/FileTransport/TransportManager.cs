@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FileConductor.FileTransport;
-using FileConductor.FileTransport.FtpFileTransport;
-using FileConductor.FileTransport.LocalFileTransport;
+using System.Reflection;
+using FileConductor.Attributes;
 
 namespace FileConductor.FileTransport
 {
@@ -13,9 +9,14 @@ namespace FileConductor.FileTransport
     {
         public static void Initialize()
         {
-            TransportFactory.AddTransferImplementation(new LocalTransfer());
-            TransportFactory.AddTransferImplementation(new FtpTransfer());
+            var assembly = Assembly.GetExecutingAssembly();
+            foreach (var type in assembly.GetTypes())
+            {
+                if (type.GetCustomAttributes(typeof (FileTransferTypeAttribute), true).Any())
+                {
+                    TransportFactory.AddTransferImplementation((ITransfer) Activator.CreateInstance(type));
+                }
+            }
         }
-        
     }
 }

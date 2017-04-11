@@ -1,6 +1,7 @@
 ﻿using System.Timers;
+using FileConductor.Schedule.OperationSchedule;
 
-namespace FileConductor.Operations
+namespace FileConductor.Operation
 {
     /// <summary>
     /// Stores information about the Operation (source/destination targets, regex to look for files etc.)

@@ -10,12 +10,12 @@ namespace FileConductor.LoggingService
     class LoggingService : ILoggingService
     {
         protected static Logger logger = LogManager.GetCurrentClassLogger();
-        public void LogInfo(Operation operation, string message)
+        public void LogInfo(Operation.Operation operation, string message)
         {
             logger.Info(message);
         }
 
-        public void LogException(Exception exception, Operation operation, string message)
+        public void LogException(Exception exception, Operation.Operation operation, string message)
         {
             logger.Info(message);
         }

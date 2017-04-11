@@ -8,8 +8,8 @@ namespace FileConductor.LoggingService
 {
     public interface  ILoggingService
     {
-        void LogInfo(Operation operation,string message);
-        void LogException(Exception exception, Operation operation, string message);
+        void LogInfo(Operation.Operation operation,string message);
+        void LogException(Exception exception, Operation.Operation operation, string message);
 
     }
 }

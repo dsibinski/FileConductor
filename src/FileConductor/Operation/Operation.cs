@@ -1,12 +1,8 @@
-﻿using System;
-using System.Timers;
+﻿using System.Timers;
 using FileConductor.FileTransport;
-using FileConductor.Helpers;
-using FileConductor.LoggingService;
-using FileConductor.Operations;
 using FileConductor.Protocols;
 
-namespace FileConductor
+namespace FileConductor.Operation
 {
     public class Operation
     {
@@ -20,7 +16,7 @@ namespace FileConductor
            Code = code;
         }
 
-       public string Code { get; set; }
+        public string Code { get; set; }
 
         public event OperationElapsedEventHandler OnTimeElapsed;
 

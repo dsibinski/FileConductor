@@ -1,4 +1,4 @@
-namespace FileConductor
+namespace FileConductor.Operation
 {
     public class TargetTransformData
     {
