@@ -15,20 +15,15 @@ namespace FileConductor.Schedule
     {
         public static OperationSchedule.OperationSchedule GetSchedule(ScheduleData schedule)
         {
-
             int interval;
             Int32.TryParse(schedule.Interval, out interval);
             var days = GetDaysArray(schedule);
             DateTime time;
-            DateTime.TryParseExact(schedule.Hours, "HHmm", CultureInfo.InvariantCulture,
-                DateTimeStyles.None, out time);
-
-
+            DateTime.TryParseExact(schedule.Hours, "HHmm", CultureInfo.InvariantCulture, DateTimeStyles.None, out time);
             if (interval != 0)
             {
                 return new IntervalSchedule(interval);
             }
-
             return new SpecifiedTimeSchedule(days, new TimeSpan(0, time.Hour, time.Minute, 0));
         }
 
@@ -50,7 +45,7 @@ namespace FileConductor.Schedule
                 DestinationTarget =
                     new TargetTransformData(destinationServer.Ip, destinationTarget.Path, destinationServer.User,
                         destinationServer.Password),
-                NotificationSettings =
+                Schedule =
                     new SpecifiedTimeSchedule(days, new TimeSpan(0, time.Hour, time.Minute, 0)),
                 SourceTarget =
                     new TargetTransformData(sourceServer.Ip, sourceTarget.Path, sourceServer.User, sourceServer.Password),

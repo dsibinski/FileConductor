@@ -28,7 +28,7 @@ namespace FileConductor.Tests
   
             var destination = new TargetTransformData("127.0.0.1", "/", "tester", "password");
             var source = new TargetTransformData("locahost","c:/source","","");
-            var operationProperties = new OperationProperties() {DestinationTarget = destination,NotificationSettings = null, Regex = "*.csv",SourceTarget = source};
+            var operationProperties = new OperationProperties() {DestinationTarget = destination,Schedule = null, Regex = "*.csv",SourceTarget = source};
             var operation = new Operation.Operation(new Protocol(new LocalTransfer(), new SftpTransfer()),operationProperties,"test");
             operation.Execute(); 
 

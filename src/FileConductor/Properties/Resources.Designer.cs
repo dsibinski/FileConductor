@@ -61,7 +61,7 @@ namespace FileConductor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding operation to queue &lt;id:{0}&gt;.
+        ///   Looks up a localized string similar to Adding operation to queue &lt;code:{0}&gt;.
         /// </summary>
         internal static string Adding_operation_to_queue {
             get {
@@ -70,7 +70,7 @@ namespace FileConductor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assigning operation &lt;id:{0}&gt;.
+        ///   Looks up a localized string similar to Assigning operation &lt;code:{0}&gt;.
         /// </summary>
         internal static string Assigning_operation {
             get {
@@ -79,7 +79,7 @@ namespace FileConductor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Executing operation &lt;id:{0}&gt;.
+        ///   Looks up a localized string similar to Executing operation &lt;code:{0}&gt;.
         /// </summary>
         internal static string Executing_operation__id {
             get {
@@ -133,7 +133,7 @@ namespace FileConductor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operation &lt;id:{0}&gt; executed without errors.
+        ///   Looks up a localized string similar to Operation &lt;code:{0}&gt; executed without errors.
         /// </summary>
         internal static string Operation_executed_without_errors {
             get {

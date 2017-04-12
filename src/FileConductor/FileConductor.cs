@@ -47,7 +47,7 @@ namespace FileConductor
                 DestinationTarget =
               new TargetTransformData(destinationServer.Ip, destinationTarget.Path, destinationServer.User,
                   destinationServer.Password),
-                NotificationSettings = ScheduleFactory.GetSchedule(schedule),
+                Schedule = ScheduleFactory.GetSchedule(schedule),
                 SourceTarget =
               new TargetTransformData(sourceServer.Ip, sourceTarget.Path, sourceServer.User, sourceServer.Password),
                 Regex = watcher.FileNameRegex

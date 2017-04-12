@@ -7,17 +7,24 @@ using NLog;
 
 namespace FileConductor.LoggingService
 {
-    class LoggingService : ILoggingService
+    public class LoggingService : ILoggingService
     {
-        protected static Logger logger = LogManager.GetCurrentClassLogger();
+        protected static Logger Logger = LogManager.GetCurrentClassLogger();
         public void LogInfo(Operation.Operation operation, string message)
         {
-            logger.Info(message);
+            Logger.Info(message);
         }
 
         public void LogException(Exception exception, Operation.Operation operation, string message)
         {
-            logger.Info(message);
+            StringBuilder callstack = new StringBuilder();
+            callstack.AppendLine(message);
+            callstack.AppendLine($"<Code: {operation.Code}> Exception occured");
+            callstack.AppendLine(exception.Message);
+
+
+
+            Logger.Info(message);
         }
     }
 }

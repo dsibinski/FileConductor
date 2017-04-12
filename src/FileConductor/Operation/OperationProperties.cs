@@ -8,18 +8,14 @@ namespace FileConductor.Operation
     /// </summary>
     public class OperationProperties
     {
-        // public WatcherData Data;
-        //  public ServerData DestinationServer;
-        public TargetTransformData DestinationTarget;
-        public OperationSchedule NotificationSettings;
-        public string Regex;
-        //public ServerData SourceServer;
         public TargetTransformData SourceTarget;
-
+        public TargetTransformData DestinationTarget;
+        public OperationSchedule Schedule;
+        public string Regex;
         public void AssignOperationHandler(ElapsedEventHandler afterOperationElapsedHandler)
         {
-            if (NotificationSettings != null)
-                NotificationSettings.OnElapsed += afterOperationElapsedHandler;
+            if (Schedule != null)
+                Schedule.OnElapsed += afterOperationElapsedHandler;
         }
     }
     

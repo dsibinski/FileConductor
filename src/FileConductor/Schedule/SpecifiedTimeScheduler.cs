@@ -11,7 +11,7 @@ namespace FileConductor.Schedule
         private readonly TimeSpan _executionTime;
         private Timer _interval;
         private int _previousExecutionDay = -1;
-        private ElapsedEventHandler _scheduleElapsed;
+        private readonly ElapsedEventHandler _scheduleElapsed;
 
 
         public SpecifiedTimeScheduler(int[] days, TimeSpan executionTime, ElapsedEventHandler scheduleElapsed)
@@ -46,16 +46,13 @@ namespace FileConductor.Schedule
         private int FindClosestDay()
         {
             List<int> daysToClosestDay = new List<int>(_days);
-
             for (var i = 0; i < daysToClosestDay.Count; i++)
             {
                 daysToClosestDay[i] -= Today;
                 daysToClosestDay[i] = daysToClosestDay[i];
             }
             daysToClosestDay.ToList().Sort();
-
             int closestDay = daysToClosestDay.First(x=>x != _previousExecutionDay && x >= 0);
-         
             return DateTime.Now.Day + closestDay;
         }
 
