@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FileConductor.Helpers;
 using FileConductor.LoggingService;
+using FileConductor.Protocols;
 using Ninject.Modules;
 
-namespace FileConductor.Ninject
+namespace FileConductor.Service
 {
     public class Module : NinjectModule
     {
@@ -14,6 +11,8 @@ namespace FileConductor.Ninject
         {
             Bind<ILoggingService>().To<LoggingService.LoggingService>();
             Bind<IOperationProcessor>().To<OperationProcessor>();
+            Bind<IProxyFileProvider>().To<ProxyFileProvider>();
+            Bind<IOperationExecutor>().To<OperationExecutor>();
         }
     }
 }

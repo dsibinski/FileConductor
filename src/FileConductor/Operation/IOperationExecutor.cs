@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Operation;
 
-namespace FileConductor
+namespace FileConductor.Protocols
 {
-    public interface IOperationProcessor
+    public interface IOperationExecutor
     {
-        void AssignOperation(IOperation operation);
+        void Execute(IOperation operation);
     }
 }

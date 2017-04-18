@@ -68,18 +68,19 @@
     <Compile Include="FileTransport\Ftp\FtpTransfer.cs" />
     <Compile Include="FileTransport\ITransfer.cs" />
     <Compile Include="FileTransport\Local\LocalTransfer.cs" />
+    <Compile Include="Helpers\IProxyFileProvider.cs" />
+    <Compile Include="Operation\IOperation.cs" />
+    <Compile Include="Operation\IOperationExecutor.cs" />
     <Compile Include="Protocols\Protocol.cs" />
     <Compile Include="FileTransport\SFTP\SftpTransfer.cs" />
     <Compile Include="FileTransport\TransportFactory.cs" />
     <Compile Include="FileTransport\TransportManager.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="FileConductor.cs" />
-    <Compile Include="Ninject\IoC.cs" />
-    <Compile Include="Helpers\ProxyFile.cs" />
+    <Compile Include="Helpers\ProxyFileProvider.cs" />
     <Compile Include="IOperationProcessor.cs" />
     <Compile Include="LoggingService\ILoggingService.cs" />
     <Compile Include="LoggingService\LoggingService.cs" />
-    <Compile Include="Ninject\Module.cs" />
     <Compile Include="OperationProcessor.cs" />
     <Compile Include="Operation\Operation.cs" />
     <Compile Include="Operation\OperationProperties.cs" />
@@ -90,7 +91,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Protocols\ProtocolExecutor.cs" />
+    <Compile Include="Protocols\IProtocol.cs" />
+    <Compile Include="Operation\OperationExecutor.cs" />
     <Compile Include="Schedule\IntervalScheduler.cs" />
     <Compile Include="Schedule\OperationSchedule\IntervalSchedule.cs" />
     <Compile Include="Schedule\OperationSchedule\OperationSchedule.cs" />

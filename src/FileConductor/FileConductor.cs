@@ -4,7 +4,6 @@ using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using FileConductor.FileTransport;
 using FileConductor.Helpers;
-using FileConductor.Ninject;
 using FileConductor.Operation;
 using FileConductor.Protocols;
 using FileConductor.Schedule;
@@ -14,11 +13,15 @@ namespace FileConductor
 {
     public class FileConductor
     {
-        
+        private IOperationProcessor OperationProcessor { get; set; }
+
+        public FileConductor(IOperationProcessor operationProcessor)
+        {
+            OperationProcessor = operationProcessor;
+        }
         public void Initialize(ConfigurationData configurationData)
         {
-            TransportManager.Initialize();
-            var operationProcessor = IoC.Resolve<IOperationProcessor>();
+            TransportManager.Initialize(); 
             foreach (var watcher in configurationData.Watchers)
             {
                 var schedule = configurationData.Schedules.First(x => x.Id == watcher.ScheduleId);
@@ -27,16 +30,14 @@ namespace FileConductor
                 var destinationTarget =
                     configurationData.Targets.First(x => x.Id == watcher.WatcherRouting.DestinationTargetId);
                 var destinationServer = configurationData.Servers.First(x => x.Id == destinationTarget.ServerId);
-                string operationCode = watcher.Code;
-
                 var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, schedule,
                     sourceTarget, sourceServer, watcher);
-
                 var receiver = TransportFactory.GetTransfer(sourceServer.Protocol);
                 var sender = TransportFactory.GetTransfer(destinationServer.Protocol);
                 var protocol = new Protocol(receiver, sender);
-
-                operationProcessor.AssignOperation(new Operation.Operation(protocol, operationProperties, operationCode));
+                var operation = new Operation.Operation(protocol,operationProperties);
+                operation.Code = watcher.Code;
+                OperationProcessor.AssignOperation(operation);
             }
         }
 

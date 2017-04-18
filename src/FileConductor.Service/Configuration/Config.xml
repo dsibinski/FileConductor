@@ -6,23 +6,24 @@
       <host>localhost</host>
       <user>admin</user>
       <password>admin</password>
+      <name>db1</name>
     </database>
     <database>
       <id>2</id>
       <host>PCDSIBINSKI\MSSQL2012</host>
       <user>admin</user>
       <password>admin</password>
+      <name>db2</name>
     </database>
   </databases>
-
   <servers>
     <server>
       <id>1</id>
       <protocol>FTP</protocol>
-      <ip>ftp://localhost</ip>
-      <user>admin</user>
-      <password>admin</password>
-      <port>22</port>
+      <ip>localhost</ip>
+      <user></user>
+      <password></password>
+      <port></port>
     </server>
     <server>
       <id>2</id>
@@ -39,7 +40,7 @@
       <id>1</id>
       <name>Interface1_FTP</name>
       <serverId>1</serverId>
-      <path>/</path>
+      <path>C:\Destiny</path>
     </target>
 
     <target>
@@ -55,13 +56,26 @@
       <id>1</id>
       <interval>10000</interval>
       <daysOfWeek>0;1;2;3;4;5;6</daysOfWeek>
-      <hours>0758</hours>
+      <hours></hours>
+      <name>schedule1</name>
     </schedule>
   </schedules>
 
   <watchers>
     <watcher>
-      <id>1</id>
+      <code>TestOperation</code>
+      <name>Interface1_FTP_Importer</name>
+      <databaseId>1</databaseId>
+      <watcherRouting>
+        <sourceTargetId>1</sourceTargetId>
+        <destinationTargetId>2</destinationTargetId>
+      </watcherRouting>
+      <scheduleId>1</scheduleId>
+      <fileNameRegex>*.txt</fileNameRegex>
+    </watcher>
+
+    <watcher>
+      <code>TestOperationBack</code>
       <name>Interface1_FTP_Importer</name>
       <databaseId>1</databaseId>
       <watcherRouting>
@@ -69,20 +83,8 @@
         <destinationTargetId>1</destinationTargetId>
       </watcherRouting>
       <scheduleId>1</scheduleId>
-      <fileNameRegex>*.csv</fileNameRegex>
+      <fileNameRegex>*.txt</fileNameRegex>
     </watcher>
-
-    <!--<watcher>
-      <id>2</id>
-      <name>Interface1_FTP_Exporter</name>
-      <databaseId>1</databaseId>
-      <watcherRouting>
-        <sourceTargetId>2</sourceTargetId>
-        <destinationTargetId>1</destinationTargetId>
-      </watcherRouting>
-      <scheduleId>1</scheduleId>
-      <fileNameRegex>*.csv</fileNameRegex>
-    </watcher>-->
 
   </watchers>
 

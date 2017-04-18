@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace FileConductor.Helpers
 {
     /// <summary>
-    /// Represents a proxy file used as a temporary file during various operations
-    /// (e.g. copying between different types of targets, where direct copying is not possible)
+    ///     Represents a proxy file used as a temporary file during various operations
+    ///     (e.g. copying between different types of targets, where direct copying is not possible)
     /// </summary>
-    public class ProxyFile
+    public class ProxyFileProvider : IProxyFileProvider
     {
         private static string _proxyPath;
 
-        public static string ProxyPath
+        public string ProxyPath
         {
             get
             {
-                if (String.IsNullOrEmpty(_proxyPath))
+                if (string.IsNullOrEmpty(_proxyPath))
                 {
-                    var assemblyPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+                    var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
 
                     var localPath = new Uri(assemblyPath).LocalPath;
 

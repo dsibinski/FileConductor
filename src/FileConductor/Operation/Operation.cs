@@ -1,33 +1,27 @@
-﻿using System.Timers;
+﻿using System;
+using System.Timers;
 using FileConductor.FileTransport;
 using FileConductor.Protocols;
 
 namespace FileConductor.Operation
 {
-    public class Operation
+    public class Operation : IOperation
     {
-        public delegate void OperationElapsedEventHandler(Operation sender, ElapsedEventArgs e);
-
-        private readonly ProtocolExecutor _protocolExecutor;
-
-        public Operation(Protocol protocol, OperationProperties properties, string code)
+        public OperationProperties Properties { get; set; }
+        public Operation(IProtocol protocol, OperationProperties properties)
         {
-            _protocolExecutor = new ProtocolExecutor(protocol, properties, NotificationHandler);
-           Code = code;
+            Protocol = protocol;
+            Properties = properties;
+            Properties.AssignOperationHandler(NotificationHandler);
         }
 
+        public IProtocol Protocol { get; set; }
+
         public string Code { get; set; }
-
         public event OperationElapsedEventHandler OnTimeElapsed;
-
         private void NotificationHandler(object sender, ElapsedEventArgs e)
         {
             OnTimeElapsed?.Invoke(this, e);
-        }
-
-        public void Execute()
-        {
-            _protocolExecutor.ExecuteProtocol();
         }
     }
 }

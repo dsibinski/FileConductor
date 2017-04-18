@@ -1,6 +1,6 @@
 ﻿namespace FileConductor.Schedule.OperationSchedule
 {
-    public class IntervalSchedule : global::FileConductor.Schedule.OperationSchedule.OperationSchedule
+    public class IntervalSchedule : OperationSchedule
     {
         private readonly IntervalScheduler _sheduler;
 

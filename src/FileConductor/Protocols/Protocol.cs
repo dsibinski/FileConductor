@@ -5,7 +5,7 @@ namespace FileConductor.Protocols
     /// <summary>
     /// Repsesents a sender-receiver entity called Protocol
     /// </summary>
-    public class Protocol
+    public class Protocol : IProtocol
     {
         public Protocol(ITransfer receiver, ITransfer sender)
         {

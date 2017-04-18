@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FileConductor.FileTransport;
 using FileConductor.FileTransport.Local;
 using FileConductor.FileTransport.SFTP;
+using FileConductor.Helpers;
 using FileConductor.Operation;
 using FileConductor.Protocols;
 using NUnit.Framework;
@@ -15,7 +16,6 @@ namespace FileConductor.Tests
     [TestFixture]
     public class GeneralTests
     {
-        // Sample test class
         [Test]
         public void SampleTest()
         {
@@ -25,15 +25,22 @@ namespace FileConductor.Tests
         [Test]
         public void CheckSFTPProtocol()
         {
-  
-            var destination = new TargetTransformData("127.0.0.1", "/", "tester", "password");
-            var source = new TargetTransformData("locahost","c:/source","","");
-            var operationProperties = new OperationProperties() {DestinationTarget = destination,Schedule = null, Regex = "*.csv",SourceTarget = source};
-            var operation = new Operation.Operation(new Protocol(new LocalTransfer(), new SftpTransfer()),operationProperties,"test");
-            operation.Execute(); 
-
-           
-
+            var destination = new TargetTransformData("locahost", "c:/Destiny", "", "");
+            var source = new TargetTransformData("locahost", "c:/Source", "", "");
+            var operationProperties = new OperationProperties() { DestinationTarget = destination, Schedule = null, Regex = "*.txt", SourceTarget = source };
+            var protocol = new Protocol(new LocalTransfer(), new LocalTransfer());
+            var operation = new Operation.Operation(protocol, operationProperties);
+            OperationExecutor exec = new OperationExecutor(new ProxyFileProvider(),new LoggingService.LoggingService());
+            exec.Execute(operation);
         }
+
+
+        //class LogginMock : IProtocol
+        //{
+        //    public ITransfer Receiver { get; set; } =
+        //    public ITransfer Sender { get; set; }
+
+
+        //}
     }
 }
