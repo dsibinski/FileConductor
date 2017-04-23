@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using FileConductor.Operations;
+using FileConductor.Schedule;
 
 namespace FileConductor
 {
@@ -16,5 +17,6 @@ namespace FileConductor
         void ProcessOperation();
         void AddOperationToQueue(IOperation sender, ElapsedEventArgs e);
         ConcurrentQueue<IOperation> OperationsToExecute { get; set; }
+        void Start(ISchedule schedule);
     }
 }

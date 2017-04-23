@@ -39,6 +39,7 @@ namespace FileConductor
                 operation.Code = watcher.Code;
                 OperationProcessor.AssignOperation(operation);
             }
+            OperationProcessor.Start(new IntervalSchedule(Constants.SchedulerIntervaltime));
         }
 
         private OperationProperties FillOperationsProperties(TargetData destinationTarget, ServerData destinationServer, ScheduleData schedule, TargetData sourceTarget, ServerData sourceServer, WatcherData watcher)

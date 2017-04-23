@@ -5,7 +5,6 @@ using System.Timers;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using FileConductor.Helpers;
-using FileConductor.Operation;
 using FileConductor.Protocols;
 using FileConductor.Service.Properties;
 using Ninject;
