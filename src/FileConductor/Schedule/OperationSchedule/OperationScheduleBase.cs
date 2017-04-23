@@ -1,5 +1,4 @@
 ﻿using System.Timers;
-using FileConductor.Operation;
 using FileConductor.Protocols;
 
 namespace FileConductor.Schedule.OperationSchedule

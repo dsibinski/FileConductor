@@ -5,9 +5,9 @@ using System.Linq;
 using System.Timers;
 using FileConductor.Helpers;
 using FileConductor.LoggingService;
+using FileConductor.Operations;
 using FileConductor.Properties;
 using FileConductor.Schedule;
-using FileConductor.Operation;
 using FileConductor.Protocols;
 using NLog;
 

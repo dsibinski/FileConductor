@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FileConductor.Operation;
+using FileConductor.Operations;
 
 namespace FileConductor.FileTransport
 {

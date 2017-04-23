@@ -3,7 +3,7 @@ using System.Timers;
 using FileConductor.FileTransport;
 using FileConductor.Protocols;
 
-namespace FileConductor.Operation
+namespace FileConductor.Operations
 {
    // public delegate void OperationElapsedEventHandler(Operation sender, ElapsedEventArgs e);
     public class Operation : IOperation

@@ -1,7 +1,7 @@
 ﻿using System.Timers;
 using FileConductor.Schedule.OperationSchedule;
 
-namespace FileConductor.Operation
+namespace FileConductor.Operations
 {
     /// <summary>
     /// Stores information about the Operation (source/destination targets, regex to look for files etc.)
@@ -12,6 +12,11 @@ namespace FileConductor.Operation
         public TargetTransformData DestinationTarget;
         public OperationScheduleBase Schedule;
         public string Regex;
+
+        public OperationProperties(OperationScheduleBase schedule)
+        {
+            Schedule = schedule;
+        }
         public void AssignOperationHandler(ElapsedEventHandler afterOperationElapsedHandler)
         {
             if (Schedule != null)

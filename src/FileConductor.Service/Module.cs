@@ -1,5 +1,6 @@
 ﻿using FileConductor.Helpers;
 using FileConductor.LoggingService;
+using FileConductor.Operations;
 using FileConductor.Protocols;
 using Ninject.Modules;
 

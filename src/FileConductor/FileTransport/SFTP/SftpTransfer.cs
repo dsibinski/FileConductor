@@ -2,7 +2,7 @@
 using System.IO;
 using System.Management.Automation;
 using FileConductor.Attributes;
-using FileConductor.Operation;
+using FileConductor.Operations;
 using Renci.SshNet;
 
 namespace FileConductor.FileTransport.SFTP

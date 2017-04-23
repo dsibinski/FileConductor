@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using FileConductor.Attributes;
-using FileConductor.Operation;
+using FileConductor.Operations;
 
 namespace FileConductor.FileTransport.Local
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using FileConductor.Protocols;
 
-namespace FileConductor.Operation
+namespace FileConductor.Operations
 {
 
     public delegate void OperationElapsedEventHandler(IOperation sender, ElapsedEventArgs e);

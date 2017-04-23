@@ -5,7 +5,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Net;
 using FileConductor.Attributes;
-using FileConductor.Operation;
+using FileConductor.Operations;
 
 namespace FileConductor.FileTransport.Ftp
 {

@@ -7,10 +7,9 @@ using System.Timers;
 using FileConductor.FileTransport;
 using FileConductor.Helpers;
 using FileConductor.LoggingService;
-using FileConductor.Operation;
 using NLog;
 
-namespace FileConductor.Protocols
+namespace FileConductor.Operations
 {
     public class OperationExecutor : IOperationExecutor
     {

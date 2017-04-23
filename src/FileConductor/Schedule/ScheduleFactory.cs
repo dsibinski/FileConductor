@@ -6,14 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration.XmlData;
 using FileConductor.Helpers;
-using FileConductor.Operation;
 using FileConductor.Schedule.OperationSchedule;
 
 namespace FileConductor.Schedule
 {
     public static class ScheduleFactory
     {
-        public static OperationSchedule.OperationScheduleBase GetSchedule(ScheduleData schedule)
+        public static OperationScheduleBase GetSchedule(ScheduleData schedule)
         {
             int interval;
             Int32.TryParse(schedule.Interval, out interval);
@@ -34,24 +33,6 @@ namespace FileConductor.Schedule
                 .ConvertAll(Convert.ToInt32)
                 .ToArray();
             return days;
-        }
-
-        private static OperationProperties FillOperationsProperties(TargetData destinationTarget,
-            ServerData destinationServer, int[] days, DateTime time,
-            TargetData sourceTarget, ServerData sourceServer, WatcherData watcher)
-        {
-            var operationProperties = new OperationProperties()
-            {
-                DestinationTarget =
-                    new TargetTransformData(destinationServer.Ip, destinationTarget.Path, destinationServer.User,
-                        destinationServer.Password),
-                Schedule =
-                    new SpecifiedTimeScheduleBase(days, new TimeSpan(0, time.Hour, time.Minute, 0)),
-                SourceTarget =
-                    new TargetTransformData(sourceServer.Ip, sourceTarget.Path, sourceServer.User, sourceServer.Password),
-                Regex = watcher.FileNameRegex
-            };
-            return operationProperties;
         }
     }
 }

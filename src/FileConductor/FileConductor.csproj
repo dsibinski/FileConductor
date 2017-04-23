@@ -69,8 +69,8 @@
     <Compile Include="FileTransport\ITransfer.cs" />
     <Compile Include="FileTransport\Local\LocalTransfer.cs" />
     <Compile Include="Helpers\IProxyFileProvider.cs" />
-    <Compile Include="Operation\IOperation.cs" />
-    <Compile Include="Operation\IOperationExecutor.cs" />
+    <Compile Include="Operations\IOperation.cs" />
+    <Compile Include="Operations\IOperationExecutor.cs" />
     <Compile Include="Protocols\Protocol.cs" />
     <Compile Include="FileTransport\SFTP\SftpTransfer.cs" />
     <Compile Include="FileTransport\TransportFactory.cs" />
@@ -82,9 +82,9 @@
     <Compile Include="LoggingService\ILoggingService.cs" />
     <Compile Include="LoggingService\LoggingService.cs" />
     <Compile Include="OperationProcessor.cs" />
-    <Compile Include="Operation\Operation.cs" />
-    <Compile Include="Operation\OperationProperties.cs" />
-    <Compile Include="Operation\TargetTransformData.cs" />
+    <Compile Include="Operations\Operation.cs" />
+    <Compile Include="Operations\OperationProperties.cs" />
+    <Compile Include="Operations\TargetTransformData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
@@ -92,7 +92,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Protocols\IProtocol.cs" />
-    <Compile Include="Operation\OperationExecutor.cs" />
+    <Compile Include="Operations\OperationExecutor.cs" />
     <Compile Include="Schedule\IntervalScheduler.cs" />
     <Compile Include="Schedule\OperationSchedule\IntervalSchedule.cs" />
     <Compile Include="Schedule\OperationSchedule\OperationScheduleBase.cs" />
