@@ -93,12 +93,13 @@
     </Compile>
     <Compile Include="Protocols\IProtocol.cs" />
     <Compile Include="Operations\OperationExecutor.cs" />
-    <Compile Include="Schedule\IntervalScheduler.cs" />
-    <Compile Include="Schedule\OperationSchedule\IntervalSchedule.cs" />
+    <Compile Include="Schedule\IntervalSchedule.cs" />
+    <Compile Include="Schedule\ISchedule.cs" />
+    <Compile Include="Schedule\OperationSchedule\OperationIntervalSchedule.cs" />
     <Compile Include="Schedule\OperationSchedule\OperationScheduleBase.cs" />
     <Compile Include="Schedule\OperationSchedule\SpecifiedTimeSchedule.cs" />
-    <Compile Include="Schedule\ScheduleFactory.cs" />
-    <Compile Include="Schedule\SpecifiedTimeScheduler.cs" />
+    <Compile Include="Schedule\OperationSchedule\OperationScheduleFactory.cs" />
+    <Compile Include="Schedule\SpecifiedTimeSchedule.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

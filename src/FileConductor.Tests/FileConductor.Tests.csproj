@@ -51,6 +51,8 @@
     <Compile Include="Mocks\OperationScheduleMock.cs" />
     <Compile Include="Mocks\ProtocolMock.cs" />
     <Compile Include="Mocks\ProxyFileProviderMock.cs" />
+    <Compile Include="Mocks\ScheduleMock.cs" />
+    <Compile Include="Mocks\TransferMock.cs" />
     <Compile Include="OperationProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

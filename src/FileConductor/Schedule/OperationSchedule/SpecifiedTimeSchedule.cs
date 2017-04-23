@@ -3,13 +3,13 @@ using System.Timers;
 
 namespace FileConductor.Schedule.OperationSchedule
 {
-    public class SpecifiedTimeScheduleBase : OperationScheduleBase
+    public class OperationSpecifiedTimeSchedule : OperationScheduleBase
     {
-        private readonly SpecifiedTimeScheduler _sheduler;
-
-        public SpecifiedTimeScheduleBase(int[] days, TimeSpan executionTime)
+        private readonly SpecifiedTimeSchedule _sheduler;
+        public OperationSpecifiedTimeSchedule(int[] days, TimeSpan executionTime)
         {
-            _sheduler = new SpecifiedTimeScheduler(days, executionTime, OperationScheduleElapsed);
+            _sheduler = new SpecifiedTimeSchedule(days, executionTime);
+            _sheduler.StartSchedule(OperationScheduleElapsed);
         }
     }
 }

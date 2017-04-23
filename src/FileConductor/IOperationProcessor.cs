@@ -13,7 +13,7 @@ namespace FileConductor
     {
         void AssignOperation(IOperation operation);
         List<IOperation> Operations { get; set; }
-        void ProcessOperation(object sender, ElapsedEventArgs e);
+        void ProcessOperation();
         void AddOperationToQueue(IOperation sender, ElapsedEventArgs e);
         ConcurrentQueue<IOperation> OperationsToExecute { get; set; }
     }

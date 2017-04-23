@@ -5,7 +5,7 @@ using System.Timers;
 
 namespace FileConductor.Schedule
 {
-    public class SpecifiedTimeScheduler 
+    public class SpecifiedTimeSchedule : ISchedule
     {
         private readonly int[] _days;
         private readonly TimeSpan _executionTime;
@@ -14,13 +14,10 @@ namespace FileConductor.Schedule
         private readonly ElapsedEventHandler _scheduleElapsed;
 
 
-        public SpecifiedTimeScheduler(int[] days, TimeSpan executionTime, ElapsedEventHandler scheduleElapsed)
+        public SpecifiedTimeSchedule(int[] days, TimeSpan executionTime)
         {
-            _scheduleElapsed = scheduleElapsed;
             _days = days;
             _executionTime = executionTime;
-            CalculateNextRequiredTime();
-            _interval.Elapsed += OnIntervalElapsed;
         }
 
         private int Today => (int) DateTime.Now.DayOfWeek;
@@ -56,13 +53,16 @@ namespace FileConductor.Schedule
             return DateTime.Now.Day + closestDay;
         }
 
-        private void OnIntervalElapsed(object sender, ElapsedEventArgs e)
+        public void StartSchedule(Action action)
         {
-            _interval.Stop();
-            _previousExecutionDay = 0;
-            _scheduleElapsed(sender,e);
             CalculateNextRequiredTime();
+            _interval.Elapsed += (s, e) =>
+            {
+                _interval.Stop();
+                _previousExecutionDay = 0;
+                action();
+                CalculateNextRequiredTime();
+            };
         }
-
-      }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Timers;
+﻿using System;
+using System.Timers;
 using FileConductor.Schedule.OperationSchedule;
 
 namespace FileConductor.Operations
@@ -17,7 +18,7 @@ namespace FileConductor.Operations
         {
             Schedule = schedule;
         }
-        public void AssignOperationHandler(ElapsedEventHandler afterOperationElapsedHandler)
+        public void AssignOperationHandler(Action afterOperationElapsedHandler)
         {
             if (Schedule != null)
                 Schedule.OnElapsed += afterOperationElapsedHandler;

@@ -7,20 +7,14 @@ using System.Timers;
 
 namespace FileConductor.Schedule
 {
-    public class IntervalScheduler
+    public class IntervalSchedule : ISchedule
     {
         private readonly Timer _interval;
 
         /// <param name="interval">Schedulding time in miliseconds</param>
-        /// <param name="scheduleElapsed">Handler for action after each interval</param>
-        /// <param name="startImmediately">If true, starts scheduling just after constructing, otherwise waits for Start method's first call</param>
-        public IntervalScheduler(int interval, ElapsedEventHandler scheduleElapsed,
-            bool startImmediately = true)
+        public IntervalSchedule(int interval)
         {
             _interval = new Timer(interval);
-            _interval.Elapsed += scheduleElapsed;
-            if (startImmediately)
-                _interval.Start();
         }
 
         public void Start()
@@ -28,9 +22,20 @@ namespace FileConductor.Schedule
             _interval.Start();
         }
 
+
         public void Stop()
         {
             _interval.Stop();
+        }
+
+        /// <param name="action">Handler for action after each interval</param>
+        public void StartSchedule(Action action)
+        {
+            _interval.Elapsed += (s, e) =>
+            {
+                action();
+            };
+            _interval.Start();
         }
     }
 }

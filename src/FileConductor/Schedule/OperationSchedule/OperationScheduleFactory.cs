@@ -10,7 +10,7 @@ using FileConductor.Schedule.OperationSchedule;
 
 namespace FileConductor.Schedule
 {
-    public static class ScheduleFactory
+    public static class OperationScheduleFactory
     {
         public static OperationScheduleBase GetSchedule(ScheduleData schedule)
         {
@@ -21,9 +21,9 @@ namespace FileConductor.Schedule
             DateTime.TryParseExact(schedule.Hours, "HHmm", CultureInfo.InvariantCulture, DateTimeStyles.None, out time);
             if (interval != 0)
             {
-                return new IntervalSchedule(interval);
+                return new OperationIntervalSchedule(interval);
             }
-            return new SpecifiedTimeScheduleBase(days, new TimeSpan(0, time.Hour, time.Minute, 0));
+            return new OperationSpecifiedTimeSchedule(days, new TimeSpan(0, time.Hour, time.Minute, 0));
         }
 
         private static int[] GetDaysArray(ScheduleData shedule)

@@ -9,6 +9,7 @@ using FileConductor.Operations;
 using FileConductor.Properties;
 using FileConductor.Schedule;
 using FileConductor.Protocols;
+using Microsoft.PowerShell.Commands;
 using NLog;
 
 namespace FileConductor
@@ -20,7 +21,6 @@ namespace FileConductor
         private readonly object _locker = new object();
         public List<IOperation> Operations { get; set; }
         public ConcurrentQueue<IOperation> OperationsToExecute { get; set; }
-        private readonly IntervalScheduler _sheduler;
 
         public OperationProcessor(ILoggingService logger,IOperationExecutor operationExecutor)
         {
@@ -28,10 +28,14 @@ namespace FileConductor
             _logger = logger;
             OperationsToExecute = new ConcurrentQueue<IOperation>();
             Operations = new List<IOperation>();
-            _sheduler = new IntervalScheduler(Constants.SchedulerIntervaltime, ProcessOperation);
         }
 
-        public void ProcessOperation(object sender, ElapsedEventArgs e)
+        public void Start(ISchedule schedule)
+        {
+            schedule.StartSchedule(ProcessOperation);
+        }
+
+        public void ProcessOperation()
         {
             lock (_locker)
             {

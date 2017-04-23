@@ -21,6 +21,7 @@ namespace FileConductor.Tests
                 new OperationExecutor(new ProxyFileProviderMock(), logginService));
             OperationProperties properties = new OperationProperties(new OperationScheduleMock());
             _operation = new Operation(new ProtocolMock(),properties);
+           _processor.Start(new ScheduleMock());
         }
 
         private OperationProcessor _processor;
@@ -28,7 +29,7 @@ namespace FileConductor.Tests
 
 
         [Test]
-        public void CheckAssigningOperation()
+        public void CheckOperationAssingation()
         {
             Assert.AreEqual(_processor.Operations.Count, 0);
             Assert.AreEqual(_processor.OperationsToExecute.Count, 0);
@@ -38,12 +39,24 @@ namespace FileConductor.Tests
         }
 
         [Test]
+        public void CheckOperationQueue()
+        {
+            _processor.AssignOperation(_operation);
+            _operation.Properties.Schedule.OperationScheduleElapsed();
+            Assert.AreEqual(_processor.Operations.Count, 1);
+            Assert.AreEqual(_processor.OperationsToExecute.Count, 1);
+        }
+
+        [Test]
         public void CheckOperationExecution()
         {
             _processor.AssignOperation(_operation);
-            _operation.Properties.Schedule.OperationScheduleElapsed(null, null);
+            _operation.Properties.Schedule.OperationScheduleElapsed();
             Assert.AreEqual(_processor.Operations.Count, 1);
             Assert.AreEqual(_processor.OperationsToExecute.Count, 1);
+           _processor.ProcessOperation();
+            Assert.AreEqual(_processor.Operations.Count, 1);
+            Assert.AreEqual(_processor.OperationsToExecute.Count, 0);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace FileConductor
 
         private OperationProperties FillOperationsProperties(TargetData destinationTarget, ServerData destinationServer, ScheduleData schedule, TargetData sourceTarget, ServerData sourceServer, WatcherData watcher)
         {
-            var operationProperties = new OperationProperties(ScheduleFactory.GetSchedule(schedule))
+            var operationProperties = new OperationProperties(OperationScheduleFactory.GetSchedule(schedule))
             {
                 DestinationTarget =
               new TargetTransformData(destinationServer.Ip, destinationTarget.Path, destinationServer.User,
