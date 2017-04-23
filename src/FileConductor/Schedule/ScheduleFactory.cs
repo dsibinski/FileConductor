@@ -13,7 +13,7 @@ namespace FileConductor.Schedule
 {
     public static class ScheduleFactory
     {
-        public static OperationSchedule.OperationSchedule GetSchedule(ScheduleData schedule)
+        public static OperationSchedule.OperationScheduleBase GetSchedule(ScheduleData schedule)
         {
             int interval;
             Int32.TryParse(schedule.Interval, out interval);
@@ -24,7 +24,7 @@ namespace FileConductor.Schedule
             {
                 return new IntervalSchedule(interval);
             }
-            return new SpecifiedTimeSchedule(days, new TimeSpan(0, time.Hour, time.Minute, 0));
+            return new SpecifiedTimeScheduleBase(days, new TimeSpan(0, time.Hour, time.Minute, 0));
         }
 
         private static int[] GetDaysArray(ScheduleData shedule)
@@ -46,7 +46,7 @@ namespace FileConductor.Schedule
                     new TargetTransformData(destinationServer.Ip, destinationTarget.Path, destinationServer.User,
                         destinationServer.Password),
                 Schedule =
-                    new SpecifiedTimeSchedule(days, new TimeSpan(0, time.Hour, time.Minute, 0)),
+                    new SpecifiedTimeScheduleBase(days, new TimeSpan(0, time.Hour, time.Minute, 0)),
                 SourceTarget =
                     new TargetTransformData(sourceServer.Ip, sourceTarget.Path, sourceServer.User, sourceServer.Password),
                 Regex = watcher.FileNameRegex

@@ -14,7 +14,7 @@ namespace FileConductor.Operation
     {
         IProtocol Protocol { get; set; }
         string Code { get; set; }
-        event OperationElapsedEventHandler OnTimeElapsed;
+        event OperationElapsedEventHandler OnOperationReady;
         OperationProperties Properties { get; set; }
     }
 }

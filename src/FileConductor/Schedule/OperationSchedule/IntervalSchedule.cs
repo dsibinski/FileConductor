@@ -1,6 +1,8 @@
-﻿namespace FileConductor.Schedule.OperationSchedule
+﻿using System.Timers;
+
+namespace FileConductor.Schedule.OperationSchedule
 {
-    public class IntervalSchedule : OperationSchedule
+    public class IntervalSchedule : OperationScheduleBase
     {
         private readonly IntervalScheduler _sheduler;
 

@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Timers;
 
 namespace FileConductor.Schedule.OperationSchedule
 {
-    public class SpecifiedTimeSchedule : OperationSchedule
+    public class SpecifiedTimeScheduleBase : OperationScheduleBase
     {
         private readonly SpecifiedTimeScheduler _sheduler;
 
-        public SpecifiedTimeSchedule(int[] days, TimeSpan executionTime)
+        public SpecifiedTimeScheduleBase(int[] days, TimeSpan executionTime)
         {
-            _sheduler = new SpecifiedTimeScheduler(days,  executionTime, OperationScheduleElapsed);
+            _sheduler = new SpecifiedTimeScheduler(days, executionTime, OperationScheduleElapsed);
         }
-
     }
 }

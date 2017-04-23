@@ -10,7 +10,7 @@ namespace FileConductor.Operation
     {
         public TargetTransformData SourceTarget;
         public TargetTransformData DestinationTarget;
-        public OperationSchedule Schedule;
+        public OperationScheduleBase Schedule;
         public string Regex;
         public void AssignOperationHandler(ElapsedEventHandler afterOperationElapsedHandler)
         {

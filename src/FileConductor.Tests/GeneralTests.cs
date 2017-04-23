@@ -34,13 +34,5 @@ namespace FileConductor.Tests
             exec.Execute(operation);
         }
 
-
-        //class LogginMock : IProtocol
-        //{
-        //    public ITransfer Receiver { get; set; } =
-        //    public ITransfer Sender { get; set; }
-
-
-        //}
     }
 }

@@ -5,6 +5,7 @@ using FileConductor.Protocols;
 
 namespace FileConductor.Operation
 {
+   // public delegate void OperationElapsedEventHandler(Operation sender, ElapsedEventArgs e);
     public class Operation : IOperation
     {
         public OperationProperties Properties { get; set; }
@@ -18,10 +19,11 @@ namespace FileConductor.Operation
         public IProtocol Protocol { get; set; }
 
         public string Code { get; set; }
-        public event OperationElapsedEventHandler OnTimeElapsed;
+        public event OperationElapsedEventHandler OnOperationReady;
         private void NotificationHandler(object sender, ElapsedEventArgs e)
         {
-            OnTimeElapsed?.Invoke(this, e);
+            OnOperationReady?.Invoke(this, e);
         }
+
     }
 }

@@ -39,10 +39,12 @@
                     </TabControl.Resources>
                     <TabControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type local:ITab}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock> <Run Text="{Binding Name}"/></TextBlock>
-                                <Image Source="/Icons/error.png" />
-                            </StackPanel>
+                            <DockPanel >
+                                <TextBlock DockPanel.Dock="Left"> <Run Text="{Binding Name}"/></TextBlock>
+                                <Button DockPanel.Dock="Right" Background="Transparent" Height="15" Width="15" Command="{Binding CloseCommand}">
+                                    <Image  Source="/Icons/error.png" />
+                                </Button>
+                            </DockPanel>
                           
 
 <!--                            <Hyperlink Command="{Binding CloseCommand}">-->

@@ -95,7 +95,7 @@
     <Compile Include="Operation\OperationExecutor.cs" />
     <Compile Include="Schedule\IntervalScheduler.cs" />
     <Compile Include="Schedule\OperationSchedule\IntervalSchedule.cs" />
-    <Compile Include="Schedule\OperationSchedule\OperationSchedule.cs" />
+    <Compile Include="Schedule\OperationSchedule\OperationScheduleBase.cs" />
     <Compile Include="Schedule\OperationSchedule\SpecifiedTimeSchedule.cs" />
     <Compile Include="Schedule\ScheduleFactory.cs" />
     <Compile Include="Schedule\SpecifiedTimeScheduler.cs" />
