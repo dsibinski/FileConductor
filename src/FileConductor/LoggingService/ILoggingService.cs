@@ -11,6 +11,8 @@ namespace FileConductor.LoggingService
     {
         void LogInfo(IOperation operation,string message);
         void LogException(Exception exception,IOperation operation, string message);
+        void LogInfo(string message);
+        void LogException(Exception exception,string message);
 
     }
 }

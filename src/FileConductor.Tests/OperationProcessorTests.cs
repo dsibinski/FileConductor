@@ -17,8 +17,7 @@ namespace FileConductor.Tests
         public void Setup()
         {
             ILoggingService logginService = new LoggingServiceMock();
-            _processor = new OperationProcessor(logginService,
-                new OperationExecutor(new ProxyFileProviderMock(), logginService));
+            _processor = new OperationProcessor(logginService, new OperationExecutor(new ProxyFileProviderMock()));     //, logginService,new ProcedureExecutionServiceMock()));
             OperationProperties properties = new OperationProperties(new OperationScheduleMock());
             _operation = new Operation(new ProtocolMock(),properties);
            _processor.Start(new ScheduleMock());

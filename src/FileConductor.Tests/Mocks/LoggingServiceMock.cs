@@ -17,5 +17,13 @@ namespace FileConductor.Tests.Mocks
         public void LogException(Exception exception, IOperation operation, string message)
         {
         }
+
+        public void LogInfo(string message)
+        {
+        }
+
+        public void LogException(Exception exception, string message)
+        {
+        }
     }
 }

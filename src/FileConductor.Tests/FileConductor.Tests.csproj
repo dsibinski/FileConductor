@@ -49,6 +49,7 @@
     <Compile Include="Mocks\LoggingServiceMock.cs" />
     <Compile Include="Mocks\OperationExecutorMock.cs" />
     <Compile Include="Mocks\OperationScheduleMock.cs" />
+    <Compile Include="Mocks\ProcedureExecutionServiceMock.cs" />
     <Compile Include="Mocks\ProtocolMock.cs" />
     <Compile Include="Mocks\ProxyFileProviderMock.cs" />
     <Compile Include="Mocks\ScheduleMock.cs" />

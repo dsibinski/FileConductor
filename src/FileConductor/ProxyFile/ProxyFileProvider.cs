@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace FileConductor.Helpers
+namespace FileConductor.ProxyFile
 {
     /// <summary>
     ///     Represents a proxy file used as a temporary file during various operations

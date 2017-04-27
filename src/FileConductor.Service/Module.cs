@@ -1,7 +1,9 @@
 ﻿using FileConductor.Helpers;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
+using FileConductor.Operations.ProcedureExecution;
 using FileConductor.Protocols;
+using FileConductor.ProxyFile;
 using Ninject.Modules;
 
 namespace FileConductor.Service
@@ -14,6 +16,7 @@ namespace FileConductor.Service
             Bind<IOperationProcessor>().To<OperationProcessor>();
             Bind<IProxyFileProvider>().To<ProxyFileProvider>();
             Bind<IOperationExecutor>().To<OperationExecutor>();
+            Bind<IProcedureExecutionService>().To<ProcedureExecutionService>();
         }
     }
 }

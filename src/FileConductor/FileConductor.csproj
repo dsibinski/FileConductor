@@ -65,19 +65,22 @@
     <Compile Include="Configuration\XmlData\WatcherData.cs" />
     <Compile Include="Configuration\XmlData\WatcherRoutingData.cs" />
     <Compile Include="Configuration\XmlFileDeserializer.cs" />
-    <Compile Include="FileTransport\Ftp\FtpTransfer.cs" />
-    <Compile Include="FileTransport\ITransfer.cs" />
-    <Compile Include="FileTransport\Local\LocalTransfer.cs" />
-    <Compile Include="Helpers\IProxyFileProvider.cs" />
+    <Compile Include="FileTransportTypes\Ftp\FtpTransfer.cs" />
+    <Compile Include="FileTransportTypes\ITransfer.cs" />
+    <Compile Include="FileTransportTypes\Local\LocalTransfer.cs" />
+    <Compile Include="ProxyFile\IProxyFileProvider.cs" />
     <Compile Include="Operations\IOperation.cs" />
     <Compile Include="Operations\IOperationExecutor.cs" />
-    <Compile Include="Protocols\Protocol.cs" />
-    <Compile Include="FileTransport\SFTP\SftpTransfer.cs" />
-    <Compile Include="FileTransport\TransportFactory.cs" />
-    <Compile Include="FileTransport\TransportManager.cs" />
-    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Operations\ProcedureData.cs" />
+    <Compile Include="Operations\ProcedureExecution\IProcedureExecutionService.cs" />
+    <Compile Include="Operations\ProcedureExecution\ProcedureExecutionService.cs" />
+    <Compile Include="Protocol\Protocol.cs" />
+    <Compile Include="FileTransportTypes\SFTP\SftpTransfer.cs" />
+    <Compile Include="FileTransportTypes\TransportFactory.cs" />
+    <Compile Include="FileTransportTypes\TransportManager.cs" />
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="FileConductor.cs" />
-    <Compile Include="Helpers\ProxyFileProvider.cs" />
+    <Compile Include="ProxyFile\ProxyFileProvider.cs" />
     <Compile Include="IOperationProcessor.cs" />
     <Compile Include="LoggingService\ILoggingService.cs" />
     <Compile Include="LoggingService\LoggingService.cs" />
@@ -91,7 +94,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Protocols\IProtocol.cs" />
+    <Compile Include="Protocol\IProtocol.cs" />
     <Compile Include="Operations\OperationExecutor.cs" />
     <Compile Include="Schedule\IntervalSchedule.cs" />
     <Compile Include="Schedule\ISchedule.cs" />
@@ -111,12 +114,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration\Config.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

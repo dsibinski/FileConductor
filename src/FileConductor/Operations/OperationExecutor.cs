@@ -7,6 +7,9 @@ using System.Timers;
 using FileConductor.FileTransport;
 using FileConductor.Helpers;
 using FileConductor.LoggingService;
+using FileConductor.Operations.ProcedureExecution;
+using FileConductor.ProxyFile;
+using Ninject;
 using NLog;
 
 namespace FileConductor.Operations
@@ -14,20 +17,30 @@ namespace FileConductor.Operations
     public class OperationExecutor : IOperationExecutor
     {
         private readonly IProxyFileProvider _proxyFileProvider;
-        private readonly ILoggingService _loggingService;
+        [Inject]
+        public  ILoggingService LoggingService { private get; set; }
+        [Inject]
+        public  IProcedureExecutionService ProcedureExecutionService { private get; set; }
 
-        public OperationExecutor(IProxyFileProvider proxyFileProvider, ILoggingService loggingService)
+        public OperationExecutor(IProxyFileProvider proxyFileProvider)
         {
-            _loggingService = loggingService;
             _proxyFileProvider = proxyFileProvider;
         }
 
         public void Execute(IOperation operation)
         {
-            //todo: add logging here
-            List<string> receivedFiles = ReceiveFiles(operation);
-            if(receivedFiles.Count != 0)
-            SendFiles(operation,receivedFiles);
+            try
+            {
+                List<string> receivedFiles = ReceiveFiles(operation);
+                if (receivedFiles.Count != 0)
+                    SendFiles(operation, receivedFiles);
+                if (operation.Properties.ProcedureData != null)
+                    ProcedureExecutionService.ExecuteProcedure(operation);
+            }
+            catch (Exception e)
+            {
+                LoggingService.LogException(e,operation,"Exception occured during proccesing operation");
+            }
         }
 
         private void SendFiles(IOperation operation,IList<string> receivedFiles)
@@ -38,9 +51,10 @@ namespace FileConductor.Operations
             }
             catch (Exception ex)
             {
-                _loggingService.LogException(ex,operation, "Exception occured during sending files");
+                throw new Exception("Exception occured during sending files",ex);    
             }
         }
+
 
         private List<string> ReceiveFiles(IOperation operation)
         {

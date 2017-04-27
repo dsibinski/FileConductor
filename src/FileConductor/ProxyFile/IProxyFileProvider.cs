@@ -1,4 +1,4 @@
-﻿namespace FileConductor.Helpers
+﻿namespace FileConductor.ProxyFile
 {
     public interface IProxyFileProvider
     {

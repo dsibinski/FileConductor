@@ -12,6 +12,7 @@ namespace FileConductor.Operations
         public TargetTransformData SourceTarget;
         public TargetTransformData DestinationTarget;
         public OperationScheduleBase Schedule;
+        public ProcedureData ProcedureData;
         public string Regex;
 
         public OperationProperties(OperationScheduleBase schedule)

@@ -22,8 +22,32 @@ namespace FileConductor.LoggingService
             StringBuilder callstack = new StringBuilder();
             callstack.AppendLine(message);
             callstack.AppendLine($"<Code: {operation.Code}> Exception occured");
-            callstack.AppendLine(exception.Message);
+            Exception currentException = exception;
+            while (currentException != null)
+            {
+                callstack.AppendLine(currentException.Message);
+                currentException = currentException.InnerException;
+            }
+            Logger.Info(callstack.ToString);
+        }
+
+        public void LogInfo(string message)
+        {
             Logger.Info(message);
+        }
+
+        public void LogException(Exception exception, string message)
+        {
+            StringBuilder callstack = new StringBuilder();
+            callstack.AppendLine(message);
+
+            Exception currentException = exception;
+            while (currentException != null)
+            {
+                callstack.AppendLine(currentException.Message);
+                currentException = currentException.InnerException;
+            }
+            Logger.Info(callstack.ToString);
         }
     }
 }

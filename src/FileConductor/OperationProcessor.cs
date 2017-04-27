@@ -46,8 +46,15 @@ namespace FileConductor
                     if (currentOperation != null)
                     {
                         _logger.LogInfo(currentOperation,String.Format(Resources.Executing_operation__id, currentOperation.Code));
-                        _operationExecutor.Execute(currentOperation);
-                        _logger.LogInfo(currentOperation,String.Format(Resources.Operation_executed_without_errors, currentOperation.Code));
+                        try
+                        {
+                            _operationExecutor.Execute(currentOperation);
+                            _logger.LogInfo(currentOperation, String.Format(Resources.Operation_executed_without_errors, currentOperation.Code));
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogException(ex,currentOperation,String.Format("Error during execution of operation"));
+                        }
                     }
                 }
             }
