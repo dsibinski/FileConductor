@@ -55,6 +55,7 @@
     <Compile Include="Mocks\ScheduleMock.cs" />
     <Compile Include="Mocks\TransferMock.cs" />
     <Compile Include="OperationProcessorTests.cs" />
+    <Compile Include="ProcedureExecutionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

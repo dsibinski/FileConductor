@@ -5,11 +5,15 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileConductor.LoggingService;
+using Ninject;
 
 namespace FileConductor.Operations.ProcedureExecution
 {
     public class ProcedureExecutionService : IProcedureExecutionService
     {
+        [Inject]
+        public ILoggingService LoggingService { get; set; }
         public void ExecuteProcedure(string host, string user, string password, string procedureName)
         {
             string connectionString = string.Format("Data Source={0};User ID={1};Password={2};", host, password, procedureName);
@@ -23,9 +27,9 @@ namespace FileConductor.Operations.ProcedureExecution
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException)
+                catch (SqlException ex)
                 {
-
+                    LoggingService.LogException(ex,"Error during executing procedure");
                 }
             }
         }
