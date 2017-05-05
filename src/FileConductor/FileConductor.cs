@@ -77,7 +77,7 @@ namespace FileConductor
             if (dbData != null)
             {
                 operationProperties.ProcedureData =
-               new ProcedureData(dbData.Host, dbData.User, dbData.Password, dbData.Name);
+               new ProcedureData(dbData.Host, dbData.User, dbData.Password, dbData.Name,dbData.DatabaseName);
             }        
             return operationProperties;
         }

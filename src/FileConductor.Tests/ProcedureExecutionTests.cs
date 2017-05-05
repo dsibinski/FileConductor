@@ -17,7 +17,7 @@ namespace FileConductor.Tests
         {
             ProcedureExecutionService service = new ProcedureExecutionService();
             service.LoggingService =  new LoggingServiceMock();
-            service.ExecuteProcedure(@"WOJTEK\LOCALDB#D2175F4B", "admin","admin","Procedura");
+            service.ExecuteProcedure(@"PCWGRZESIAK2","gemo_dev","admin","admin", "Implementations.LaunchExportOfProductNomenclature");
         }
 
 

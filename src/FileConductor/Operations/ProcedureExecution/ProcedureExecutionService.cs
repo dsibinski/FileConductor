@@ -14,9 +14,9 @@ namespace FileConductor.Operations.ProcedureExecution
     {
         [Inject]
         public ILoggingService LoggingService { get; set; }
-        public void ExecuteProcedure(string host, string user, string password, string procedureName)
+        public void ExecuteProcedure(string host,string databaseName, string user, string password, string procedureName)
         {
-            string connectionString = string.Format("Data Source={0};User ID={1};Password={2};", host, password, procedureName);
+            string connectionString = string.Format("Data Source={0};Initial Catalog = {1};User ID={2};Password={3};", host, databaseName, user, password);
 
             using (var con = new SqlConnection(connectionString))
             {
@@ -40,8 +40,9 @@ namespace FileConductor.Operations.ProcedureExecution
             string login = operation.Properties.ProcedureData.Login;
             string password = operation.Properties.ProcedureData.Password;
             string procedureName = operation.Properties.ProcedureData.ProcedureName;
+            string databaseName = operation.Properties.ProcedureData.DatabaseName;
 
-            ExecuteProcedure(host,login,password,procedureName);
+            ExecuteProcedure(host,databaseName,login,password,procedureName);
 
         }
     }

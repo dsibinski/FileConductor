@@ -21,5 +21,8 @@ namespace FileConductor.Configuration.XmlData
 
         [XmlElement("name")]
         public string Name { get; set; }
+
+        [XmlElement("databaseName")]
+        public string DatabaseName { get; set; }
     }
 }
