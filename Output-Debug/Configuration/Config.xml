@@ -19,7 +19,7 @@
   <servers>
     <server>
       <id>1</id>
-      <protocol>FTP</protocol>
+      <protocol>Local</protocol>
       <ip>localhost</ip>
       <user></user>
       <password></password>
@@ -83,7 +83,7 @@
         <destinationTargetId>1</destinationTargetId>
       </watcherRouting>
       <scheduleId>1</scheduleId>
-      <fileNameRegex>*.jpg</fileNameRegex>
+      <fileNameRegex>*.txt</fileNameRegex>
     </watcher>
 
   </watchers>

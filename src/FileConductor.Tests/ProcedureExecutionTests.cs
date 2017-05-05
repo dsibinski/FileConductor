@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileConductor.Operations;
 using FileConductor.Operations.ProcedureExecution;
 using FileConductor.Tests.Mocks;
 using NUnit.Framework;
@@ -15,9 +16,11 @@ namespace FileConductor.Tests
         [Test]
         public void ExecutingProcedureTests()
         {
-            ProcedureExecutionService service = new ProcedureExecutionService();
-            service.LoggingService =  new LoggingServiceMock();
-            service.ExecuteProcedure(@"PCWGRZESIAK2","gemo_dev","admin","admin", "Implementations.LaunchExportOfProductNomenclature");
+            ProcedureExecutionServiceMock service = new ProcedureExecutionServiceMock();
+            OperationProperties prop = new OperationProperties(new OperationScheduleMock());
+            prop.ProcedureData = new ProcedureData(@"server","dbName","login","passwod", "procedureName");
+            Operation operation = new Operation(new ProtocolMock(), prop);
+            service.ExecuteProcedure(operation);
         }
 
 

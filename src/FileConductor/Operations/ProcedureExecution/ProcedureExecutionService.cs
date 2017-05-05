@@ -29,7 +29,7 @@ namespace FileConductor.Operations.ProcedureExecution
                 }
                 catch (SqlException ex)
                 {
-                    LoggingService.LogException(ex,"Error during executing procedure");
+                    throw new Exception("Error during executing procedure",ex);
                 }
             }
         }

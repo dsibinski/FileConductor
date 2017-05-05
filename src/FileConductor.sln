@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileConductor.Service", "Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileConductor", "FileConductor\FileConductor.csproj", "{B2EBBB4D-91DF-4E29-B864-1B36AA46EE28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileConductor.UI", "FileConductor.UI\FileConductor.UI.csproj", "{6C2319EB-3CC6-4E52-BE32-34C6553FEA71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileConductor.ConfigurationTool", "FileConductor.UI\FileConductor.ConfigurationTool.csproj", "{6C2319EB-3CC6-4E52-BE32-34C6553FEA71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
