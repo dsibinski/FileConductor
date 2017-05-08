@@ -3,33 +3,21 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Authentication.ExtendedProtection;
-using System.Security.Cryptography;
 using System.ServiceProcess;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using FileConductor.Configuration;
-using FileConductor.Configuration.XmlData;
-using FileConductor.UI.Annotations;
+using FileConductorUI.UI;
 using FileConductorUI.UI.Entities;
-using FileConductorUI.UI.Services;
-using FileConductorUI.UI.ViewModels;
-using FileConductorUI.UI.Views;
 using Microsoft.Expression.Interactivity.Core;
 
-namespace FileConductorUI.UI
+namespace FileConductor.ConfigurationTool.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
         public const string ServiceName = "FileConductor";
         private readonly ObservableCollection<ITab> tabs;
         private ITab _selectedTab;
+        public CommandHandler ButtonClick { get; set; }
 
         public ITab SelectedTab
         {
@@ -43,13 +31,13 @@ namespace FileConductorUI.UI
 
         public MainPageViewModel()
         {
-            InstallService = new CommandHandler(InstallServiceLogic);
             NewTabCommand = new ActionCommand(x => NewTab());
             tabs = new ObservableCollection<ITab>();
             tabs.CollectionChanged += Tabs_CollectionChanged;
             Tabs = tabs;
             OpenTab(new MainTabViewModel());
         }
+
 
         public ConfigurationDataCollection ConfigurationData { get; set; } = new ConfigurationDataCollection();
 
@@ -117,45 +105,6 @@ namespace FileConductorUI.UI
                     currentException = currentException.InnerException;
                 }
                 return builder.ToString();
-            }
-        }
-
-        private void InstallServiceLogic()
-        {
-            //var servicePath = FileConductorService.GetExecutionAssembly();
-            //  string strCmdText = servicePath + " install";
-            //  ExecuteCommandSync(strCmdText);
-        }
-
-
-        public void ExecuteCommandSync(object command)
-        {
-            try
-            {
-                // create the ProcessStartInfo using "cmd" as the program to be run,
-                // and "/c " as the parameters.
-                // Incidentally, /c tells cmd that we want it to execute the command that follows,
-                // and then exit.
-                System.Diagnostics.ProcessStartInfo procStartInfo =
-                    new System.Diagnostics.ProcessStartInfo("cmd", "/c " + command);
-
-                // The following commands are needed to redirect the standard output.
-                // This means that it will be redirected to the Process.StandardOutput StreamReader.
-                procStartInfo.RedirectStandardOutput = true;
-                procStartInfo.UseShellExecute = false;
-                // Do not create the black window.
-                procStartInfo.CreateNoWindow = true;
-                // Now we create a process, assign its ProcessStartInfo and start it
-                System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                proc.StartInfo = procStartInfo;
-                proc.Start();
-                // Get the output into a string
-                string result = proc.StandardOutput.ReadToEnd();
-                // Display the command output.
-            }
-            catch (Exception objException)
-            {
-                // Log the exception
             }
         }
 

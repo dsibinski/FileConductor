@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\Watcher.cs" />
     <Compile Include="ViewModels\MainTabViewModel.cs" />
     <Compile Include="Views\MainTabView.xaml.cs">
       <DependentUpon>MainTabView.xaml</DependentUpon>
