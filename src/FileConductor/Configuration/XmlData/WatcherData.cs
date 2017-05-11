@@ -8,9 +8,6 @@ namespace FileConductor.Configuration.XmlData
     {
         [XmlElement("code")]
         public string Code { get; set; }
-
-        [XmlElement("name")]
-        public string Name { get; set; }
         
         [XmlElement("databaseId")]
         public int DatabaseId { get; set; }

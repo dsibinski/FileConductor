@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceProcess;
 using System.Windows;
+using FileConductor.ConfigurationTool.ViewModels;
 using FileConductorUI;
 
 namespace FileConductorUI.UI

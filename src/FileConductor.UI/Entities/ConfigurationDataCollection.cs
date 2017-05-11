@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
+using FileConductor.ConfigurationTool.ViewModels;
 using FileConductor.UI.Annotations;
 using FileConductorUI.UI.Services;
-using FileConductorUI.UI.ViewModels;
 
 namespace FileConductorUI.UI.Entities
 {

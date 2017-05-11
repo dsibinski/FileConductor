@@ -5,17 +5,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using FileConductor.Configuration.XmlData;
 using FileConductor.UI.Annotations;
+using FileConductorUI.UI;
 
-namespace FileConductorUI.UI.ViewModels
+namespace FileConductor.ConfigurationTool.ViewModels
 {
     public class DatabaseEditTabViewModel : Tab,INotifyPropertyChanged
     {
-        
         private List<string> _databaseList;
         private string _selectedDatabaseName;
         private string _host;

@@ -1,0 +1,6 @@
+2017-05-06 14:28:32.376 Service's initialization started.
+2017-05-06 14:28:32.453 Config file reading started.
+2017-05-06 14:28:33.286 Assigning operation <code:TestOperation>
+2017-05-06 14:28:33.293 Assigning operation <code:TestOperationBack>
+2017-05-06 14:28:33.293 Config file reading finished.
+2017-05-06 14:28:33.293 Service has been successfully initialized.
