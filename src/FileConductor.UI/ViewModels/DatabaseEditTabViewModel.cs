@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using FileConductor.Configuration.XmlData;
+using FileConductor.ConfigurationTool.Tabs;
 using FileConductor.UI.Annotations;
 using FileConductorUI.UI;
 

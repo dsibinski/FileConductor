@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FileConductorUI.UI"
         xmlns:views="clr-namespace:FileConductorUI.UI.Views"
         xmlns:viewModels1="clr-namespace:FileConductor.ConfigurationTool.ViewModels"
+        xmlns:tabs="clr-namespace:FileConductor.ConfigurationTool.Tabs"
 
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="700">
@@ -32,10 +33,10 @@
                         </DataTemplate>
                     </TabControl.Resources>
                     <TabControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type local:ITab}">
+                        <DataTemplate DataType="{x:Type tabs:ITab}">
                             <DockPanel >
                                 <TextBlock DockPanel.Dock="Left"> <Run Text="{Binding Name}"/></TextBlock>
-                                <Button DockPanel.Dock="Right" Background="Transparent" Height="15" Width="15" Command="{Binding CloseCommand}">
+                                <Button DockPanel.Dock="Right" Background="Transparent" Height="15" Width="15" Command="{Binding CloseCommand}"  Visibility="{Binding IsClosable}">
                                     <Image  Source="/Icons/error.png" />
                                 </Button>
                             </DockPanel>
