@@ -18,7 +18,10 @@
                 <Button Margin="20"  Width="100" Content="Edit" Command="{Binding EditCommand}"></Button>
                 <Button Margin="20"  Width="100" Content="Remove" Command="{Binding RemoveCommand}"></Button>
             </StackPanel>
-            
+
+            <TextBlock Text="{Binding LoggingService.Logs}">
+                
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

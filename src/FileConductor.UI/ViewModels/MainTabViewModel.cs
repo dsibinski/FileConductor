@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Windows;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
@@ -7,6 +8,7 @@ using FileConductor.ConfigurationTool.Entities;
 using FileConductor.ConfigurationTool.Tabs;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
+using FileConductor.Protocols;
 using FileConductor.ProxyFile;
 using FileConductorUI.UI;
 
@@ -20,6 +22,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
             IsClosable = Visibility.Collapsed;
             LoadConfiguration();
             TestCommand = new CommandHandler(TestWatcher);
+            LoggingService = new LogginServiceWindow();
 
         }
 
@@ -27,7 +30,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
         {
             if(SelectedWatcher == null) return;
             OperationExecutor executor = new OperationExecutor(new ProxyFileProvider());
-           // executor.Execute(new Operation());
+            executor.LoggingService = LoggingService;
         }
 
         private void LoadConfiguration()
@@ -50,33 +53,36 @@ namespace FileConductor.ConfigurationTool.ViewModels
         public CommandHandler RemoveCommand { get; set; }
         public CommandHandler TestCommand { get; set; }
         public ConfigurationData Configuration { get; set; }
+        public LogginServiceWindow LoggingService { get; set; }
     }
 
     public class LogginServiceWindow : ILoggingService
     {
+        public string Logs => LogsLines.ToString();
+
         public LogginServiceWindow()
         {
-            Logs = new List<string>();
+            LogsLines = new StringBuilder();
         }
-        public List<string> Logs { get; set; }
+        public StringBuilder LogsLines { get; set; }
         public void LogInfo(IOperation operation, string message)
         {
-            Logs.Add(message);
+            LogsLines.AppendLine(message);
         }
 
         public void LogException(Exception exception, IOperation operation, string message)
         {
-            Logs.Add(message);
+            LogsLines.AppendLine(message);
         }
 
         public void LogInfo(string message)
         {
-            Logs.Add(message);
+            LogsLines.AppendLine(message);
         }
 
         public void LogException(Exception exception, string message)
         {
-            Logs.Add(message);
+            LogsLines.AppendLine(message);
         }
     }
 
