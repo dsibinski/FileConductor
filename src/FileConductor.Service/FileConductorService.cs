@@ -20,7 +20,7 @@ namespace FileConductor.Service
         {
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
-            var configurationService = kernel.Get<IOperationProcessor>();
+            var configurationService = kernel.Get<IConfigurationService>();
             Logger.Trace(Resources.InfoServiceInitializationStarted);
             Logger.Trace(Resources.InfoConfigFileReadingStarted);
             var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
