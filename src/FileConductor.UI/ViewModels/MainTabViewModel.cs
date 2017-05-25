@@ -1,7 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using FileConductor.ConfigurationTool.Entities;
+using FileConductor.ConfigurationTool.Tabs;
+using FileConductor.LoggingService;
+using FileConductor.Operations;
+using FileConductor.Protocols;
+using FileConductor.ProxyFile;
 using FileConductorUI.UI;
 
 namespace FileConductor.ConfigurationTool.ViewModels
@@ -10,8 +18,19 @@ namespace FileConductor.ConfigurationTool.ViewModels
     {
         public MainTabViewModel()
         {
-            Name = "Main";
+            Name = "Watchers";
+            IsClosable = Visibility.Collapsed;
             LoadConfiguration();
+            TestCommand = new CommandHandler(TestWatcher);
+            LoggingService = new LogginServiceWindow();
+
+        }
+
+        private void TestWatcher()
+        {
+            if(SelectedWatcher == null) return;
+            OperationExecutor executor = new OperationExecutor(new ProxyFileProvider());
+            executor.LoggingService = LoggingService;
         }
 
         private void LoadConfiguration()
@@ -26,12 +45,45 @@ namespace FileConductor.ConfigurationTool.ViewModels
             }
         }
 
+
+
         public List<Watcher> Watchers { get; set; }
         public Watcher SelectedWatcher { get; set; }
-        public CommandHandler EditWatcher { get; set; }
-        public CommandHandler RemoveWatcher { get; set; }
-        public CommandHandler TestWatcher { get; set; }
+        public CommandHandler EditCommand { get; set; }
+        public CommandHandler RemoveCommand { get; set; }
+        public CommandHandler TestCommand { get; set; }
         public ConfigurationData Configuration { get; set; }
-
+        public LogginServiceWindow LoggingService { get; set; }
     }
+
+    public class LogginServiceWindow : ILoggingService
+    {
+        public string Logs => LogsLines.ToString();
+
+        public LogginServiceWindow()
+        {
+            LogsLines = new StringBuilder();
+        }
+        public StringBuilder LogsLines { get; set; }
+        public void LogInfo(IOperation operation, string message)
+        {
+            LogsLines.AppendLine(message);
+        }
+
+        public void LogException(Exception exception, IOperation operation, string message)
+        {
+            LogsLines.AppendLine(message);
+        }
+
+        public void LogInfo(string message)
+        {
+            LogsLines.AppendLine(message);
+        }
+
+        public void LogException(Exception exception, string message)
+        {
+            LogsLines.AppendLine(message);
+        }
+    }
+
 }

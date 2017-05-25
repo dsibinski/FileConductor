@@ -1,27 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Microsoft.Expression.Interactivity.Core;
 
-namespace FileConductorUI.UI
+namespace FileConductor.ConfigurationTool.Tabs
 {
-    public interface ITab
-    {
-        string Name { get; set; }
-
-        ICommand CloseCommand { get; set; }
-        event EventHandler CloseRequested;
-    }
-
-
     public abstract class Tab : ITab
     {
-        public Tab()
+        protected Tab()
         {
+            IsClosable = Visibility.Visible;
             CloseCommand = new ActionCommand(x => CloseRequested?.Invoke(this, EventArgs.Empty));
         }
 
         public string Name { get; set; }
         public ICommand CloseCommand { get; set; }
         public event EventHandler CloseRequested;
+        public Visibility IsClosable { get; set; }
     }
 }

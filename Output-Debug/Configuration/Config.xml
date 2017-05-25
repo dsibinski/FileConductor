@@ -64,7 +64,6 @@
   <watchers>
     <watcher>
       <code>TestOperation</code>
-      <name>Interface1_FTP_Importer</name>
       <databaseId>1</databaseId>
       <watcherRouting>
         <sourceTargetId>1</sourceTargetId>
@@ -76,7 +75,6 @@
 
     <watcher>
       <code>TestOperationBack</code>
-      <name>Interface1_FTP_Importer</name>
       <databaseId>1</databaseId>
       <watcherRouting>
         <sourceTargetId>2</sourceTargetId>

@@ -65,12 +65,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\Watcher.cs" />
+    <Compile Include="Tabs\Tab.cs" />
     <Compile Include="ViewModels\MainTabViewModel.cs" />
     <Compile Include="Views\MainTabView.xaml.cs">
       <DependentUpon>MainTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entities\ConfigurationDataCollection.cs" />
-    <Compile Include="ITab.cs" />
+    <Compile Include="Tabs\ITab.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Page Include="Views\MainTabView.xaml">
       <SubType>Designer</SubType>

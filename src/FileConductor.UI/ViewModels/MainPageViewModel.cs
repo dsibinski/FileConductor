@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ServiceProcess;
 using System.Text;
 using System.Windows.Input;
+using FileConductor.ConfigurationTool.Tabs;
 using FileConductorUI.UI;
 using FileConductorUI.UI.Entities;
 using Microsoft.Expression.Interactivity.Core;
@@ -46,10 +47,6 @@ namespace FileConductor.ConfigurationTool.ViewModels
 
 
         public string ServiceStatus => GetServiceStatus();
-
-        public CommandHandler InstallService { get; set; }
-        public CommandHandler SettingsHandler { get; set; }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

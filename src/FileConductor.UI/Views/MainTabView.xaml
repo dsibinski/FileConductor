@@ -6,33 +6,6 @@
              mc:Ignorable="d" >
     <Grid>
         <StackPanel  Orientation="Vertical" VerticalAlignment="top" HorizontalAlignment="Stretch">
-            <Grid>
-                <Label Content="Targets :" Margin="10" HorizontalAlignment="Left"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <ComboBox Margin="10"   Width="150" ItemsSource="{Binding ConfigData.Targets}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedTarget}"/>
-                    <Button Content="Edit" Margin="10" Width="100"/>
-                    <Button Content="Add" Margin="10" Width="100"/>
-                    <Button Content="Delete" Margin="10" Width="100"  />
-                </StackPanel>
-            </Grid>
-            <Grid>
-                <Label Content="Databases :" Margin="10" HorizontalAlignment="Left"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <ComboBox  Margin="10"   Width="150" ItemsSource="{Binding ConfigData.Databases}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDatabase}"/>
-                    <Button Content="Edit"  Command="{Binding EditCommand}" Margin="10" Width="100"/>
-                    <Button Content="Add" Command="{Binding AddCommand}" Margin="10" Width="100"/>
-                    <Button Content="Delete" Margin="10" Width="100"  />
-                </StackPanel>
-            </Grid>
-            <Grid>
-                <Label Content="Schedules :" Margin="10" HorizontalAlignment="Left"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <ComboBox  Margin="10"   Width="150" ItemsSource="{Binding ConfigData.Schedules}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedSchedule}" />
-                    <Button Content="Edit" Margin="10" Width="100" Command="{Binding ButtonClick}" />
-                    <Button Content="Add" Margin="10" Width="100"/>
-                    <Button Content="Delete" Margin="10" Width="100"  />
-                </StackPanel>
-            </Grid>
             <Grid Height="auto">
                 <DataGrid  HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Watchers}" SelectedItem="{Binding SelectedWatcher}">
                     <DataGrid.Columns>
@@ -45,12 +18,14 @@
                 </DataGrid>
             </Grid>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Margin="0,20,20,0"  Width="100" Content="Test"></Button> 
-                <Button Margin="0,20,20,0"  Width="100" Content="Edit"></Button> 
-                <Button Margin="0,20,0,0"  Width="100" Content="Remove"></Button> 
-                
+                <Button Margin="20"  Width="100" Content="Test" Command="{Binding TestCommand}"></Button>
+                <Button Margin="20"  Width="100" Content="Edit" Command="{Binding EditCommand}"></Button>
+                <Button Margin="20"  Width="100" Content="Remove" Command="{Binding RemoveCommand}"></Button>
             </StackPanel>
-           
+
+            <TextBlock Text="{Binding LoggingService.Logs}">
+                
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>
