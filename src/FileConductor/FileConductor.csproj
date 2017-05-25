@@ -70,6 +70,7 @@
     <Compile Include="FileTransportTypes\Ftp\FtpTransfer.cs" />
     <Compile Include="FileTransportTypes\ITransfer.cs" />
     <Compile Include="FileTransportTypes\Local\LocalTransfer.cs" />
+    <Compile Include="IFileConductor.cs" />
     <Compile Include="ProxyFile\IProxyFileProvider.cs" />
     <Compile Include="Operations\IOperation.cs" />
     <Compile Include="Operations\IOperationExecutor.cs" />

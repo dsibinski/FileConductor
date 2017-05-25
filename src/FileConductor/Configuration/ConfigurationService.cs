@@ -8,19 +8,19 @@ using FileConductor.FileTransport;
 using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.Schedule;
+using Ninject;
 
 namespace FileConductor.Configuration
 {
     public class ConfigurationService : IConfigurationService
     {
-        public IOperationProcessor GetOperationProcessor(ConfigurationData configurationData)
+      
+        public void InitializeOperationProcessor(IOperationProcessor operationProcessor,ConfigurationData configurationData)
         {
-            OperationProcessor operationProcessor = new OperationProcessor();
             foreach (var watcher in configurationData.Watchers)
             {
                 operationProcessor.AssignOperation(GetOperation(configurationData, watcher));
             }
-            return operationProcessor;
         }
 
         public IOperation GetOperation(ConfigurationData configurationData, WatcherData watcher)

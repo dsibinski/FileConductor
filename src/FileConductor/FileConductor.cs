@@ -13,26 +13,23 @@ using Ninject;
 
 namespace FileConductor
 {
-    public class FileConductor
+    public class FileConductor : IFileConductor
     {
-        public FileConductor(IConfigurationService configurationService)
-        {
-            ConfigurationService = configurationService;
-        }
-
         [Inject]
         public ILoggingService LoggingService { private get; set; }
 
+        [Inject]
         public IConfigurationService ConfigurationService { get; set; }
 
-        private IOperationProcessor OperationProcessor { get; set; }
+        [Inject]
+        public IOperationProcessor OperationProcessor { get; set; }
 
-        public void Initialize(ConfigurationData configurationData)
+        public void Start(ConfigurationData configurationData)
         {
             try
             {
                 TransportManager.Initialize();
-                OperationProcessor = ConfigurationService.GetOperationProcessor(configurationData);
+                ConfigurationService.InitializeOperationProcessor(OperationProcessor,configurationData);
             }
             catch (Exception exception)
             {

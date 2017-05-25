@@ -13,13 +13,13 @@ namespace FileConductor.Service
     {
         public override void Load()
         {
+            Bind<IFileConductor>().To<FileConductor>();
             Bind<IConfigurationService>().To<ConfigurationService>();
             Bind<ILoggingService>().To<LoggingService.LoggingService>();
             Bind<IOperationProcessor>().To<OperationProcessor>();
             Bind<IProxyFileProvider>().To<ProxyFileProvider>();
             Bind<IOperationExecutor>().To<OperationExecutor>();
             Bind<IProcedureExecutionService>().To<ProcedureExecutionService>();
-
         }
     }
 }

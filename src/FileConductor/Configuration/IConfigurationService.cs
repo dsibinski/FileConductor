@@ -10,7 +10,7 @@ namespace FileConductor.Configuration
 {
     public interface IConfigurationService
     {
-        IOperationProcessor GetOperationProcessor(ConfigurationData configurationData);
+        void InitializeOperationProcessor(IOperationProcessor operationProcessor, ConfigurationData configurationData);
         IOperation GetOperation(ConfigurationData configurationData, WatcherData watcher);
     }
 }
