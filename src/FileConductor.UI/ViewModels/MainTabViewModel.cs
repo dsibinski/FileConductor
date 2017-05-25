@@ -22,7 +22,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
             Watchers = new List<Watcher>();
             foreach (var watcherData in deserializer.XmlData.Watchers)
             {
-                Watchers.Add(new Watcher() {Code = watcherData.Code});
+                Watchers.Add(new Watcher() { Code = watcherData.Code, Regex = watcherData.FileNameRegex});
             }
         }
 

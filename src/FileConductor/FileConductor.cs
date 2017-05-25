@@ -43,13 +43,13 @@ namespace FileConductor
         {
             foreach (var watcher in configurationData.Watchers)
             {
-                var schedule = configurationData.Schedules.First(x => x.Id == watcher.ScheduleId);
-                var sourceTarget = configurationData.Targets.First(x => x.Id == watcher.WatcherRouting.SourceTargetId);
-                var sourceServer = configurationData.Servers.First(x => x.Id == sourceTarget.ServerId);
+                var schedule = configurationData.Schedules.First(x => x.Code == watcher.Schedule);
+                var sourceTarget = configurationData.Targets.First(x => x.Code == watcher.WatcherRouting.SourceTarget);
+                var sourceServer = configurationData.Servers.First(x => x.Code == sourceTarget.Server);
                 var destinationTarget =
-                    configurationData.Targets.First(x => x.Id == watcher.WatcherRouting.DestinationTargetId);
-                var destinationServer = configurationData.Servers.First(x => x.Id == destinationTarget.ServerId);
-                var procedureData = configurationData.Databases.FirstOrDefault(x => x.Id == watcher.DatabaseId);
+                    configurationData.Targets.First(x => x.Code == watcher.WatcherRouting.DestinationTarget);
+                var destinationServer = configurationData.Servers.First(x => x.Code == destinationTarget.Server);
+                var procedureData = configurationData.Databases.FirstOrDefault(x => x.Code == watcher.Database);
                 var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, schedule,
                     sourceTarget, sourceServer, watcher, procedureData);
                 var receiver = TransportFactory.GetTransfer(sourceServer.Protocol);
