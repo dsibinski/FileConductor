@@ -13,6 +13,11 @@ namespace FileConductor.ConfigurationTool.Entities
     {
         public string Status => "OFF";
         public string Code { get; set; }
+        public string Regex { get; set; }
+        public string ScheduleCode { get; set; }
+        public string Source { get; set; }
+        public string Destination { get; set; }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

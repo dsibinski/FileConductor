@@ -10,6 +10,10 @@
                 <DataGrid  HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Watchers}" SelectedItem="{Binding SelectedWatcher}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding Code}"/>
+                        <DataGridTextColumn Header="Source" Binding="{Binding Source}"/>
+                        <DataGridTextColumn Header="Destination" Binding="{Binding Destination}"/>
+                        <DataGridTextColumn Header="Schedule" Binding="{Binding Schedule}"/>
+                        <DataGridTextColumn Header="NaRegexme" Binding="{Binding Regex}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

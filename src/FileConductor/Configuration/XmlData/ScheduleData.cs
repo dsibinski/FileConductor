@@ -6,8 +6,6 @@ namespace FileConductor.Configuration.XmlData
     [Serializable]
     public class ScheduleData
     {
-        [XmlElement("id")]
-        public int Id { get; set; }
 
         [XmlElement("interval")]
         public string Interval { get; set; }
@@ -18,7 +16,7 @@ namespace FileConductor.Configuration.XmlData
         [XmlElement("hours")]
         public string Hours { get; set; }
 
-        [XmlElement("name")]
-        public string Name { get; set; }
+        [XmlElement("code")]
+        public string Code { get; set; }
     }
 }

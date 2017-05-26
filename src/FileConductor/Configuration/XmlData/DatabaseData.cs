@@ -7,8 +7,8 @@ namespace FileConductor.Configuration.XmlData
     public class DatabaseData
     {
 
-        [XmlElement("id")]
-        public int Id { get; set; }
+        [XmlElement("code")]
+        public string Code { get; set; }
 
         [XmlElement("host")]
         public string Host { get; set; }

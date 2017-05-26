@@ -2,14 +2,14 @@
 <configuration>
   <databases>
     <database>
-      <id>1</id>
+      <code>db1</code>
       <host>localhost</host>
       <user>admin</user>
       <password>admin</password>
       <name>db1</name>
     </database>
     <database>
-      <id>2</id>
+      <code>2</code>
       <host>PCDSIBINSKI\MSSQL2012</host>
       <user>admin</user>
       <password>admin</password>
@@ -18,7 +18,7 @@
   </databases>
   <servers>
     <server>
-      <id>1</id>
+      <code>1</code>
       <protocol>Local</protocol>
       <ip>localhost</ip>
       <user></user>
@@ -26,7 +26,7 @@
       <port></port>
     </server>
     <server>
-      <id>2</id>
+      <code>2</code>
       <protocol>Local</protocol>
       <ip></ip>
       <user></user>
@@ -37,54 +37,49 @@
 
   <targets>
     <target>
-      <id>1</id>
-      <name>Interface1_FTP</name>
-      <serverId>1</serverId>
+      <code>Interface1_FTP</code>
+      <server>1</server>
       <path>C:\Destiny</path>
     </target>
 
     <target>
-      <id>2</id>
-      <name>Interface1_Local</name>
-      <serverId>2</serverId>
+      <code>Interface1_Local</code>
+      <server>2</server>
       <path>C:\Source</path>
     </target>
   </targets>
 
   <schedules>
     <schedule>
-      <id>1</id>
       <interval>10000</interval>
       <daysOfWeek>0;1;2;3;4;5;6</daysOfWeek>
       <hours></hours>
-      <name>schedule1</name>
+      <code>schedule1</code>
     </schedule>
   </schedules>
 
   <watchers>
     <watcher>
       <code>TestOperation</code>
-      <databaseId>1</databaseId>
-      <watcherRouting>
-        <sourceTargetId>1</sourceTargetId>
-        <destinationTargetId>2</destinationTargetId>
+      <database>db1</database>
+       <watcherRouting>
+          <sourceTarget>Interface1_FTP</sourceTarget>
+          <destinationTarget>Interface1_Local</destinationTarget>
       </watcherRouting>
-      <scheduleId>1</scheduleId>
+      <schedule>schedule1</schedule>
       <fileNameRegex>*.txt</fileNameRegex>
     </watcher>
 
     <watcher>
       <code>TestOperationBack</code>
-      <databaseId>1</databaseId>
-      <watcherRouting>
-        <sourceTargetId>2</sourceTargetId>
-        <destinationTargetId>1</destinationTargetId>
-      </watcherRouting>
-      <scheduleId>1</scheduleId>
+      <database>db1</database>
+        <watcherRouting>
+          <sourceTarget>Interface1_Local</sourceTarget>
+          <destinationTarget>Interface1_FTP</destinationTarget>
+        </watcherRouting>
+      <watcherRouting>TestOperationBack</watcherRouting>
+      <schedule>schedule1</schedule>
       <fileNameRegex>*.txt</fileNameRegex>
     </watcher>
-
   </watchers>
-
-
 </configuration>
