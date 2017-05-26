@@ -37,18 +37,18 @@ namespace FileConductor.ConfigurationTool.ViewModels
         {
             var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
             deserializer.Deserialize();
-
-            Watchers = new List<Watcher>();
-            foreach (var watcherData in deserializer.XmlData.Watchers)
-            {
-                Watchers.Add(new Watcher() { Code = watcherData.Code, Regex = watcherData.FileNameRegex});
-            }
+            Configuration = deserializer.XmlData;
+            //Watchers = new List<Watcher>();
+            //foreach (var watcherData in deserializer.XmlData.Watchers)
+            //{
+            //    Watchers.Add(new Watcher() { Code = watcherData.Code, Regex = watcherData.FileNameRegex});
+            //}
         }
 
 
 
-        public List<Watcher> Watchers { get; set; }
-        public Watcher SelectedWatcher { get; set; }
+        //public List<Watcher> Watchers { get; set; }
+        public WatcherData SelectedWatcher { get; set; }
         public CommandHandler EditCommand { get; set; }
         public CommandHandler RemoveCommand { get; set; }
         public CommandHandler TestCommand { get; set; }

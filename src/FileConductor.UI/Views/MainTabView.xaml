@@ -7,13 +7,23 @@
     <Grid>
         <StackPanel  Orientation="Vertical" VerticalAlignment="top" HorizontalAlignment="Stretch">
             <Grid Height="auto">
-                <DataGrid  HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Watchers}" SelectedItem="{Binding SelectedWatcher}">
+                <DataGrid IsReadOnly="True" Margin="20" HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Configuration.Watchers}" SelectedItem="{Binding SelectedWatcher}">
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Department">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel >
+                                        <TextBlock Text="sd"/>
+                                        <Button Margin="2" Height="12" Width="12" DockPanel.Dock="Right" Content="." HorizontalAlignment="Right"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Header="Name" Binding="{Binding Code}"/>
-                        <DataGridTextColumn Header="Source" Binding="{Binding Source}"/>
-                        <DataGridTextColumn Header="Destination" Binding="{Binding Destination}"/>
+                        <DataGridTextColumn Header="Source" Binding="{Binding WatcherRouting.SourceTarget}"/>
+                        <DataGridTextColumn Header="Destination" Binding="{Binding WatcherRouting.DestinationTarget}"/>
                         <DataGridTextColumn Header="Schedule" Binding="{Binding Schedule}"/>
-                        <DataGridTextColumn Header="NaRegexme" Binding="{Binding Regex}"/>
+                        <DataGridTextColumn Header="Regex" Binding="{Binding FileNameRegex}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -21,6 +31,7 @@
                 <Button Margin="20"  Width="100" Content="Test" Command="{Binding TestCommand}"></Button>
                 <Button Margin="20"  Width="100" Content="Edit" Command="{Binding EditCommand}"></Button>
                 <Button Margin="20"  Width="100" Content="Remove" Command="{Binding RemoveCommand}"></Button>
+                <Button Margin="20"  Width="100" Content="Add" Command="{Binding AddCommand}"></Button>
             </StackPanel>
 
             <TextBlock Text="{Binding LoggingService.Logs}">

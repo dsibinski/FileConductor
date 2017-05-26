@@ -9,8 +9,13 @@
 <!--        <DataTemplate DataType="{x:Type viewModels:DatabaseEditTabViewModel}">-->
 <!--            <views:DatabaseEditView/>-->
 <!--        </DataTemplate>-->
-
-        <ResourceDictionary> <!--x:Key="Dictionary">-->
+        <DataTemplate x:Key="CellEdintingTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="text" />
+                <Button Content="btn"></Button>
+            </StackPanel>
+        </DataTemplate>
+        <ResourceDictionary x:Key="Dictionary">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
