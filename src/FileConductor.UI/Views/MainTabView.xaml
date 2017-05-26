@@ -4,22 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" >
+
     <Grid>
         <StackPanel  Orientation="Vertical" VerticalAlignment="top" HorizontalAlignment="Stretch">
             <Grid Height="auto">
                 <DataGrid IsReadOnly="True" Margin="20" HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Configuration.Watchers}" SelectedItem="{Binding SelectedWatcher}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Department">
+                        <DataGridTemplateColumn Header="Name">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel >
-                                        <TextBlock Text="sd"/>
-                                        <Button Margin="2" Height="12" Width="12" DockPanel.Dock="Right" Content="." HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Code}"/>
+                                        <Button Margin="2" Width="12" DockPanel.Dock="Right" Content="..." FontSize="8" HorizontalAlignment="Right"/>
                                     </DockPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Code}"/>
                         <DataGridTextColumn Header="Source" Binding="{Binding WatcherRouting.SourceTarget}"/>
                         <DataGridTextColumn Header="Destination" Binding="{Binding WatcherRouting.DestinationTarget}"/>
                         <DataGridTextColumn Header="Schedule" Binding="{Binding Schedule}"/>
