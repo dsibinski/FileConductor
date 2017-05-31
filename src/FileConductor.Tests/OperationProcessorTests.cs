@@ -1,11 +1,14 @@
 ﻿using System;
+using Castle.Components.DictionaryAdapter.Xml;
 using FileConductor.FileTransport;
 using FileConductor.Helpers;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
 using FileConductor.Protocols;
+using FileConductor.Schedule;
 using FileConductor.Schedule.OperationSchedule;
 using FileConductor.Tests.Mocks;
+using Moq;
 using NUnit.Framework;
 
 namespace FileConductor.Tests
@@ -16,15 +19,21 @@ namespace FileConductor.Tests
         [SetUp]
         public void Setup()
         {
-            ILoggingService logginService = new LoggingServiceMock();
-            _processor = new OperationProcessor(); 
-            OperationProperties properties = new OperationProperties(new OperationScheduleMock());
-            _operation = new Operation(new ProtocolMock(),properties);
-           _processor.Start(new ScheduleMock());
+            _processor = new OperationProcessor();
+            _processor.LoggingService = new Mock<ILoggingService>().Object;
+            var schedule = new Mock<ISchedule>();
+            _processor.Start(schedule.Object);
+           // var operationScheduleMock = new Mock<OperationScheduleBase>();
+            var propertiesMock = new Mock<OperationProperties>();
+            propertiesMock.SetupGet(x => x.Schedule).Returns(new OperationScheduleMock());
+            var operationMock = new Mock<IOperation>();
+            operationMock.SetupGet(x => x.Properties).Returns(propertiesMock.Object);
+
+            _operation = operationMock.Object;
         }
 
         private OperationProcessor _processor;
-        private Operation _operation;
+        private IOperation _operation;
 
 
         [Test]

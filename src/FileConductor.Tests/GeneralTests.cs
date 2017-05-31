@@ -18,12 +18,6 @@ namespace FileConductor.Tests
     public class GeneralTests
     {
         [Test]
-        public void SampleTest()
-        {
-            Assert.AreEqual(3,3);
-        }
-
-        [Test]
         public void CheckSFTPProtocol()
         {
             //var destination = new TargetTransformData("locahost", "c:/Destiny", "", "");

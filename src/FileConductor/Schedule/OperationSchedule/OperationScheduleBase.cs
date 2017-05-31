@@ -4,9 +4,9 @@ using FileConductor.Protocols;
 
 namespace FileConductor.Schedule.OperationSchedule
 {
-   public abstract  class OperationScheduleBase
+   public abstract class OperationScheduleBase
    {
-       public event Action OnElapsed ;
+       public event Action OnElapsed;
        public void OperationScheduleElapsed()
        {
             OnElapsed?.Invoke();

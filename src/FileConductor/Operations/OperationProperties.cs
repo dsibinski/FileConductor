@@ -9,10 +9,10 @@ namespace FileConductor.Operations
     /// </summary>
     public class OperationProperties
     {
-        public TargetTransformData SourceTarget;
-        public TargetTransformData DestinationTarget;
-        public OperationScheduleBase Schedule;
-        public ProcedureData ProcedureData;
+        public TargetTransformData SourceTarget { get; set; }
+        public TargetTransformData DestinationTarget { get; set; }
+        public OperationScheduleBase Schedule { get; set; }
+        public ProcedureData ProcedureData { get; set; }
         public string Regex;
 
         public OperationProperties(OperationScheduleBase schedule)
