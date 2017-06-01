@@ -7,7 +7,6 @@ using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.Schedule;
 using FileConductor.Schedule.OperationSchedule;
-using FileConductor.Tests.Mocks;
 using Moq;
 using NUnit.Framework;
 
@@ -23,17 +22,15 @@ namespace FileConductor.Tests
             _processor.LoggingService = new Mock<ILoggingService>().Object;
             var schedule = new Mock<ISchedule>();
             _processor.Start(schedule.Object);
-           // var operationScheduleMock = new Mock<OperationScheduleBase>();
-            var propertiesMock = new Mock<OperationProperties>();
-            propertiesMock.SetupGet(x => x.Schedule).Returns(new OperationScheduleMock());
-            var operationMock = new Mock<IOperation>();
-            operationMock.SetupGet(x => x.Properties).Returns(propertiesMock.Object);
-
-            _operation = operationMock.Object;
+            var operationScheduleMock = new Mock<OperationScheduleBase>();
+            var propertiesMock = new OperationProperties(operationScheduleMock.Object);
+            var protocolMock = new Mock<IProtocol>();
+            var operationMock = new Operation(protocolMock.Object,propertiesMock); //TODO: Operation is dependent of protocol - wrong architecture
+           _operation = operationMock;
         }
 
         private OperationProcessor _processor;
-        private IOperation _operation;
+        private Operation _operation;
 
 
         [Test]

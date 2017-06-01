@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Operations;
 using FileConductor.Operations.ProcedureExecution;
-using FileConductor.Tests.Mocks;
 using NUnit.Framework;
 
 namespace FileConductor.Tests
@@ -16,11 +15,11 @@ namespace FileConductor.Tests
         [Test]
         public void ExecutingProcedureTests()
         {
-            ProcedureExecutionServiceMock service = new ProcedureExecutionServiceMock();
-            OperationProperties prop = new OperationProperties(new OperationScheduleMock());
-            prop.ProcedureData = new ProcedureData(@"server","dbName","login","passwod", "procedureName");
-            Operation operation = new Operation(new ProtocolMock(), prop);
-            service.ExecuteProcedure(operation);
+            //ProcedureExecutionServiceMock service = new ProcedureExecutionServiceMock();
+            //OperationProperties prop = new OperationProperties(new OperationScheduleMock());
+            //prop.ProcedureData = new ProcedureData(@"server","dbName","login","passwod", "procedureName");
+            //Operation operation = new Operation(new ProtocolMock(), prop);
+            //service.ExecuteProcedure(operation);
         }
 
 

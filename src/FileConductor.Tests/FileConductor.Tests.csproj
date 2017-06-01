@@ -54,14 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeneralTests.cs" />
-    <Compile Include="Mocks\LoggingServiceMock.cs" />
-    <Compile Include="Mocks\OperationExecutorMock.cs" />
-    <Compile Include="Mocks\OperationScheduleMock.cs" />
-    <Compile Include="Mocks\ProcedureExecutionServiceMock.cs" />
-    <Compile Include="Mocks\ProtocolMock.cs" />
-    <Compile Include="Mocks\ProxyFileProviderMock.cs" />
-    <Compile Include="Mocks\ScheduleMock.cs" />
-    <Compile Include="Mocks\TransferMock.cs" />
     <Compile Include="OperationProcessorTests.cs" />
     <Compile Include="ProcedureExecutionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
