@@ -16,16 +16,12 @@ namespace FileConductor.Operations
 {
     public class OperationExecutor : IOperationExecutor
     {
-        private readonly IProxyFileProvider _proxyFileProvider;
+        [Inject]
+        public IProxyFileProvider ProxyFileProvider { private get; set; }
         [Inject]
         public  ILoggingService LoggingService { private get; set; }
         [Inject]
         public  IProcedureExecutionService ProcedureExecutionService { private get; set; }
-
-        public OperationExecutor(IProxyFileProvider proxyFileProvider)
-        {
-            _proxyFileProvider = proxyFileProvider;
-        }
 
         public void Execute(IOperation operation)
         {
@@ -61,7 +57,7 @@ namespace FileConductor.Operations
             List<string> receivedFiles = null;
             try
             {
-                receivedFiles = operation.Protocol.Receiver.Receive(operation.Properties.SourceTarget, _proxyFileProvider.ProxyPath, operation.Properties.Regex);
+                receivedFiles = operation.Protocol.Receiver.Receive(operation.Properties.SourceTarget, ProxyFileProvider.ProxyPath, operation.Properties.Regex);
             }
             catch (Exception ex)
             {

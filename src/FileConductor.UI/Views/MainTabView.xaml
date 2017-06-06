@@ -34,7 +34,8 @@
                 <Button Margin="20"  Width="100" Content="Add" Command="{Binding AddCommand}"></Button>
             </StackPanel>
 
-            <TextBlock Text="{Binding LoggingService.Logs}">
+            
+            <TextBlock  Margin ="40" HorizontalAlignment="Stretch"  Height ="100" Text="{Binding LoggingService.Logs}">
                 
             </TextBlock>
         </StackPanel>

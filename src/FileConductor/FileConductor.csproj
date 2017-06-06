@@ -67,6 +67,7 @@
     <Compile Include="Configuration\XmlData\WatcherData.cs" />
     <Compile Include="Configuration\XmlData\WatcherRoutingData.cs" />
     <Compile Include="Configuration\XmlFileDeserializer.cs" />
+    <Compile Include="Exceptions\InvalidTransferTypeException.cs" />
     <Compile Include="FileTransportTypes\Ftp\FtpTransfer.cs" />
     <Compile Include="FileTransportTypes\ITransfer.cs" />
     <Compile Include="FileTransportTypes\Local\LocalTransfer.cs" />
