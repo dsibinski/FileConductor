@@ -34,10 +34,10 @@
                 <Button Margin="20"  Width="100" Content="Add" Command="{Binding AddCommand}"></Button>
             </StackPanel>
 
-            
-            <TextBlock  Margin ="40" HorizontalAlignment="Stretch"  Height ="100" Text="{Binding LoggingService.Logs}">
+
+            <TextBox Background="LightGray" IsReadOnly="True" Margin ="40" HorizontalAlignment="Stretch"  Height ="100" Text="{Binding LoggingService.Logs}">
                 
-            </TextBlock>
+            </TextBox>
         </StackPanel>
     </Grid>
 </UserControl>

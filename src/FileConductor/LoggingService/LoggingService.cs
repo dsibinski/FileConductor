@@ -20,15 +20,15 @@ namespace FileConductor.LoggingService
         public void LogException(Exception exception, IOperation operation, string message)
         {
             StringBuilder callstack = new StringBuilder();
+            callstack.AppendLine($"<Code: {operation.Code}> Exception occured!");
             callstack.AppendLine(message);
-            callstack.AppendLine($"<Code: {operation.Code}> Exception occured");
             Exception currentException = exception;
             while (currentException != null)
             {
                 callstack.AppendLine(currentException.Message);
                 currentException = currentException.InnerException;
             }
-            Logger.Info(callstack.ToString);
+            Logger.Info(callstack.ToString);    
         }
 
         public void LogInfo(string message)

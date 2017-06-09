@@ -28,7 +28,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
             IsClosable = Visibility.Collapsed;
             LoadConfiguration();
             TestCommand = new CommandHandler(TestWatcher);
-            //LoggingService = new LogginServiceWindow();
+            LoggingService = new LogginServiceWindow();
             TransportManager.Initialize();
 
         }
@@ -38,9 +38,9 @@ namespace FileConductor.ConfigurationTool.ViewModels
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
             var executor = kernel.Get<IOperationExecutor>();
+            ((OperationExecutor)executor).LoggingService = LoggingService;
             if (SelectedWatcher == null) return;
             var configurationService = kernel.Get<IConfigurationService>();
-            LoggingService = (LogginServiceWindow)kernel.Get<ILoggingService>();
             var operation = configurationService.GetOperation(Configuration, SelectedWatcher);
             executor.Execute(operation);
         }
@@ -73,24 +73,47 @@ namespace FileConductor.ConfigurationTool.ViewModels
             }
         }
 
+        public void LogLine(string line)
+        {
+            Logs += line + Environment.NewLine;
+        }
+
         public void LogInfo(IOperation operation, string message)
         {
-            Logs += message + Environment.NewLine;
+            LogLine(message);
         }
 
         public void LogException(Exception exception, IOperation operation, string message)
         {
-            Logs += message + Environment.NewLine;
+            StringBuilder callstack = new StringBuilder();
+            callstack.AppendLine($"<Code: {operation.Code}> Exception occured!");
+            callstack.AppendLine(message);
+            Exception currentException = exception;
+            while (currentException != null)
+            {
+                callstack.AppendLine(currentException.Message);
+                currentException = currentException.InnerException;
+            }
+            LogLine(callstack.ToString());
         }
 
         public void LogInfo(string message)
         {
-            Logs += message + Environment.NewLine;
+            LogLine(message);
         }
 
         public void LogException(Exception exception, string message)
         {
-            Logs += message + Environment.NewLine;
+            StringBuilder callstack = new StringBuilder();
+            callstack.AppendLine(message);
+
+            Exception currentException = exception;
+            while (currentException != null)
+            {
+                callstack.AppendLine(currentException.Message);
+                currentException = currentException.InnerException;
+            }
+            LogLine(callstack.ToString());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
