@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -104,9 +105,9 @@ namespace FileConductor.ConfigurationTool.ViewModels
 
         public void LogException(Exception exception, string message)
         {
+            Colour = Color.Red;
             StringBuilder callstack = new StringBuilder();
             callstack.AppendLine(message);
-
             Exception currentException = exception;
             while (currentException != null)
             {
@@ -114,6 +115,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
                 currentException = currentException.InnerException;
             }
             LogLine(callstack.ToString());
+            Colour = Color.White;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -1,8 +1,11 @@
-﻿<UserControl x:Class="FileConductorUI.UI.MainTabView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:myNamespace="clr-namespace:MyNamespace"
+             x:Class="FileConductorUI.UI.MainTabView" 
              mc:Ignorable="d" >
 
     <Grid>
@@ -10,16 +13,7 @@
             <Grid Height="auto">
                 <DataGrid IsReadOnly="True" Margin="20" HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Configuration.Watchers}" SelectedItem="{Binding SelectedWatcher}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Name">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DockPanel >
-                                        <TextBlock Text="{Binding Code}"/>
-                                        <Button Margin="2" Width="12" DockPanel.Dock="Right" Content="..." FontSize="8" HorizontalAlignment="Right"/>
-                                    </DockPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
                         <DataGridTextColumn Header="Source" Binding="{Binding WatcherRouting.SourceTarget}"/>
                         <DataGridTextColumn Header="Destination" Binding="{Binding WatcherRouting.DestinationTarget}"/>
                         <DataGridTextColumn Header="Schedule" Binding="{Binding Schedule}"/>
@@ -28,16 +22,14 @@
                 </DataGrid>
             </Grid>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Margin="20"  Width="100" Content="Test" Command="{Binding TestCommand}"></Button>
-                <Button Margin="20"  Width="100" Content="Edit" Command="{Binding EditCommand}"></Button>
-                <Button Margin="20"  Width="100" Content="Remove" Command="{Binding RemoveCommand}"></Button>
-                <Button Margin="20"  Width="100" Content="Add" Command="{Binding AddCommand}"></Button>
+                <Button Margin="20"  Width="100" Content="Test" Command="{Binding TestCommand}"/>
+                <Button Margin="20"  Width="100" Content="Edit" Command="{Binding EditCommand}"/>
+                <Button Margin="20"  Width="100" Content="Remove" Command="{Binding RemoveCommand}"/>
+                <Button Margin="20"  Width="100" Content="Add" Command="{Binding AddCommand}"/>
             </StackPanel>
 
 
-            <TextBox Background="LightGray" IsReadOnly="True" Margin ="40" HorizontalAlignment="Stretch"  Height ="100" Text="{Binding LoggingService.Logs}">
-                
-            </TextBox>
+            <TextBox myNamespace:TextBoxBehaviour.ScrollOnTextChanged="True" VerticalScrollBarVisibility="Auto" Background="LightGray" IsReadOnly="True" Margin ="40" HorizontalAlignment="Stretch"  Height ="150" Text="{Binding LoggingService.Logs}"/>
         </StackPanel>
     </Grid>
 </UserControl>
