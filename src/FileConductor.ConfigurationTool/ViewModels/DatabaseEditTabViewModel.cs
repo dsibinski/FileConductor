@@ -23,7 +23,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
         private string _dbName;
 
 
-        public DatabaseEditTabViewModel()
+        public DatabaseEditTabViewModel(ITabController controller) : base(controller)
         {
             CheckConnectionCommand = new CommandHandler(CheckDBConenction);
             CloseHandler = new CommandHandler(CloseAction);

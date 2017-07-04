@@ -80,15 +80,25 @@
     </ApplicationDefinition>
     <Compile Include="Entities\Watcher.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Tabs\ITabController.cs" />
     <Compile Include="Tabs\Tab.cs" />
+    <Compile Include="Tabs\TabController.cs" />
     <Compile Include="TextBoxBehaviour.cs" />
+    <Compile Include="ViewModels\EditWatcherTabViewModel.cs" />
     <Compile Include="ViewModels\MainTabViewModel.cs" />
+    <Compile Include="Views\EditWatcherTabView.xaml.cs">
+      <DependentUpon>EditWatcherTabView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainTabView.xaml.cs">
       <DependentUpon>MainTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entities\ConfigurationDataCollection.cs" />
     <Compile Include="Tabs\ITab.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Page Include="Views\EditWatcherTabView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,7 +120,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ComandHandler.cs" />
-    <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\DatabaseEditTabViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\DatabaseEditView.xaml.cs">
@@ -157,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

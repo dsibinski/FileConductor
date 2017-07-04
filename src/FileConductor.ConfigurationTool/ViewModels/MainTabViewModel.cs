@@ -23,7 +23,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
 {
     public class MainTabViewModel : Tab
     {
-        public MainTabViewModel()
+        public MainTabViewModel(ITabController controller) : base(controller) 
         {
             Name = "Watchers";
             IsClosable = Visibility.Collapsed;
@@ -31,7 +31,13 @@ namespace FileConductor.ConfigurationTool.ViewModels
             TestCommand = new CommandHandler(TestWatcher);
             LoggingService = new LogginServiceWindow();
             TransportManager.Initialize();
+            EditCommand = new CommandHandler(EditWatcher);
 
+        }
+
+        private void EditWatcher()
+        {
+            TabController.OpenTab(new EditWatcherTabViewModel(TabController));
         }
 
         private void TestWatcher()
@@ -105,7 +111,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
 
         public void LogException(Exception exception, string message)
         {
-            Colour = Color.Red;
+
             StringBuilder callstack = new StringBuilder();
             callstack.AppendLine(message);
             Exception currentException = exception;
@@ -115,7 +121,7 @@ namespace FileConductor.ConfigurationTool.ViewModels
                 currentException = currentException.InnerException;
             }
             LogLine(callstack.ToString());
-            Colour = Color.White;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

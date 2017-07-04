@@ -9,7 +9,6 @@ using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using FileConductor.ConfigurationTool.ViewModels;
 using FileConductor.UI.Annotations;
-using FileConductorUI.UI.Services;
 
 namespace FileConductorUI.UI.Entities
 {
@@ -32,9 +31,6 @@ namespace FileConductorUI.UI.Entities
 
         public ConfigurationDataCollection()
         {
-            AddCommand = new CommandHandler(AddCommandLogic);
-            EditCommand = new CommandHandler(EditCommandLogic);
-
             var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
             deserializer.Deserialize();
             ConfigData = deserializer.XmlData;
@@ -54,18 +50,6 @@ namespace FileConductorUI.UI.Entities
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void EditCommandLogic()
-        {
-            var model = new DatabaseEditTabViewModel();
-            WindowService.ShowWindow(model);
-            model.LoadDatabaseData(SelectedDatabase);
-        }
-
-        private void AddCommandLogic()
-        {
-            WindowService.ShowWindow(new DatabaseEditTabViewModel());
         }
     }
 }

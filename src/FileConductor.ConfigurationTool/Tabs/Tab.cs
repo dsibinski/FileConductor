@@ -11,8 +11,9 @@ namespace FileConductor.ConfigurationTool.Tabs
 {
     public abstract class Tab : ITab
     {
-        protected Tab()
+        protected Tab(ITabController tabController)
         {
+            TabController = tabController;
             IsClosable = Visibility.Visible;
             CloseCommand = new ActionCommand(x => CloseRequested?.Invoke(this, EventArgs.Empty));
         }
@@ -21,5 +22,6 @@ namespace FileConductor.ConfigurationTool.Tabs
         public ICommand CloseCommand { get; set; }
         public event EventHandler CloseRequested;
         public Visibility IsClosable { get; set; }
+        public ITabController TabController { get; set; }
     }
 }

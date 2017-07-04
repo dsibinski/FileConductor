@@ -18,15 +18,18 @@
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                 <Grid VerticalAlignment="Top" >
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                        <Button x:Name="btnLaunch" Margin="10" Content="Launch" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
-                        <Button x:Name="btnInstallation" Margin="10" Content="Install" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding InstallService}"/>
-                        <Button x:Name="settings" Margin="10" Content="Settings" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding NewTabCommand}"/>
+                        <Button x:Name="btnLaunch" Margin="10" Content="MOQ_Launch" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding NewTabCommand}"/>
+                        <Button x:Name="btnInstallation" Margin="10" Content="MOQ_Install" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
+                        <Button x:Name="settings" Margin="10" Content="MOQ_Settings" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
                     </StackPanel>
                 </Grid>
-                <TabControl  DockPanel.Dock="Top" ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}">
+                <TabControl  DockPanel.Dock="Top" ItemsSource="{Binding CurrentTabController.Tabs}" SelectedItem="{Binding CurrentTabController.SelectedTab}">
                     <TabControl.Resources>
                         <DataTemplate DataType="{x:Type viewModels1:DatabaseEditTabViewModel}">
                             <views:DatabaseEditView/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type viewModels1:EditWatcherTabViewModel}">
+                            <local:EditWatcherTabView/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type viewModels1:MainTabViewModel}">
                             <local:MainTabView/>
