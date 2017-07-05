@@ -29,7 +29,6 @@ namespace FileConductorUI.UI
         {
             DataContext = _viewModel;
             InitializeComponent();
-
         }
 
        

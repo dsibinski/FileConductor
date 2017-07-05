@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace FileConductor.Configuration
 {
-    public class XmlFileDeserializer<T>  where T : class
+    public class XmlSerializer<T>  where T : class
     {
         public T XmlData { get; set; }
 
@@ -16,7 +16,7 @@ namespace FileConductor.Configuration
 
         private string FilePath { get; set; }
 
-        public XmlFileDeserializer(string xmlFilePath)
+        public XmlSerializer(string xmlFilePath)
         {
             FilePath = xmlFilePath;
         }
@@ -28,6 +28,15 @@ namespace FileConductor.Configuration
                 XmlData = (T)Serializer.Deserialize(reader);
                 reader.Close();
             }
+        }
+
+        public void Serialize(T obj)
+        {
+            using (var writer = new StreamWriter(FilePath))
+            {
+                Serializer.Serialize(writer,obj);
+            }
+
         }
         
     }

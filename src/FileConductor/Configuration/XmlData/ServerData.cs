@@ -7,6 +7,9 @@ namespace FileConductor.Configuration.XmlData
     [Serializable]
     public class ServerData
     {
+        [XmlElement("id")]
+        public int Id { get; set; }
+
         [XmlElement("code")]
         public string Code { get; set; }
 

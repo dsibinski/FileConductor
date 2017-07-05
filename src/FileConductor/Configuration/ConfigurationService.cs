@@ -14,7 +14,6 @@ namespace FileConductor.Configuration
 {
     public class ConfigurationService : IConfigurationService
     {
-      
         public void InitializeOperationProcessor(IOperationProcessor operationProcessor,ConfigurationData configurationData)
         {
             foreach (var watcher in configurationData.Watchers)
@@ -25,22 +24,36 @@ namespace FileConductor.Configuration
 
         public IOperation GetOperation(ConfigurationData configurationData, WatcherData watcher)
         {
-            var schedule = configurationData.Schedules.First(x => x.Code == watcher.Schedule);
-            var sourceTarget = configurationData.Targets.First(x => x.Code == watcher.WatcherRouting.SourceTarget);
-            var sourceServer = configurationData.Servers.First(x => x.Code == sourceTarget.Server);
+            var schedule = configurationData.Schedules.First(x => x.Id == watcher.ScheduleId);
+            var sourceTarget = configurationData.Targets.First(x => x.Id == watcher.WatcherRouting.SourceTargetId);
+            var sourceServer = configurationData.Servers.First(x => x.Id == sourceTarget.ServerId);
             var destinationTarget =
-                configurationData.Targets.First(x => x.Code == watcher.WatcherRouting.DestinationTarget);
-            var destinationServer = configurationData.Servers.First(x => x.Code == destinationTarget.Server);
-            var procedureData = configurationData.Databases.FirstOrDefault(x => x.Code == watcher.Database);
+                configurationData.Targets.First(x => x.ServerId == watcher.WatcherRouting.DestinationTargetId);
+            var destinationServer = configurationData.Servers.First(x => x.Id == destinationTarget.ServerId);
+            var procedureData = configurationData.Databases.FirstOrDefault(x => x.Id == watcher.DatabaseId);
             var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, schedule,
                 sourceTarget, sourceServer, watcher, procedureData);
             var receiver = TransportFactory.GetTransfer(sourceServer.Protocol);
             var sender = TransportFactory.GetTransfer(destinationServer.Protocol);
             var protocol = new Protocol(receiver, sender);
-            var operation = new Operation(protocol, operationProperties);
+            var operation = new Operation(protocol, operationProperties,watcher.Id);
             operation.Code = watcher.Code;
             return operation;
         }
+
+        public ConfigurationData GetConfigurationData()
+        {
+            var deserializer = new XmlSerializer<ConfigurationData>("Configuration\\Config.xml");
+            deserializer.Deserialize();
+            return deserializer.XmlData;
+        }
+
+        public void SaveConfigurationData(ConfigurationData configuration)
+        {
+            var serializer = new XmlSerializer<ConfigurationData>("Configuration\\Config.xml");
+            serializer.Serialize(configuration);
+        }
+
 
         private OperationProperties FillOperationsProperties(TargetData destinationTarget, ServerData destinationServer,
             ScheduleData schedule, TargetData sourceTarget, ServerData sourceServer, WatcherData watcher,

@@ -11,7 +11,6 @@ namespace FileConductor.Configuration.XmlData
         [XmlArrayItem("database", typeof(DatabaseData))]
         public DatabaseData[] Databases { get; set; }
 
-
         [XmlArray("servers")]
         [XmlArrayItem("server", typeof(ServerData))]
         public ServerData[] Servers { get; set; }

@@ -23,7 +23,7 @@
                         <Button x:Name="settings" Margin="10" Content="MOQ_Settings" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
                     </StackPanel>
                 </Grid>
-                <TabControl  DockPanel.Dock="Top" ItemsSource="{Binding CurrentTabController.Tabs}" SelectedItem="{Binding CurrentTabController.SelectedTab}">
+                <TabControl  Name="MainTabControl" DockPanel.Dock="Top" ItemsSource="{Binding CurrentTabController.Tabs}" SelectedItem="{Binding CurrentTabController.SelectedTab}">
                     <TabControl.Resources>
                         <DataTemplate DataType="{x:Type viewModels1:DatabaseEditTabViewModel}">
                             <views:DatabaseEditView/>
@@ -39,9 +39,6 @@
                         <DataTemplate DataType="{x:Type tabs:ITab}">
                             <DockPanel >
                                 <TextBlock DockPanel.Dock="Left"> <Run Text="{Binding Name}"/></TextBlock>
-                                <Button DockPanel.Dock="Right" Background="Transparent" Height="15" Width="15" Command="{Binding CloseCommand}"  Visibility="{Binding IsClosable}">
-                                    <Image  Source="/Icons/error.png" />
-                                </Button>
                             </DockPanel>
                         </DataTemplate>
                     </TabControl.ItemTemplate>

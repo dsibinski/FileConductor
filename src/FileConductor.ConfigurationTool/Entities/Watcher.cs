@@ -5,12 +5,16 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using FileConductor.Configuration.XmlData;
 using FileConductor.UI.Annotations;
 
 namespace FileConductor.ConfigurationTool.Entities
 {
     public class Watcher : INotifyPropertyChanged
     {
+
+        public DatabaseData ProcedureData { get; set; }
+        public ScheduleData Schedule { get; set; }
         public string Status => "OFF";
         public string Code { get; set; }
         public string Regex { get; set; }

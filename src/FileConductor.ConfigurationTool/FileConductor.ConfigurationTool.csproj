@@ -92,7 +92,6 @@
     <Compile Include="Views\MainTabView.xaml.cs">
       <DependentUpon>MainTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entities\ConfigurationDataCollection.cs" />
     <Compile Include="Tabs\ITab.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Page Include="Views\EditWatcherTabView.xaml">
@@ -165,9 +164,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\error.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="Controls\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

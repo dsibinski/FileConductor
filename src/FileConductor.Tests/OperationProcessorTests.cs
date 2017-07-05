@@ -25,7 +25,7 @@ namespace FileConductor.Tests
             var operationScheduleMock = new Mock<OperationScheduleBase>();
             var propertiesMock = new OperationProperties(operationScheduleMock.Object);
             var protocolMock = new Mock<IProtocol>();
-            var operationMock = new Operation(protocolMock.Object,propertiesMock); //TODO: Operation is dependent of protocol - wrong architecture
+            var operationMock = new Operation(protocolMock.Object,propertiesMock,1); //TODO: Operation is dependent of protocol - wrong architecture
            _operation = operationMock;
         }
 

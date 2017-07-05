@@ -16,5 +16,7 @@ namespace FileConductor.Operations
         string Code { get; set; }
         event OperationElapsedEventHandler OnOperationReady;
         OperationProperties Properties { get; set; }
+        int Id { get; set; }
+   
     }
 }

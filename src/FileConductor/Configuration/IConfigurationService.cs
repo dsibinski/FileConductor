@@ -12,5 +12,8 @@ namespace FileConductor.Configuration
     {
         void InitializeOperationProcessor(IOperationProcessor operationProcessor, ConfigurationData configurationData);
         IOperation GetOperation(ConfigurationData configurationData, WatcherData watcher);
+        ConfigurationData GetConfigurationData();
+        void SaveConfigurationData(ConfigurationData configuration);
+
     }
 }

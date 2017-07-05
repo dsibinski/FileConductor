@@ -23,7 +23,7 @@ namespace FileConductor.Service
             var fileConductor = kernel.Get<IFileConductor>();
             Logger.Trace(Resources.InfoServiceInitializationStarted);
             Logger.Trace(Resources.InfoConfigFileReadingStarted);
-            var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
+            var deserializer = new XmlSerializer<ConfigurationData>("Configuration\\Config.xml");
             deserializer.Deserialize();
             var configurationData = deserializer.XmlData;
             fileConductor.Start(configurationData);

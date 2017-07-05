@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Input;
 using FileConductor.ConfigurationTool.Tabs;
 using FileConductorUI.UI;
-using FileConductorUI.UI.Entities;
 using Microsoft.Expression.Interactivity.Core;
 
 namespace FileConductor.ConfigurationTool.ViewModels

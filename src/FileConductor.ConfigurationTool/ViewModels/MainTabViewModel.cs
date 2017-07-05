@@ -23,41 +23,46 @@ namespace FileConductor.ConfigurationTool.ViewModels
 {
     public class MainTabViewModel : Tab
     {
+        public IOperationExecutor OperationExecutor;
+
+        public IConfigurationService ConfigurationService;
         public MainTabViewModel(ITabController controller) : base(controller) 
         {
             Name = "Watchers";
             IsClosable = Visibility.Collapsed;
-            LoadConfiguration();
             TestCommand = new CommandHandler(TestWatcher);
             LoggingService = new LogginServiceWindow();
             TransportManager.Initialize();
             EditCommand = new CommandHandler(EditWatcher);
 
+            var kernel = new StandardKernel();
+            kernel.Load(Assembly.GetExecutingAssembly());
+            OperationExecutor = kernel.Get<IOperationExecutor>();
+            ConfigurationService = kernel.Get<IConfigurationService>();
+            Configuration = ConfigurationService.GetConfigurationData();
         }
 
         private void EditWatcher()
         {
-            TabController.OpenTab(new EditWatcherTabViewModel(TabController));
+            if (SelectedWatcher == null) return;
+            var editWatcherViewModel = new EditWatcherTabViewModel(TabController,Configuration, SelectedWatcher);
+            editWatcherViewModel.OnOperationModified += SaveConfig;
+            TabController.OpenTab(editWatcherViewModel);
+        }
+
+        private void SaveConfig()
+        {
+           ConfigurationService.SaveConfigurationData(Configuration);
         }
 
         private void TestWatcher()
         {
-            var kernel = new StandardKernel();
-            kernel.Load(Assembly.GetExecutingAssembly());
-            var executor = kernel.Get<IOperationExecutor>();
-            ((OperationExecutor)executor).LoggingService = LoggingService;
+            ((OperationExecutor)OperationExecutor).LoggingService = LoggingService;
             if (SelectedWatcher == null) return;
-            var configurationService = kernel.Get<IConfigurationService>();
-            var operation = configurationService.GetOperation(Configuration, SelectedWatcher);
-            executor.Execute(operation);
+            var operation = ConfigurationService.GetOperation(Configuration, SelectedWatcher);
+            OperationExecutor.Execute(operation);
         }
 
-        private void LoadConfiguration()
-        {
-            var deserializer = new XmlFileDeserializer<ConfigurationData>("Configuration\\Config.xml");
-            deserializer.Deserialize();
-            Configuration = deserializer.XmlData;
-        }
 
         public WatcherData SelectedWatcher { get; set; }
         public CommandHandler EditCommand { get; set; }

@@ -8,11 +8,14 @@ namespace FileConductor.Operations
     public class Operation : IOperation
     {
         public OperationProperties Properties { get; set; }
-        public Operation(IProtocol protocol, OperationProperties properties)
+        public int Id { get; set; }
+
+        public Operation(IProtocol protocol, OperationProperties properties, int id)
         {
             Protocol = protocol;
             Properties = properties;
             Properties.AssignOperationHandler(NotificationHandler);
+            Id = id;
         }
 
         public IProtocol Protocol { get; set; }
