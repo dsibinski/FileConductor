@@ -38,14 +38,14 @@
   <targets>
     <target>
       <id>1</id>
-      <name>Interface1_FTP</name>
+      <code>Interface1_FTP</code>
       <serverId>1</serverId>
       <path>C:\Destiny</path>
     </target>
 
     <target>
       <id>2</id>
-      <name>Interface1_Local</name>
+      <code>Interface1_Local</code>
       <serverId>2</serverId>
       <path>C:\Source</path>
     </target>
@@ -57,7 +57,7 @@
       <interval>10000</interval>
       <daysOfWeek>0;1;2;3;4;5;6</daysOfWeek>
       <hours></hours>
-      <name>schedule1</name>
+      <code>schedule1</code>
     </schedule>
   </schedules>
 

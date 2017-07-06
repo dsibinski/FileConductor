@@ -14,12 +14,18 @@ namespace FileConductor.Configuration
 {
     public class ConfigurationService : IConfigurationService
     {
+        private XmlSerializer<ConfigurationData> serializer;
         public void InitializeOperationProcessor(IOperationProcessor operationProcessor,ConfigurationData configurationData)
         {
             foreach (var watcher in configurationData.Watchers)
             {
                 operationProcessor.AssignOperation(GetOperation(configurationData, watcher));
             }
+        }
+
+        public ConfigurationService()
+        {
+            serializer = new XmlSerializer<ConfigurationData>("Configuration\\Config.xml");
         }
 
         public IOperation GetOperation(ConfigurationData configurationData, WatcherData watcher)
@@ -43,14 +49,12 @@ namespace FileConductor.Configuration
 
         public ConfigurationData GetConfigurationData()
         {
-            var deserializer = new XmlSerializer<ConfigurationData>("Configuration\\Config.xml");
-            deserializer.Deserialize();
-            return deserializer.XmlData;
+            serializer.Deserialize();
+            return serializer.XmlData;
         }
 
         public void SaveConfigurationData(ConfigurationData configuration)
         {
-            var serializer = new XmlSerializer<ConfigurationData>("Configuration\\Config.xml");
             serializer.Serialize(configuration);
         }
 

@@ -11,13 +11,13 @@
     <Grid>
         <StackPanel  Orientation="Vertical" VerticalAlignment="top" HorizontalAlignment="Stretch">
             <Grid Height="auto">
-                <DataGrid IsReadOnly="True" Margin="20" HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Configuration.Watchers}" SelectedItem="{Binding SelectedWatcher}">
+                <DataGrid IsReadOnly="True" Margin="20" HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Watchers}" SelectedItem="{Binding SelectedWatcher}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
-                        <DataGridTextColumn Header="Source" Binding="{Binding WatcherRouting.SourceTarget}"/>
-                        <DataGridTextColumn Header="Destination" Binding="{Binding WatcherRouting.DestinationTarget}"/>
-                        <DataGridTextColumn Header="Schedule" Binding="{Binding Schedule}"/>
-                        <DataGridTextColumn Header="Regex" Binding="{Binding FileNameRegex}"/>
+                        <DataGridTextColumn Header="Code" Binding="{Binding WatcherData.Code}"/>
+                        <DataGridTextColumn Header="Source" Binding="{Binding Source.Code}"/>
+                        <DataGridTextColumn Header="Destination" Binding="{Binding Destination.Code}"/>
+                        <DataGridTextColumn Header="Schedule" Binding="{Binding Schedule.Code}"/>
+                        <DataGridTextColumn Header="Regex" Binding="{Binding WatcherData.FileNameRegex}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using FileConductor.ConfigurationTool.Entities;
+using FileConductor.ConfigurationTool.Services;
 using FileConductor.ConfigurationTool.Tabs;
 using FileConductor.FileTransport;
-using FileConductor.LoggingService;
 using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.ProxyFile;
-using FileConductor.UI.Annotations;
 using FileConductorUI.UI;
 using Ninject;
 
@@ -29,17 +24,26 @@ namespace FileConductor.ConfigurationTool.ViewModels
         public MainTabViewModel(ITabController controller) : base(controller) 
         {
             Name = "Watchers";
-            IsClosable = Visibility.Collapsed;
+           // IsClosable = Visibility.Collapsed;
             TestCommand = new CommandHandler(TestWatcher);
             LoggingService = new LogginServiceWindow();
             TransportManager.Initialize();
             EditCommand = new CommandHandler(EditWatcher);
-
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
             OperationExecutor = kernel.Get<IOperationExecutor>();
             ConfigurationService = kernel.Get<IConfigurationService>();
+            LoadConfiguration();
+        }
+
+        private void LoadConfiguration()
+        {
             Configuration = ConfigurationService.GetConfigurationData();
+            Watchers = new List<Watcher>();
+            foreach (var watcherData in Configuration.Watchers)
+            {
+                Watchers.Add(new Watcher(Configuration,watcherData));
+            }
         }
 
         private void EditWatcher()
@@ -59,83 +63,17 @@ namespace FileConductor.ConfigurationTool.ViewModels
         {
             ((OperationExecutor)OperationExecutor).LoggingService = LoggingService;
             if (SelectedWatcher == null) return;
-            var operation = ConfigurationService.GetOperation(Configuration, SelectedWatcher);
+            var operation = ConfigurationService.GetOperation(Configuration, SelectedWatcher.WatcherData);
             OperationExecutor.Execute(operation);
         }
 
 
-        public WatcherData SelectedWatcher { get; set; }
+        public Watcher SelectedWatcher { get; set; }
         public CommandHandler EditCommand { get; set; }
         public CommandHandler RemoveCommand { get; set; }
         public CommandHandler TestCommand { get; set; }
         public ConfigurationData Configuration { get; set; }
+        public List<Watcher> Watchers { get; set; }
         public LogginServiceWindow LoggingService { get; set; }
     }
-
-    public class LogginServiceWindow : ILoggingService, INotifyPropertyChanged
-    {
-        private string _logs;
-        public string Logs
-        {
-            get { return _logs; }
-            set
-            {
-                _logs = value;
-                OnPropertyChanged(nameof(Logs));
-            }
-        }
-
-        public void LogLine(string line)
-        {
-            Logs += line + Environment.NewLine;
-        }
-
-        public void LogInfo(IOperation operation, string message)
-        {
-            LogLine(message);
-        }
-
-        public void LogException(Exception exception, IOperation operation, string message)
-        {
-            StringBuilder callstack = new StringBuilder();
-            callstack.AppendLine($"<Code: {operation.Code}> Exception occured!");
-            callstack.AppendLine(message);
-            Exception currentException = exception;
-            while (currentException != null)
-            {
-                callstack.AppendLine(currentException.Message);
-                currentException = currentException.InnerException;
-            }
-            LogLine(callstack.ToString());
-        }
-
-        public void LogInfo(string message)
-        {
-            LogLine(message);
-        }
-
-        public void LogException(Exception exception, string message)
-        {
-
-            StringBuilder callstack = new StringBuilder();
-            callstack.AppendLine(message);
-            Exception currentException = exception;
-            while (currentException != null)
-            {
-                callstack.AppendLine(currentException.Message);
-                currentException = currentException.InnerException;
-            }
-            LogLine(callstack.ToString());
-
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
 }

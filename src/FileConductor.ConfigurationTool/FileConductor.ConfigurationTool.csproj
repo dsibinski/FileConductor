@@ -85,6 +85,7 @@
     <Compile Include="Tabs\TabController.cs" />
     <Compile Include="TextBoxBehaviour.cs" />
     <Compile Include="ViewModels\EditWatcherTabViewModel.cs" />
+    <Compile Include="Services\LogginServiceWindow.cs" />
     <Compile Include="ViewModels\MainTabViewModel.cs" />
     <Compile Include="Views\EditWatcherTabView.xaml.cs">
       <DependentUpon>EditWatcherTabView.xaml</DependentUpon>
@@ -165,7 +166,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

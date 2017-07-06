@@ -10,26 +10,27 @@ using FileConductor.UI.Annotations;
 
 namespace FileConductor.ConfigurationTool.Entities
 {
-    public class Watcher : INotifyPropertyChanged
+    public class Watcher
     {
-
         public DatabaseData ProcedureData { get; set; }
         public ScheduleData Schedule { get; set; }
-        public string Status => "OFF";
-        public string Code { get; set; }
-        public string Regex { get; set; }
-        public string ScheduleCode { get; set; }
-        public string Source { get; set; }
-        public string Destination { get; set; }
+        public TargetData Source { get; set; }
+        public WatcherData WatcherData { get; set; }
+        public TargetData Destination { get; set; }
 
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public Watcher()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            
+        }
+
+        public Watcher(ConfigurationData configuration, WatcherData watcher)
+        {
+            ProcedureData = configuration.Databases.FirstOrDefault(x => watcher.DatabaseId == x.Id);
+            Schedule = configuration.Schedules.FirstOrDefault(x => watcher.ScheduleId == x.Id);
+            Source = configuration.Targets.FirstOrDefault(x => watcher.WatcherRouting.SourceTargetId == x.Id);
+            Destination = configuration.Targets.FirstOrDefault(x => watcher.WatcherRouting.DestinationTargetId == x.Id);
+            WatcherData = watcher;
+
         }
     }
 }
