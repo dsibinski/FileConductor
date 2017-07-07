@@ -2,11 +2,11 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using ConfigurationTool.Properties;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
-using FileConductor.UI.Annotations;
 
-namespace FileConductor.ConfigurationTool.Services
+namespace ConfigurationTool.Services
 {
     public class LogginServiceWindow : ILoggingService, INotifyPropertyChanged
     {

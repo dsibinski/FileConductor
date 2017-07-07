@@ -4,26 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             xmlns:myNamespace="clr-namespace:MyNamespace"
-             x:Class="FileConductorUI.UI.EditWatcherTabView" 
+            xmlns:configurationTool="clr-namespace:ConfigurationTool"
+            xmlns:controls="clr-namespace:ConfigurationTool.Controls"
+            x:Class="ConfigurationTool.Views.EditWatcherTabView" 
              mc:Ignorable="d" >
 
     <Grid>
         <DockPanel>
-            <StackPanel DockPanel.Dock ="Top" Orientation="Horizontal">
-                <Label Content="Regex"></Label>
-                <TextBox Width ="100" Text="{Binding Watcher.WatcherData.FileNameRegex}"></TextBox>
-            </StackPanel>
-            <StackPanel DockPanel.Dock ="Top" Orientation="Horizontal">
-                <Label Content="Code"></Label>
-                <TextBox Width ="100" Text="{Binding Watcher.WatcherData.Code}"></TextBox>
-            </StackPanel>
             <StackPanel Margin="50,50,50,20"  Orientation="Horizontal" DockPanel.Dock="Bottom">
                 <Button Margin ="10" Width="50" Content="Save" Command="{Binding SaveCommand}"></Button>
                 <Button Margin ="10" Width="50" Content="Exit" Command="{Binding CloseCommand}"></Button>
             </StackPanel>
-            
+            <GroupBox x:Name="Watcher" Header="Watcher" Height="auto" VerticalAlignment="Top">
+                <Grid>
+                    <StackPanel HorizontalAlignment ="Left" Orientation="Vertical">
+                        <controls:CommonField Text="Code" Value="{Binding Watcher.WatcherData.Code}"></controls:CommonField>
+                        <controls:CommonField Text="Regex" Value="{Binding Watcher.WatcherData.FileNameRegex}"></controls:CommonField>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
         </DockPanel>
-
     </Grid>
 </UserControl>

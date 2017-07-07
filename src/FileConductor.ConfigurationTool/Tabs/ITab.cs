@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace FileConductor.ConfigurationTool.Tabs
+namespace ConfigurationTool.Tabs
 {
     public interface ITab
     {

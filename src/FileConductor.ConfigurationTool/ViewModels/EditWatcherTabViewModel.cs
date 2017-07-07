@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration.XmlData;
-using FileConductor.ConfigurationTool.Entities;
-using FileConductor.ConfigurationTool.Tabs;
+using ConfigurationTool.Entities;
+using ConfigurationTool.Tabs;
 using FileConductor.Operations;
-using FileConductorUI.UI;
 
-namespace FileConductor.ConfigurationTool.ViewModels
+namespace ConfigurationTool.ViewModels
 {
    public class EditWatcherTabViewModel : Tab
    {
@@ -26,6 +25,10 @@ namespace FileConductor.ConfigurationTool.ViewModels
             Configuration = config;
         }
 
+       public EditWatcherTabViewModel(): base(new TabController())
+       {
+           
+       }
        private void SaveWatcher()
        {
            OnOperationModified?.Invoke();

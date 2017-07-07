@@ -7,11 +7,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using FileConductor.Configuration.XmlData;
-using FileConductor.ConfigurationTool.Tabs;
-using FileConductor.UI.Annotations;
-using FileConductorUI.UI;
+using ConfigurationTool.Properties;
+using ConfigurationTool.Tabs;
 
-namespace FileConductor.ConfigurationTool.ViewModels
+namespace ConfigurationTool.ViewModels
 {
     public class DatabaseEditTabViewModel : Tab,INotifyPropertyChanged
     {

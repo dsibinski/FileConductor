@@ -1,21 +1,19 @@
 ﻿using FileConductor.Configuration;
-using FileConductor.ConfigurationTool.Services;
-using FileConductor.ConfigurationTool.ViewModels;
-using FileConductor.Helpers;
+using ConfigurationTool.Services;
+using FileConductor;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
 using FileConductor.Operations.ProcedureExecution;
-using FileConductor.Protocols;
 using FileConductor.ProxyFile;
 using Ninject.Modules;
 
-namespace FileConductor.Service
+namespace ConfigurationTool
 {
     public class Module : NinjectModule
     {
         public override void Load()
         {
-            Bind<IFileConductor>().To<FileConductor>();
+            Bind<IFileConductor>().To<FileConductor.FileConductor>();
             Bind<IConfigurationService>().To<ConfigurationService>();
             Bind<ILoggingService>().To<LogginServiceWindow>();
             Bind<IOperationProcessor>().To<OperationProcessor>();

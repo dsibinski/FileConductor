@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileConductor.Tests", "FileConductor.Tests\FileConductor.Tests.csproj", "{79F51731-059E-4050-94B8-C3EF245380CE}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileConductor.Service", "Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileConductor", "FileConductor\FileConductor.csproj", "{B2EBBB4D-91DF-4E29-B864-1B36AA46EE28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileConductor.ConfigurationTool", "FileConductor.ConfigurationTool\FileConductor.ConfigurationTool.csproj", "{6C2319EB-3CC6-4E52-BE32-34C6553FEA71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationTool", "FileConductor.ConfigurationTool\ConfigurationTool.csproj", "{6C2319EB-3CC6-4E52-BE32-34C6553FEA71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

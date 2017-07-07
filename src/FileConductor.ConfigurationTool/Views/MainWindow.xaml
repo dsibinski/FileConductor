@@ -1,12 +1,12 @@
-﻿<Window x:Class="FileConductorUI.UI.MainWindow"
+﻿<Window x:Class="ConfigurationTool.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FileConductorUI.UI"
-        xmlns:views="clr-namespace:FileConductorUI.UI.Views"
-        xmlns:viewModels1="clr-namespace:FileConductor.ConfigurationTool.ViewModels"
-        xmlns:tabs="clr-namespace:FileConductor.ConfigurationTool.Tabs"
+      
+        xmlns:tabs="clr-namespace:ConfigurationTool.Tabs"
+        xmlns:views="clr-namespace:ConfigurationTool.Views"
+        xmlns:viewModels1="clr-namespace:ConfigurationTool.ViewModels"
 
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="700">
@@ -29,10 +29,10 @@
                             <views:DatabaseEditView/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type viewModels1:EditWatcherTabViewModel}">
-                            <local:EditWatcherTabView/>
+                            <views:EditWatcherTabView/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type viewModels1:MainTabViewModel}">
-                            <local:MainTabView/>
+                            <views:MainTabView/>
                         </DataTemplate>
                     </TabControl.Resources>
                     <TabControl.ItemTemplate>
@@ -43,7 +43,6 @@
                         </DataTemplate>
                     </TabControl.ItemTemplate>
                 </TabControl>
-
             </StackPanel>
         </DockPanel>
     </Grid>

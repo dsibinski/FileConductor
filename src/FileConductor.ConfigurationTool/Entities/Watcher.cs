@@ -6,9 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration.XmlData;
-using FileConductor.UI.Annotations;
 
-namespace FileConductor.ConfigurationTool.Entities
+namespace ConfigurationTool.Entities
 {
     public class Watcher
     {

@@ -6,11 +6,10 @@ using System.ComponentModel;
 using System.ServiceProcess;
 using System.Text;
 using System.Windows.Input;
-using FileConductor.ConfigurationTool.Tabs;
-using FileConductorUI.UI;
+using ConfigurationTool.Tabs;
 using Microsoft.Expression.Interactivity.Core;
 
-namespace FileConductor.ConfigurationTool.ViewModels
+namespace ConfigurationTool.ViewModels
 {
     public class MainPageViewModel
     {

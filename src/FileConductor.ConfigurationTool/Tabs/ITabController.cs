@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileConductor.ConfigurationTool.Tabs
+namespace ConfigurationTool.Tabs
 {
     public interface ITabController
     {

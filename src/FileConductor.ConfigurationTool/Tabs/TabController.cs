@@ -8,11 +8,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using FileConductor.ConfigurationTool.ViewModels;
-using FileConductor.UI.Annotations;
 using Microsoft.Expression.Interactivity.Core;
 
-namespace FileConductor.ConfigurationTool.Tabs
+namespace ConfigurationTool.Tabs
 {
     public class TabController : INotifyPropertyChanged, ITabController
     {

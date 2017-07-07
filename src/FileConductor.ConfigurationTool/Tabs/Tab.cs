@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Expression.Interactivity.Core;
 
-namespace FileConductor.ConfigurationTool.Tabs
+namespace ConfigurationTool.Tabs
 {
     public abstract class Tab : ITab
     {

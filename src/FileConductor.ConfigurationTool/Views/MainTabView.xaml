@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             xmlns:myNamespace="clr-namespace:MyNamespace"
-             x:Class="FileConductorUI.UI.MainTabView" 
+             xmlns:myNamespace="clr-namespace:ConfigurationTool.Views"
+             xmlns:configurationTool="clr-namespace:ConfigurationTool"
+             x:Class="ConfigurationTool.Views.MainTabView" 
              mc:Ignorable="d" >
 
     <Grid>
@@ -29,7 +30,7 @@
             </StackPanel>
 
 
-            <TextBox myNamespace:TextBoxBehaviour.ScrollOnTextChanged="True" VerticalScrollBarVisibility="Auto" Background="LightGray" IsReadOnly="True" Margin ="40" HorizontalAlignment="Stretch"  Height ="150" Text="{Binding LoggingService.Logs}"/>
+            <TextBox configurationTool:TextBoxBehaviour.ScrollOnTextChanged="True" VerticalScrollBarVisibility="Auto" Background="LightGray" IsReadOnly="True" Margin ="40" HorizontalAlignment="Stretch"  Height ="150" Text="{Binding LoggingService.Logs}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -4,17 +4,16 @@ using System.Reflection;
 using System.Windows;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
-using FileConductor.ConfigurationTool.Entities;
-using FileConductor.ConfigurationTool.Services;
-using FileConductor.ConfigurationTool.Tabs;
+using ConfigurationTool.Entities;
+using ConfigurationTool.Services;
+using ConfigurationTool.Tabs;
 using FileConductor.FileTransport;
 using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.ProxyFile;
-using FileConductorUI.UI;
 using Ninject;
 
-namespace FileConductor.ConfigurationTool.ViewModels
+namespace ConfigurationTool.ViewModels
 {
     public class MainTabViewModel : Tab
     {
