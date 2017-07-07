@@ -9,7 +9,7 @@
         xmlns:viewModels1="clr-namespace:ConfigurationTool.ViewModels"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="700">
+        Title="Configuration Tool" Height="600" Width="700">
     <Grid>
        
         <!--Style="{ MainGridStyle}">-->
