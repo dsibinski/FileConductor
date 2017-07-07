@@ -19,6 +19,11 @@
                         <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code"></controls:CommonComboBox>
                         <controls:CommonComboBox Text="Source path :" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
                         <controls:CommonComboBox Text="Target path :" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Margin="5" IsChecked="{Binding IsProcedureTriggered}"></CheckBox>
+                            <Label Content="Trigger SQL procedure"></Label>
+                        </StackPanel>
+                        <controls:CommonComboBox IsEnabled ="{Binding IsProcedureTriggered}" Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding Configuration.Databases}" DisplayedProperty="Code"></controls:CommonComboBox>
                     </StackPanel>
                 </Grid>
             </GroupBox>

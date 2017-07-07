@@ -110,7 +110,12 @@
     <Compile Include="Schedule\OperationSchedule\OperationScheduleFactory.cs" />
     <Compile Include="Schedule\SpecifiedTimeSchedule.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Configuration\Config.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

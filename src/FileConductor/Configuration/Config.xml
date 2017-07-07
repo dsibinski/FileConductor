@@ -3,12 +3,14 @@
   <databases>
     <database>
       <id>1</id>
+      <code>Lokalna baza</code>
       <host>localhost</host>
       <user>admin</user>
       <password>admin</password>
       <name>db1</name>
     </database>
     <database>
+      <code>baza 2</code>
       <id>2</id>
       <host>PCDSIBINSKI\MSSQL2012</host>
       <user>admin</user>
