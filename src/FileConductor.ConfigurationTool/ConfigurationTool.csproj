@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\CommonComboBox.xaml.cs">
+      <DependentUpon>CommonComboBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CommonField.xaml.cs">
       <DependentUpon>CommonField.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
     </Compile>
     <Compile Include="Tabs\ITab.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Page Include="Controls\CommonComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CommonField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

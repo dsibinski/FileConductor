@@ -23,7 +23,6 @@ namespace ConfigurationTool.ViewModels
         public MainTabViewModel(ITabController controller) : base(controller) 
         {
             Name = "Watchers";
-           // IsClosable = Visibility.Collapsed;
             TestCommand = new CommandHandler(TestWatcher);
             LoggingService = new LogginServiceWindow();
             TransportManager.Initialize();

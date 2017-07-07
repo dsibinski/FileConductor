@@ -18,8 +18,11 @@
             <GroupBox x:Name="Watcher" Header="Watcher" Height="auto" VerticalAlignment="Top">
                 <Grid>
                     <StackPanel HorizontalAlignment ="Left" Orientation="Vertical">
-                        <controls:CommonField Text="Code" Value="{Binding Watcher.WatcherData.Code}"></controls:CommonField>
-                        <controls:CommonField Text="Regex" Value="{Binding Watcher.WatcherData.FileNameRegex}"></controls:CommonField>
+                        <controls:CommonField Text="Code : " Value="{Binding Watcher.WatcherData.Code}"></controls:CommonField>
+                        <controls:CommonField Text="Regex : " Value="{Binding Watcher.WatcherData.FileNameRegex}"></controls:CommonField>
+                        <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code"></controls:CommonComboBox>
+                        <controls:CommonComboBox Text="Source path :" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
+                        <controls:CommonComboBox Text="Target path :" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
                     </StackPanel>
                 </Grid>
             </GroupBox>

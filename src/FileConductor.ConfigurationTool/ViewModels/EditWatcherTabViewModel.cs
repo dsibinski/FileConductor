@@ -13,7 +13,6 @@ namespace ConfigurationTool.ViewModels
    public class EditWatcherTabViewModel : Tab
    {
        public event Action OnOperationModified;
-
        public Watcher Watcher { get; set; }
        public ConfigurationData Configuration { get; set; }
 
@@ -25,10 +24,6 @@ namespace ConfigurationTool.ViewModels
             Configuration = config;
         }
 
-       public EditWatcherTabViewModel(): base(new TabController())
-       {
-           
-       }
        private void SaveWatcher()
        {
            OnOperationModified?.Invoke();

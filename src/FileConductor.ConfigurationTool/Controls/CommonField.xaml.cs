@@ -10,8 +10,8 @@ namespace ConfigurationTool.Controls
     public partial class CommonField : UserControl
     {
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(String),typeof(CommonField), new FrameworkPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(String), typeof(CommonField), new FrameworkPropertyMetadata(string.Empty));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(String),typeof(CommonField), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(String), typeof(CommonField), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public String Text
         {
             get { return GetValue(TextProperty).ToString(); }
@@ -26,7 +26,6 @@ namespace ConfigurationTool.Controls
         public CommonField()
         {
             InitializeComponent();
-            Name = "CustomField";
         }
     }
 }
