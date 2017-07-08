@@ -1,5 +1,4 @@
 ﻿using FileConductor.Configuration;
-using ConfigurationTool.Services;
 using FileConductor;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
@@ -15,7 +14,7 @@ namespace ConfigurationTool
         {
             Bind<IFileConductor>().To<FileConductor.FileConductor>();
             Bind<IConfigurationService>().To<ConfigurationService>();
-            Bind<ILoggingService>().To<LogginServiceWindow>();
+            Bind<ILoggingService>().To<LoggingService>();
             Bind<IOperationProcessor>().To<OperationProcessor>();
             Bind<IOperationExecutor>().To<OperationExecutor>();
             Bind<IProxyFileProvider>().To<ProxyFileProvider>();

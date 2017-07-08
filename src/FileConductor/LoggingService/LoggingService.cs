@@ -14,40 +14,21 @@ namespace FileConductor.LoggingService
 
         public void LogInfo(IOperation operation, string message)
         {
-            Logger.Info(message);
+            Logger.Info($"<Watcher: {operation.Code}>: {message}");
         }
 
         public void LogException(Exception exception, IOperation operation, string message)
-        {
-            StringBuilder callstack = new StringBuilder();
-            callstack.AppendLine($"<Code: {operation.Code}> Exception occured!");
-            callstack.AppendLine(message);
-            Exception currentException = exception;
-            while (currentException != null)
-            {
-                callstack.AppendLine(currentException.Message);
-                currentException = currentException.InnerException;
-            }
-            Logger.Info(callstack.ToString);    
+        {  
+            Logger.Log(LogLevel.Error,exception, $"<Watcher: {operation.Code}> Exception occured!");
         }
 
         public void LogInfo(string message)
         {
             Logger.Info(message);
         }
-
         public void LogException(Exception exception, string message)
         {
-            StringBuilder callstack = new StringBuilder();
-            callstack.AppendLine(message);
-
-            Exception currentException = exception;
-            while (currentException != null)
-            {
-                callstack.AppendLine(currentException.Message);
-                currentException = currentException.InnerException;
-            }
-            Logger.Info(callstack.ToString);
+            Logger.Log(LogLevel.Error, exception);
         }
     }
 }

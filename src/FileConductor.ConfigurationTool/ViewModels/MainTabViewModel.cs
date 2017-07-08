@@ -5,9 +5,9 @@ using System.Windows;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using ConfigurationTool.Entities;
-using ConfigurationTool.Services;
 using ConfigurationTool.Tabs;
 using FileConductor.FileTransport;
+using FileConductor.LoggingService;
 using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.ProxyFile;
@@ -24,13 +24,13 @@ namespace ConfigurationTool.ViewModels
         {
             Name = "Watchers";
             TestCommand = new CommandHandler(TestWatcher);
-            LoggingService = new LogginServiceWindow();
             TransportManager.Initialize();
             EditCommand = new CommandHandler(EditWatcher);
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
             OperationExecutor = kernel.Get<IOperationExecutor>();
             ConfigurationService = kernel.Get<IConfigurationService>();
+            LoggingService = kernel.Get<ILoggingService>();
             LoadConfiguration();
         }
 
@@ -72,6 +72,6 @@ namespace ConfigurationTool.ViewModels
         public CommandHandler TestCommand { get; set; }
         public ConfigurationData Configuration { get; set; }
         public List<Watcher> Watchers { get; set; }
-        public LogginServiceWindow LoggingService { get; set; }
+        public ILoggingService LoggingService { get; set; }
     }
 }

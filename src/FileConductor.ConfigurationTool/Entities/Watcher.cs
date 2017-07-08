@@ -16,11 +16,9 @@ namespace ConfigurationTool.Entities
         public TargetData Source { get; set; }
         public WatcherData WatcherData { get; set; }
         public TargetData Destination { get; set; }
+        public ServerData ServerData { get; set; }
 
-        public Watcher()
-        {
-            
-        }
+        public Watcher() { } 
 
         public Watcher(ConfigurationData configuration, WatcherData watcher)
         {

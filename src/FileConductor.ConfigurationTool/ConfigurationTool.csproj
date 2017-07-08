@@ -43,6 +43,14 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.11\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NlogViewer, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NlogViewer.0.6.0.0\lib\net40\NlogViewer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -84,9 +92,7 @@
     <Compile Include="Tabs\ITabController.cs" />
     <Compile Include="Tabs\Tab.cs" />
     <Compile Include="Tabs\TabController.cs" />
-    <Compile Include="TextBoxBehaviour.cs" />
     <Compile Include="ViewModels\EditWatcherTabViewModel.cs" />
-    <Compile Include="Services\LogginServiceWindow.cs" />
     <Compile Include="ViewModels\MainTabViewModel.cs" />
     <Compile Include="Views\EditWatcherTabView.xaml.cs">
       <DependentUpon>EditWatcherTabView.xaml</DependentUpon>
@@ -157,6 +163,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -6,6 +6,8 @@
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:myNamespace="clr-namespace:ConfigurationTool.Views"
              xmlns:configurationTool="clr-namespace:ConfigurationTool"
+             xmlns:controls="clr-namespace:ConfigurationTool.Controls"
+             xmlns:nlogViewer="clr-namespace:NlogViewer;assembly=NlogViewer"
              x:Class="ConfigurationTool.Views.MainTabView" 
              mc:Ignorable="d" >
 
@@ -28,9 +30,8 @@
                 <Button Margin="20"  Width="100" Content="Remove" Command="{Binding RemoveCommand}"/>
                 <Button Margin="20"  Width="100" Content="Add" Command="{Binding AddCommand}"/>
             </StackPanel>
-
-
-            <TextBox configurationTool:TextBoxBehaviour.ScrollOnTextChanged="True" VerticalScrollBarVisibility="Auto" Background="LightGray" IsReadOnly="True" Margin ="40" HorizontalAlignment="Stretch"  Height ="150" Text="{Binding LoggingService.Logs}"/>
+            <nlogViewer:NlogViewer x:Name="logCtrl" Height="150" Margin="40,40,40,10" TimeWidth="AUTO" LoggerNameWidth="0" ExceptionWidth="auto" MessageWidth="auto"/>
+            <Button Content="Clear" Width="100" ></Button>
         </StackPanel>
     </Grid>
 </UserControl>

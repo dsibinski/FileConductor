@@ -17,7 +17,17 @@
                         <controls:CommonField Text="Code : " Value="{Binding Watcher.WatcherData.Code}"></controls:CommonField>
                         <controls:CommonField Text="Regex : " Value="{Binding Watcher.WatcherData.FileNameRegex}"></controls:CommonField>
                         <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code"></controls:CommonComboBox>
-                        <controls:CommonComboBox Text="Source path :" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:CommonComboBox Text="Source path :" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
+                            <Button Content="Edit" Margin="5"></Button>
+                            <GroupBox>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.Source.Path}"></TextBox>
+                                    <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.ServerData.Protocol}"></TextBox>
+                                </StackPanel>
+                              
+                            </GroupBox>
+                        </StackPanel>
                         <controls:CommonComboBox Text="Target path :" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
                         <StackPanel Orientation="Horizontal">
                             <CheckBox Margin="5" IsChecked="{Binding IsProcedureTriggered}"></CheckBox>

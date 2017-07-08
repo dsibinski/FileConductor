@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,11 +28,24 @@ namespace FileConductor.Operations
         {
             try
             {
+                LoggingService.LogInfo(operation,"Execution started");
                 List<string> receivedFiles = ReceiveFiles(operation);
+                if (!receivedFiles.Any()) { LoggingService.LogInfo("No files detected");return; }
+                LoggingService.LogInfo(operation,$"Found {receivedFiles.Count} files to send:");
+                foreach (var file in receivedFiles)
+                {
+                    LoggingService.LogInfo(Path.GetFileName(file));
+                }
+                LoggingService.LogInfo("Sending files...");
                 if (receivedFiles.Count != 0)
                     SendFiles(operation, receivedFiles);
+                LoggingService.LogInfo("Sending succesfull!");
                 if (operation.Properties.ProcedureData != null)
+                {
+                    LoggingService.LogInfo("SQL procedure execution started!");
                     ProcedureExecutionService.ExecuteProcedure(operation);
+                }
+                LoggingService.LogInfo(operation, "Execution finished");
             }
             catch (Exception e)
             {
