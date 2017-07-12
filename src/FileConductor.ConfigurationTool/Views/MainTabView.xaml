@@ -15,6 +15,9 @@
         <StackPanel  Orientation="Vertical" VerticalAlignment="top" HorizontalAlignment="Stretch">
             <Grid Height="auto">
                 <DataGrid IsReadOnly="True" Margin="20" HorizontalAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding Watchers}" SelectedItem="{Binding SelectedWatcher}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding EditCommand}"></MouseBinding>
+                    </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Code" Binding="{Binding WatcherData.Code}"/>
                         <DataGridTextColumn Header="Source" Binding="{Binding Source.Code}"/>

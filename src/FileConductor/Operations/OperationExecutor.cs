@@ -20,7 +20,7 @@ namespace FileConductor.Operations
         [Inject]
         public IProxyFileProvider ProxyFileProvider { private get; set; }
         [Inject]
-        public  ILoggingService LoggingService { private get; set; }
+        public  ILoggingService LoggingService { get; set; }
         [Inject]
         public  IProcedureExecutionService ProcedureExecutionService { private get; set; }
 

@@ -18,17 +18,29 @@
                         <controls:CommonField Text="Regex : " Value="{Binding Watcher.WatcherData.FileNameRegex}"></controls:CommonField>
                         <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code"></controls:CommonComboBox>
                         <StackPanel Orientation="Horizontal">
-                            <controls:CommonComboBox Text="Source path :" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
+                            <controls:CommonComboBox Text="Source path:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
                             <Button Content="Edit" Margin="5"></Button>
-                            <GroupBox>
+                            <GroupBox Margin="5">
                                 <StackPanel Orientation="Horizontal">
+                                    <Label FontStyle="Italic" Content="path: "></Label>
                                     <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.Source.Path}"></TextBox>
-                                    <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.ServerData.Protocol}"></TextBox>
+                                    <Label FontStyle="Italic" Content="protocol: "> </Label>
+                                    <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.SourceServerData.Protocol}"></TextBox>
                                 </StackPanel>
-                              
                             </GroupBox>
                         </StackPanel>
-                        <controls:CommonComboBox Text="Target path :" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:CommonComboBox Text="Target path:" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
+                            <Button Content="Edit" Margin="5"></Button>
+                            <GroupBox Margin="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontStyle="Italic" Content="path: "></Label>
+                                    <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.Destination.Path}"></TextBox>
+                                    <Label FontStyle="Italic" Content="protocol: "></Label>
+                                    <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.DestinationServerData.Protocol}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <CheckBox Margin="5" IsChecked="{Binding IsProcedureTriggered}"></CheckBox>
                             <Label Content="Trigger SQL procedure"></Label>

@@ -12,8 +12,6 @@ namespace ConfigurationTool.ViewModels
 {
    public class EditWatcherTabViewModel : Tab
    {
-       
-
        public bool IsProcedureTriggered
        {
            get { return Watcher.ProcedureData != null; }

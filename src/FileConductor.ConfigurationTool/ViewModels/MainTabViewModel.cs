@@ -59,7 +59,7 @@ namespace ConfigurationTool.ViewModels
 
         private void TestWatcher()
         {
-            ((OperationExecutor)OperationExecutor).LoggingService = LoggingService;
+            OperationExecutor.LoggingService = LoggingService;
             if (SelectedWatcher == null) return;
             var operation = ConfigurationService.GetOperation(Configuration, SelectedWatcher.WatcherData);
             OperationExecutor.Execute(operation);
