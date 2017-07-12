@@ -3,25 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      
         xmlns:tabs="clr-namespace:ConfigurationTool.Tabs"
         xmlns:views="clr-namespace:ConfigurationTool.Views"
         xmlns:viewModels1="clr-namespace:ConfigurationTool.ViewModels"
-
         mc:Ignorable="d"
         Title="Configuration Tool" Height="600" Width="700">
-    <Grid>
-       
+    <Grid Style="{StaticResource MainGridStyle}">
         <!--Style="{ MainGridStyle}">-->
-        <DockPanel>
-
+        <DockPanel >
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                 <Grid VerticalAlignment="Top" >
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
                         <Button x:Name="btnLaunch" Margin="10" Content="MOQ_Launch" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding NewTabCommand}"/>
                         <Button x:Name="btnInstallation" Margin="10" Content="MOQ_Install" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
                         <Button x:Name="settings" Margin="10" Content="MOQ_Settings" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
-                    </StackPanel>
+                    </WrapPanel>
                 </Grid>
                 <TabControl  Name="MainTabControl" DockPanel.Dock="Top" ItemsSource="{Binding CurrentTabController.Tabs}" SelectedItem="{Binding CurrentTabController.SelectedTab}">
                     <TabControl.Resources>

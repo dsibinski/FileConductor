@@ -3,14 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-
-        <DataTemplate x:Key="CellEdintingTemplate">
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="text" />
-                <Button Content="btn"></Button>
-            </StackPanel>
-        </DataTemplate>
-        <ResourceDictionary x:Key="Dictionary">
+        <ResourceDictionary >
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>

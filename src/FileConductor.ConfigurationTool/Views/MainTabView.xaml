@@ -27,12 +27,12 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Margin="20"  Width="100" Content="Test" Command="{Binding TestCommand}"/>
                 <Button Margin="20"  Width="100" Content="Edit" Command="{Binding EditCommand}"/>
                 <Button Margin="20"  Width="100" Content="Remove" Command="{Binding RemoveCommand}"/>
                 <Button Margin="20"  Width="100" Content="Add" Command="{Binding AddCommand}"/>
-            </StackPanel>
+            </WrapPanel>
             <nlogViewer:NlogViewer x:Name="logCtrl" Height="150" Margin="40,40,40,10" TimeWidth="AUTO" LoggerNameWidth="0" ExceptionWidth="auto" MessageWidth="auto"/>
             <Button Content="Clear" Width="100" ></Button>
         </StackPanel>

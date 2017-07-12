@@ -6,17 +6,17 @@
              xmlns:local="clr-namespace:ConfigurationTool.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Height="30" Margin="5">
-    <StackPanel Orientation="Horizontal">
+    <WrapPanel Orientation="Horizontal">
         <local:CommonComboBox Text="Source path :" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></local:CommonComboBox>
         <Button Content="Edit" Margin="5"></Button>
         <GroupBox>
-            <StackPanel Orientation="Horizontal">
+            <WrapPanel Orientation="Horizontal">
                 <Label FontStyle="Italic" Content="path: "></Label>
                 <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.Source.Path}"></TextBox>
                 <Label FontStyle="Italic" Content="protocol: "></Label>
                 <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.SourceServerData.Protocol}"></TextBox>
-            </StackPanel>
+            </WrapPanel>
         </GroupBox>
-    </StackPanel>
+    </WrapPanel>
 </UserControl>
 
