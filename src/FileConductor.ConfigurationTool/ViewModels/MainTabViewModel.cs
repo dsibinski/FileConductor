@@ -16,6 +16,7 @@ using FileConductor.LoggingService;
 using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.ProxyFile;
+using Microsoft.Expression.Interactivity.Core;
 using Ninject;
 
 namespace ConfigurationTool.ViewModels
@@ -27,16 +28,18 @@ namespace ConfigurationTool.ViewModels
         public MainTabViewModel(ITabController controller) : base(controller) 
         {
             Name = "Watchers";
-            TestCommand = new CommandHandler(TestWatcher);
-            EditCommand = new CommandHandler(EditWatcher);
-            AddCommand = new CommandHandler(AddWatcher);
-            RemoveCommand = new CommandHandler(RemoveWatcher);
+            TestCommand = new ActionCommand(TestWatcher);
+            EditCommand = new ActionCommand(EditWatcher);
+            AddCommand = new ActionCommand(AddWatcher);
+            SaveCommand = new ActionCommand(SaveConfig);
+            RemoveCommand = new ActionCommand(RemoveWatcher);
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
             FileConductor = kernel.Get<IFileConductor>();
             ConfigurationService = kernel.Get<IConfigurationService>();
             LoadConfiguration();
         }
+
 
         private void AddWatcher()
         {
@@ -47,6 +50,7 @@ namespace ConfigurationTool.ViewModels
 
         private void RemoveWatcher()
         {
+            ConfigurationService.RemoveObject(Configuration,SelectedWatcher.WatcherData);
             Watchers.Remove(SelectedWatcher);
         }
 
@@ -80,14 +84,14 @@ namespace ConfigurationTool.ViewModels
 
 
         public Watcher SelectedWatcher { get; set; }
-        public CommandHandler EditCommand { get; set; }
-        public CommandHandler AddCommand { get; set; }
-        public CommandHandler RemoveCommand { get; set; }
-        public CommandHandler TestCommand { get; set; }
+        public ActionCommand EditCommand { get; set; }
+        public ActionCommand SaveCommand { get; set; }
+        public ActionCommand AddCommand { get; set; }
+        public ActionCommand RemoveCommand { get; set; }
+        public ActionCommand TestCommand { get; set; }
         public ConfigurationData Configuration { get; set; }
         public ObservableCollection<Watcher> Watchers { get; set; }
         public ILoggingService LoggingService { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
 
     }
 }

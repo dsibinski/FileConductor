@@ -84,17 +84,13 @@ namespace FileConductor.Configuration
 
         public T GetEmptyObject<T>(ConfigurationData configuration) where T: IConfigurationElement, new()
         {
-            // Configuration.Watchers.Add(watcher);
-            var properties = configuration.GetType().GetProperties();
-            var propertyOfType = properties.FirstOrDefault(x => x.PropertyType == typeof(List<T>));
-            if(propertyOfType == null) throw new Exception("Something wrong with configuration");
-            List<T> castedProperty = (List<T>)propertyOfType.GetValue(configuration);
+            List<T> castedListOfProperties = GetCastedListOfProperties<T>(configuration);
             int i = 1;
             var newWatcherData = new T();
             bool idNotFound = true;
             while (idNotFound)
             {
-                if (castedProperty.Any(x => x.Id == i))
+                if (castedListOfProperties.Any(x => x.Id == i))
                 {
                     i++;
                 }
@@ -104,8 +100,22 @@ namespace FileConductor.Configuration
                 }
             }
             newWatcherData.Id = i;
-            castedProperty.Add(newWatcherData);
+            castedListOfProperties.Add(newWatcherData);
             return newWatcherData;
+        }
+
+        public void RemoveObject<T>(ConfigurationData configuration, T obj) where T : IConfigurationElement, new()
+        {
+            List<T> castedListOfProperties = GetCastedListOfProperties<T>(configuration);
+            castedListOfProperties.Remove(obj);
+        }
+
+        private List<T> GetCastedListOfProperties<T>(ConfigurationData configuration) where T : new()
+        {
+            var properties = configuration.GetType().GetProperties();
+            var propertyOfType = properties.FirstOrDefault(x => x.PropertyType == typeof(List<T>));
+            if (propertyOfType == null) throw new Exception("Something wrong with configuration");
+            return (List<T>)propertyOfType.GetValue(configuration);
         }
     }
 }

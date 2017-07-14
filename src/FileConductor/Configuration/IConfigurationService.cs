@@ -15,6 +15,6 @@ namespace FileConductor.Configuration
         ConfigurationData GetConfigurationData();
         void SaveConfigurationData(ConfigurationData configuration);
         T GetEmptyObject<T>(ConfigurationData configuration) where T : IConfigurationElement, new();
-
+        void RemoveObject<T>(ConfigurationData configuration, T obj) where T : IConfigurationElement, new();
     }
 }

@@ -9,6 +9,7 @@ using System.Windows;
 using FileConductor.Configuration.XmlData;
 using ConfigurationTool.Properties;
 using ConfigurationTool.Tabs;
+using Microsoft.Expression.Interactivity.Core;
 
 namespace ConfigurationTool.ViewModels
 {
@@ -24,13 +25,13 @@ namespace ConfigurationTool.ViewModels
 
         public DatabaseEditTabViewModel(ITabController controller) : base(controller)
         {
-            CheckConnectionCommand = new CommandHandler(CheckDBConenction);
-            CloseHandler = new CommandHandler(CloseAction);
+            CheckConnectionCommand = new ActionCommand(CheckDBConenction);
+            CloseHandler = new ActionCommand(CloseAction);
             Name = "Database";
         }
 
-        public CommandHandler CheckConnectionCommand { get; set; }
-        public CommandHandler CloseHandler { get; set; }
+        public ActionCommand CheckConnectionCommand { get; set; }
+        public ActionCommand CloseHandler { get; set; }
 
         public string SelectedDatabaseName
         {

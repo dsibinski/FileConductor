@@ -6,8 +6,14 @@
         xmlns:tabs="clr-namespace:ConfigurationTool.Tabs"
         xmlns:views="clr-namespace:ConfigurationTool.Views"
         xmlns:viewModels1="clr-namespace:ConfigurationTool.ViewModels"
+        xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="Configuration Tool" Height="600" Width="700">
+    <intr:Interaction.Triggers>
+        <intr:EventTrigger EventName="Closing">
+            <intr:InvokeCommandAction Command="{Binding CloseWindowCommand}"/>
+        </intr:EventTrigger>
+    </intr:Interaction.Triggers>
     <Grid Style="{StaticResource MainGridStyle}">
         <!--Style="{ MainGridStyle}">-->
         <DockPanel >

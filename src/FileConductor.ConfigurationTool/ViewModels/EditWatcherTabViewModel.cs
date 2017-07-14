@@ -10,6 +10,7 @@ using ConfigurationTool.Tabs;
 using FileConductor.Configuration;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
+using Microsoft.Expression.Interactivity.Core;
 using Ninject;
 
 namespace ConfigurationTool.ViewModels
@@ -48,8 +49,8 @@ namespace ConfigurationTool.ViewModels
        public EditWatcherTabViewModel(ITabController controller, ConfigurationData config, Watcher watcher) : base(controller)
         {
             Name = watcher.WatcherData.Code;
-            SaveCommand = new CommandHandler(SaveWatcher);
-            TestCommand = new CommandHandler(TestWatcher);
+            SaveCommand = new ActionCommand(SaveWatcher);
+            TestCommand = new ActionCommand(TestWatcher);
             Watcher = watcher;
             Configuration = config;
         }
@@ -69,8 +70,8 @@ namespace ConfigurationTool.ViewModels
            OnOperationModified?.Invoke();
        }
 
-       public CommandHandler SaveCommand { get; set; }
-       public CommandHandler TestCommand { get; set; }
+       public ActionCommand SaveCommand { get; set; }
+       public ActionCommand TestCommand { get; set; }
 
     }
 }

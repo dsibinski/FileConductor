@@ -28,10 +28,11 @@
                 </DataGrid>
             </Grid>
             <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Margin="20"  Width="100" Content="Test" Command="{Binding TestCommand}"/>
-                <Button Margin="20"  Width="100" Content="Edit" Command="{Binding EditCommand}"/>
-                <Button Margin="20"  Width="100" Content="Remove" Command="{Binding RemoveCommand}"/>
-                <Button Margin="20"  Width="100" Content="Add" Command="{Binding AddCommand}"/>
+                <Button Margin="10"  Width="70" Content="Test" Command="{Binding TestCommand}"/>
+                <Button Margin="10"  Width="70" Content="Edit" Command="{Binding EditCommand}"/>
+                <Button Margin="10"  Width="70" Content="Remove" Command="{Binding RemoveCommand}"/>
+                <Button Margin="10"  Width="70" Content="Add" Command="{Binding AddCommand}"/>
+                <Button Margin="10"  Width="70" Content="Save" Command="{Binding SaveCommand}"/>
             </WrapPanel>
             <nlogViewer:NlogViewer x:Name="logCtrl" Height="150" Margin="40,40,40,10" TimeWidth="AUTO" LoggerNameWidth="0" ExceptionWidth="auto" MessageWidth="auto"/>
             <Button Content="Clear" Width="100" ></Button>
