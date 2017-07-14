@@ -5,18 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ConfigurationTool.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Height="30" Margin="5">
-    <WrapPanel Orientation="Horizontal">
-        <local:CommonComboBox Text="Source path :" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></local:CommonComboBox>
-        <Button Content="Edit" Margin="5"></Button>
-        <GroupBox>
-            <WrapPanel Orientation="Horizontal">
-                <Label FontStyle="Italic" Content="path: "></Label>
-                <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.Source.Path}"></TextBox>
-                <Label FontStyle="Italic" Content="protocol: "></Label>
-                <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.SourceServerData.Protocol}"></TextBox>
-            </WrapPanel>
-        </GroupBox>
+             Style="{StaticResource CommonUserControlStyle}">
+    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <WrapPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label  Height="25" VerticalAlignment="Stretch" Content="{Binding ElementName=CustomComboBox, Path=Text}"></Label>
+            <ComboBox Height="25" VerticalAlignment="Stretch" DisplayMemberPath="{Binding ElementName=CustomComboBox, Path=DisplayedProperty}" ItemsSource="{Binding ElementName=CustomComboBox, Path=ItemSource}"  SelectedItem="{Binding ElementName=CustomComboBox,Path=SelectedItem}"></ComboBox>
+        </WrapPanel>
+        <Button Margin="5" Width ="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Edit"></Button>
+        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Label FontStyle="Italic" Content="property1: " VerticalAlignment="Center" ></Label>
+            <TextBox IsReadOnly="True" Text="PropertyValue1" VerticalAlignment="Center"/>
+            <Label FontStyle="Italic" Content="property2: "></Label>
+            <TextBox IsReadOnly="True" Text="PropertyValue2" VerticalAlignment="Center"></TextBox>
+        </WrapPanel>
     </WrapPanel>
 </UserControl>
 

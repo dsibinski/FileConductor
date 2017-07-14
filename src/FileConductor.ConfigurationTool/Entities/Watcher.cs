@@ -11,7 +11,7 @@ namespace ConfigurationTool.Entities
 {
     public class Watcher
     {
-        public DatabaseData ProcedureData { get; set; }
+        public ProcedureData ProcedureData { get; set; }
         public ScheduleData Schedule { get; set; }
         public WatcherData WatcherData { get; set; }
         public TargetData Source { get; set; }
@@ -23,12 +23,12 @@ namespace ConfigurationTool.Entities
 
         public Watcher(ConfigurationData configuration, WatcherData watcher)
         {
-            ProcedureData = configuration.Databases.FirstOrDefault(x => watcher.DatabaseId == x.Id);
+            ProcedureData = configuration.Procedures.FirstOrDefault(x => watcher.ProcedureId == x.Id);
             Schedule = configuration.Schedules.FirstOrDefault(x => watcher.ScheduleId == x.Id);
             Source = configuration.Targets.FirstOrDefault(x => watcher.WatcherRouting.SourceTargetId == x.Id);
             Destination = configuration.Targets.FirstOrDefault(x => watcher.WatcherRouting.DestinationTargetId == x.Id);
-            SourceServerData = configuration.Servers.FirstOrDefault(x => x.Id == Source.ServerId);
-            DestinationServerData = configuration.Servers.FirstOrDefault(x => x.Id == Destination.ServerId);
+            if(Source != null)SourceServerData = configuration.Servers.FirstOrDefault(x => x.Id == Source.ServerId);
+            if(Destination !=null)DestinationServerData = configuration.Servers.FirstOrDefault(x => x.Id == Destination.ServerId);
             WatcherData = watcher;
 
         }

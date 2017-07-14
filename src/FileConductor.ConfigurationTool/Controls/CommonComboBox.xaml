@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ConfigurationTool.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300"  Name="CustomComboBox">
+             d:DesignHeight="30"  Name="CustomComboBox" Style="{StaticResource CommonUserControlStyle}">
     <WrapPanel Height="30" DockPanel.Dock ="Top" Orientation="Horizontal" Margin="5">
         <Label  Content="{Binding ElementName=CustomComboBox, Path=Text}"></Label>
         <ComboBox  DisplayMemberPath="{Binding ElementName=CustomComboBox, Path=DisplayedProperty}" ItemsSource="{Binding ElementName=CustomComboBox, Path=ItemSource}"  SelectedItem="{Binding ElementName=CustomComboBox,Path=SelectedItem}"></ComboBox>

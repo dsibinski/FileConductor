@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="Entities\Watcher.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="Tabs\ITabController.cs" />
     <Compile Include="Tabs\Tab.cs" />
     <Compile Include="Tabs\TabController.cs" />

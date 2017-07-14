@@ -46,11 +46,11 @@ namespace FileConductor
                     OperationsToExecute.TryDequeue(out currentOperation);
                     if (currentOperation != null)
                     {
-                        LoggingService.LogInfo(currentOperation,String.Format(Resources.Executing_operation__id, currentOperation.Code));
                         try
                         {
+                            LoggingService.LogInfo(currentOperation, String.Format(Resources.Executing_operation__id));
                             OperationExecutor.Execute(currentOperation);
-                            LoggingService.LogInfo(currentOperation, String.Format(Resources.Operation_executed_without_errors, currentOperation.Code));
+                            LoggingService.LogInfo(currentOperation, String.Format(Resources.Operation_executed_without_errors));
                         }
                         catch (Exception ex)
                         {
@@ -63,17 +63,15 @@ namespace FileConductor
 
         public void AddOperationToQueue(IOperation sender, ElapsedEventArgs e)
         {
-            LoggingService.LogInfo(sender, String.Format(Resources.Adding_operation_to_queue, sender.Code));
+            LoggingService.LogInfo(sender, String.Format(Resources.Adding_operation_to_queue));
             OperationsToExecute.Enqueue(sender);
         }
 
         public void AssignOperation(IOperation operation)
         {
-            LoggingService.LogInfo(operation, String.Format(Resources.Assigning_operation, operation.Code));
+            LoggingService.LogInfo(operation, String.Format(Resources.Assigning_operation));
             Operations.Add(operation);
             operation.OnOperationReady += AddOperationToQueue;
         }
-
-
     }
 }

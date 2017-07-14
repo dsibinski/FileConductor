@@ -133,15 +133,15 @@
     <value>Stopping the service...</value>
   </data>
   <data name="Assigning_operation" xml:space="preserve">
-    <value>Assigning operation &lt;code:{0}&gt;</value>
+    <value>Assigning operation </value>
   </data>
   <data name="Adding_operation_to_queue" xml:space="preserve">
-    <value>Adding operation to queue &lt;code:{0}&gt;</value>
+    <value>Adding operation to queue</value>
   </data>
   <data name="Executing_operation__id" xml:space="preserve">
-    <value>Executing operation &lt;code:{0}&gt;</value>
+    <value>Execution started</value>
   </data>
   <data name="Operation_executed_without_errors" xml:space="preserve">
-    <value>Operation &lt;code:{0}&gt; executed without errors</value>
+    <value>Execution finished</value>
   </data>
 </root>

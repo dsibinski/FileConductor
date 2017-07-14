@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileConductor.Schedule
+namespace FileConductor.Configuration.XmlData
 {
-    public interface ISchedule
+    public interface IConfigurationElement
     {
-        void StartSchedule(Action action);
-        void StopSchedule();
+        int Id { get; set; }
     }
 }

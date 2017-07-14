@@ -64,5 +64,10 @@ namespace FileConductor.Schedule
                 CalculateNextRequiredTime();
             };
         }
+
+        public void StopSchedule()
+        {
+            _interval.Stop();
+        }
     }
 }

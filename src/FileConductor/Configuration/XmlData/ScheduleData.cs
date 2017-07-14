@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace FileConductor.Configuration.XmlData
 {
     [Serializable]
-    public class ScheduleData
+    public class ScheduleData : IConfigurationElement
     {
         [XmlElement("id")]
         public int Id { get; set; }

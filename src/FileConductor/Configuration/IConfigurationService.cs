@@ -14,6 +14,7 @@ namespace FileConductor.Configuration
         IOperation GetOperation(ConfigurationData configurationData, WatcherData watcher);
         ConfigurationData GetConfigurationData();
         void SaveConfigurationData(ConfigurationData configuration);
+        T GetEmptyObject<T>(ConfigurationData configuration) where T : IConfigurationElement, new();
 
     }
 }

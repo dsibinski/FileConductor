@@ -1,11 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows;
+using ConfigurationTool.Annotations;
 using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using ConfigurationTool.Entities;
 using ConfigurationTool.Tabs;
+using FileConductor;
 using FileConductor.FileTransport;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
@@ -17,30 +22,41 @@ namespace ConfigurationTool.ViewModels
 {
     public class MainTabViewModel : Tab
     {
-        public IOperationExecutor OperationExecutor;
-
-        public IConfigurationService ConfigurationService;
+        public IFileConductor FileConductor { get; set; }
+        public IConfigurationService ConfigurationService { get; set; }
         public MainTabViewModel(ITabController controller) : base(controller) 
         {
             Name = "Watchers";
             TestCommand = new CommandHandler(TestWatcher);
-            TransportManager.Initialize();
             EditCommand = new CommandHandler(EditWatcher);
+            AddCommand = new CommandHandler(AddWatcher);
+            RemoveCommand = new CommandHandler(RemoveWatcher);
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
-            OperationExecutor = kernel.Get<IOperationExecutor>();
+            FileConductor = kernel.Get<IFileConductor>();
             ConfigurationService = kernel.Get<IConfigurationService>();
-            LoggingService = kernel.Get<ILoggingService>();
             LoadConfiguration();
+        }
+
+        private void AddWatcher()
+        {
+            var watcher = ConfigurationService.GetEmptyObject<WatcherData>(Configuration);
+            watcher.Code = "New watcher";
+            Watchers.Add(new Watcher(Configuration, watcher));
+        }
+
+        private void RemoveWatcher()
+        {
+            Watchers.Remove(SelectedWatcher);
         }
 
         private void LoadConfiguration()
         {
             Configuration = ConfigurationService.GetConfigurationData();
-            Watchers = new List<Watcher>();
+            Watchers = new ObservableCollection<Watcher>();
             foreach (var watcherData in Configuration.Watchers)
             {
-                Watchers.Add(new Watcher(Configuration,watcherData));
+                Watchers.Add(new Watcher(Configuration, watcherData));
             }
         }
 
@@ -59,19 +75,19 @@ namespace ConfigurationTool.ViewModels
 
         private void TestWatcher()
         {
-            OperationExecutor.LoggingService = LoggingService;
-            if (SelectedWatcher == null) return;
-            var operation = ConfigurationService.GetOperation(Configuration, SelectedWatcher.WatcherData);
-            OperationExecutor.Execute(operation);
+            FileConductor.Start(Configuration);
         }
 
 
         public Watcher SelectedWatcher { get; set; }
         public CommandHandler EditCommand { get; set; }
+        public CommandHandler AddCommand { get; set; }
         public CommandHandler RemoveCommand { get; set; }
         public CommandHandler TestCommand { get; set; }
         public ConfigurationData Configuration { get; set; }
-        public List<Watcher> Watchers { get; set; }
+        public ObservableCollection<Watcher> Watchers { get; set; }
         public ILoggingService LoggingService { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
     }
 }

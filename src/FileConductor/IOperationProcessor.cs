@@ -18,6 +18,5 @@ namespace FileConductor
         void ProcessOperation();
         void AddOperationToQueue(IOperation sender, ElapsedEventArgs e);
         ConcurrentQueue<IOperation> OperationsToExecute { get; set; }
-        void Start(ISchedule schedule);
     }
 }

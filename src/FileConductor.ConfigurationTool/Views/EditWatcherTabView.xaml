@@ -14,9 +14,10 @@
             <GroupBox x:Name="Watcher" Header="Watcher" Height="auto" VerticalAlignment="Top" Width="auto" DockPanel.Dock="Top">
                 <Grid>
                     <StackPanel HorizontalAlignment ="Left" Orientation="Vertical">
-                        <controls:CommonField Text="Code : " Value="{Binding Watcher.WatcherData.Code}"></controls:CommonField>
-                        <controls:CommonField Text="Regex : " Value="{Binding Watcher.WatcherData.FileNameRegex}"></controls:CommonField>
-                        <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code"></controls:CommonComboBox>
+                        <controls:CommonField Text="Code : " Value="{Binding Watcher.WatcherData.Code}" HorizontalAlignment="Left"></controls:CommonField>
+                        <controls:CommonField Text="Regex : " Value="{Binding Watcher.WatcherData.FileNameRegex}" HorizontalAlignment="Left"></controls:CommonField>
+                        <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:CommonComboBox>
+                        <!--<controls:ComboBoxWithFields></controls:ComboBoxWithFields>-->
                         <StackPanel Orientation="Horizontal">
                             <controls:CommonComboBox Text="Source path:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
                             <Button Content="Edit" Margin="5"></Button>
@@ -41,17 +42,18 @@
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <CheckBox Margin="5" IsChecked="{Binding IsProcedureTriggered}"></CheckBox>
                             <Label Content="Trigger SQL procedure"></Label>
                         </StackPanel>
-                        <controls:CommonComboBox IsEnabled ="{Binding IsProcedureTriggered}" Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding Configuration.Databases}" DisplayedProperty="Code"></controls:CommonComboBox>
+                        <controls:CommonComboBox IsEnabled ="{Binding IsProcedureTriggered}" Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding Configuration.Databases}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:CommonComboBox>
                     </StackPanel>
                 </Grid>
             </GroupBox>
             <StackPanel Margin="50,50,50,20"  Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
                 <Button Margin ="10" Width="50" Content="Save" Command="{Binding SaveCommand}"></Button>
                 <Button Margin ="10" Width="50" Content="Exit" Command="{Binding CloseCommand}"></Button>
+                <Button Margin ="10" Width="50" Content="Test" Command="{Binding TestCommand}"></Button>
             </StackPanel>
         </DockPanel>
     </Grid>

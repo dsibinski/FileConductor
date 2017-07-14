@@ -5,8 +5,8 @@ using FileConductor.Protocols;
 namespace FileConductor.Configuration.XmlData
 {
     [Serializable]
-    public class ServerData
-    {
+    public class ServerData : IConfigurationElement
+    { 
         [XmlElement("id")]
         public int Id { get; set; }
 

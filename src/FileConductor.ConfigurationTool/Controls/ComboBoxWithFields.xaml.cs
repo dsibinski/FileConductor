@@ -20,14 +20,13 @@ namespace ConfigurationTool.Controls
     /// </summary>
     public partial class ComboBoxWithFields : UserControl
     {
-        //public public static readonly DependencyProperty PropertyTypeProperty = DependencyProperty.Register(
-        //    "PropertyType", typeof(string), typeof(ComboBoxWithFields), new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(String), typeof(ComboBoxWithFields), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        //public String PropertyType
-        //{
-        //    get { return (propertyType) GetValue(PropertyTypeProperty); }
-        //    set { SetValue(PropertyTypeProperty, value); }
-        //}
+        public String Text
+        {
+            get { return GetValue(TextProperty).ToString(); }
+            set { SetValue(TextProperty, value); }
+        }
 
         public ComboBoxWithFields()
         {

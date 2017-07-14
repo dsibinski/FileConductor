@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-  <databases>
-    <database>
+  <procedures>
+    <procedure>
       <id>1</id>
       <code>Lokalna baza</code>
       <host>localhost</host>
       <user>admin</user>
       <password>admin</password>
       <name>db1</name>
-    </database>
-    <database>
+    </procedure>
+    <procedure>
       <code>baza 2</code>
       <id>2</id>
       <host>PCDSIBINSKI\MSSQL2012</host>
       <user>admin</user>
       <password>admin</password>
       <name>db2</name>
-    </database>
-  </databases>
+    </procedure>
+  </procedures>
   <servers>
     <server>
       <id>1</id>
@@ -29,7 +29,7 @@
     </server>
     <server>
       <id>2</id>
-      <protocol>Local</protocol>
+      <protocol>FTP</protocol>
       <ip></ip>
       <user></user>
       <password></password>
@@ -67,7 +67,7 @@
     <watcher>
       <id>1</id>
       <code>TestOperation</code>
-      <databaseId>1</databaseId>
+      <procedureId>0</procedureId>
       <watcherRouting>
         <sourceTargetId>1</sourceTargetId>
         <destinationTargetId>2</destinationTargetId>
@@ -79,7 +79,7 @@
     <watcher>
       <id>2</id>
       <code>TestOperationBack</code>
-      <databaseId>1</databaseId>
+      <procedureId>0</procedureId>
       <watcherRouting>
         <sourceTargetId>2</sourceTargetId>
         <destinationTargetId>1</destinationTargetId>

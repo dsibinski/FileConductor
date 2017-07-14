@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration.XmlData;
 using ConfigurationTool.Entities;
 using ConfigurationTool.Tabs;
+using FileConductor.Configuration;
+using FileConductor.LoggingService;
 using FileConductor.Operations;
+using Ninject;
 
 namespace ConfigurationTool.ViewModels
 {
@@ -20,13 +24,13 @@ namespace ConfigurationTool.ViewModels
                if (value == false)
                {
                     Watcher.ProcedureData = null;
-                   Watcher.WatcherData.DatabaseId = 0;
+                   Watcher.WatcherData.ProcedureId = 0;
                }
                else
                {
-                   if (Configuration.Databases.Any())
+                   if (Configuration.Procedures.Any())
                    {
-                       Watcher.ProcedureData = Configuration.Databases.FirstOrDefault();
+                       Watcher.ProcedureData = Configuration.Procedures.FirstOrDefault();
                    }
                    else
                    {
@@ -45,8 +49,19 @@ namespace ConfigurationTool.ViewModels
         {
             Name = watcher.WatcherData.Code;
             SaveCommand = new CommandHandler(SaveWatcher);
+            TestCommand = new CommandHandler(TestWatcher);
             Watcher = watcher;
             Configuration = config;
+        }
+
+       private void TestWatcher()
+       {
+            var kernel = new StandardKernel();
+            kernel.Load(Assembly.GetExecutingAssembly());
+            var operationExecutor = kernel.Get<IOperationExecutor>();
+            var configurationService = kernel.Get<IConfigurationService>();
+            var operation = configurationService.GetOperation(Configuration, Watcher.WatcherData);
+            operationExecutor.Execute(operation);
         }
 
        private void SaveWatcher()
@@ -55,6 +70,7 @@ namespace ConfigurationTool.ViewModels
        }
 
        public CommandHandler SaveCommand { get; set; }
+       public CommandHandler TestCommand { get; set; }
 
-   }
+    }
 }

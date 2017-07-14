@@ -28,24 +28,23 @@ namespace FileConductor.Operations
         {
             try
             {
-                LoggingService.LogInfo(operation,"Execution started");
                 List<string> receivedFiles = ReceiveFiles(operation);
                 if (!receivedFiles.Any()) { LoggingService.LogInfo("No files detected");return; }
                 LoggingService.LogInfo(operation,$"Found {receivedFiles.Count} files to send:");
                 foreach (var file in receivedFiles)
                 {
-                    LoggingService.LogInfo(Path.GetFileName(file));
+                    LoggingService.LogInfo(operation,Path.GetFileName(file));
                 }
-                LoggingService.LogInfo("Sending files...");
+                LoggingService.LogInfo(operation,"Sending files...");
                 if (receivedFiles.Count != 0)
                     SendFiles(operation, receivedFiles);
-                LoggingService.LogInfo("Sending succesfull!");
+                LoggingService.LogInfo(operation,"Sending succesfull");
                 if (operation.Properties.ProcedureData != null)
                 {
-                    LoggingService.LogInfo("SQL procedure execution started!");
+                    LoggingService.LogInfo(operation,"SQL procedure execution started!");
                     ProcedureExecutionService.ExecuteProcedure(operation);
-                }
-                LoggingService.LogInfo(operation, "Execution finished");
+                    LoggingService.LogInfo(operation, "SQL procedure execution finished");
+                } 
             }
             catch (Exception e)
             {

@@ -24,6 +24,9 @@ namespace FileConductor
         [Inject]
         public IOperationProcessor OperationProcessor { get; set; }
 
+        [Inject]
+        public ISchedule FileConductorScheduler { get; set; }
+
         public void Start(ConfigurationData configurationData)
         {
             try
@@ -35,7 +38,12 @@ namespace FileConductor
             {
                 LoggingService.LogException(exception, "Loading configuration failed");
             }
-            OperationProcessor.Start(new IntervalSchedule(Constants.SchedulerIntervaltime));
+            FileConductorScheduler.StartSchedule(OperationProcessor.ProcessOperation);
+        }
+
+        public void Stop()
+        {
+            FileConductorScheduler.StopSchedule();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace FileConductor
     public interface IFileConductor
     {
         void Start(ConfigurationData configurationData);
+        void Stop();
     }
 }

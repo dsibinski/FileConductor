@@ -1,9 +1,11 @@
 ﻿using FileConductor.Configuration;
 using FileConductor;
+using FileConductor.Helpers;
 using FileConductor.LoggingService;
 using FileConductor.Operations;
 using FileConductor.Operations.ProcedureExecution;
 using FileConductor.ProxyFile;
+using FileConductor.Schedule;
 using Ninject.Modules;
 
 namespace ConfigurationTool
@@ -19,6 +21,7 @@ namespace ConfigurationTool
             Bind<IOperationExecutor>().To<OperationExecutor>();
             Bind<IProxyFileProvider>().To<ProxyFileProvider>();
             Bind<IProcedureExecutionService>().To<ProcedureExecutionService>();
+            Bind<ISchedule>().To<IntervalSchedule>().WithConstructorArgument(typeof(int), (Constants.SchedulerIntervaltime));
         }
     }
 }

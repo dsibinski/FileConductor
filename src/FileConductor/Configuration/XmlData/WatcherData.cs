@@ -4,19 +4,19 @@ using System.Xml.Serialization;
 namespace FileConductor.Configuration.XmlData
 {
     [Serializable]
-    public class WatcherData
+    public class WatcherData : IConfigurationElement
     {
         [XmlElement("id")]
         public int Id { get; set; }
 
         [XmlElement("code")]
-        public string Code { get; set; }
+        public string Code { get; set; } = string.Empty;
 
-        [XmlElement("databaseId")]
-        public int DatabaseId { get; set; }
+        [XmlElement("procedureId")]
+        public int ProcedureId { get; set; }
 
         [XmlElement("watcherRouting")]
-        public WatcherRoutingData WatcherRouting { get; set; }
+        public WatcherRoutingData WatcherRouting { get; set; } = new WatcherRoutingData();
 
         [XmlElement("scheduleId")]
         public int ScheduleId { get; set; }

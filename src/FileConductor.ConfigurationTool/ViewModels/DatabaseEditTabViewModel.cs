@@ -157,7 +157,7 @@ namespace ConfigurationTool.ViewModels
         }
 
 
-        public void LoadDatabaseData(DatabaseData data)
+        public void LoadDatabaseData(ProcedureData data)
         {
             Host = data.Host;
             DbName = data.Name;

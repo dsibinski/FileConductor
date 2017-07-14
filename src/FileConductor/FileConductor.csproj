@@ -62,7 +62,8 @@
     <Compile Include="Configuration\ConfigurationService.cs" />
     <Compile Include="Configuration\IConfigurationService.cs" />
     <Compile Include="Configuration\XmlData\ConfigurationData.cs" />
-    <Compile Include="Configuration\XmlData\DatabaseData.cs" />
+    <Compile Include="Configuration\XmlData\IConfigurationElement.cs" />
+    <Compile Include="Configuration\XmlData\ProcedureData.cs" />
     <Compile Include="Configuration\XmlData\ScheduleData.cs" />
     <Compile Include="Configuration\XmlData\ServerData.cs" />
     <Compile Include="Configuration\XmlData\TargetData.cs" />

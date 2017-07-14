@@ -17,17 +17,6 @@ namespace FileConductor.Schedule
             _interval = new Timer(interval);
         }
 
-        public void Start()
-        {
-            _interval.Start();
-        }
-
-
-        public void Stop()
-        {
-            _interval.Stop();
-        }
-
         /// <param name="action">Handler for action after each interval</param>
         public void StartSchedule(Action action)
         {
@@ -36,6 +25,11 @@ namespace FileConductor.Schedule
                 action();
             };
             _interval.Start();
+        }
+
+        public void StopSchedule()
+        {
+            _interval.Stop();
         }
     }
 }

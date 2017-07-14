@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using FileConductor.Configuration.XmlData;
@@ -9,6 +10,7 @@ using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.Schedule;
 using Ninject;
+using ProcedureData = FileConductor.Configuration.XmlData.ProcedureData;
 
 namespace FileConductor.Configuration
 {
@@ -36,7 +38,7 @@ namespace FileConductor.Configuration
             var destinationTarget =
                 configurationData.Targets.First(x => x.ServerId == watcher.WatcherRouting.DestinationTargetId);
             var destinationServer = configurationData.Servers.First(x => x.Id == destinationTarget.ServerId);
-            var procedureData = configurationData.Databases.FirstOrDefault(x => x.Id == watcher.DatabaseId);
+            var procedureData = configurationData.Procedures.FirstOrDefault(x => x.Id == watcher.ProcedureId);
             var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, schedule,
                 sourceTarget, sourceServer, watcher, procedureData);
             var receiver = TransportFactory.GetTransfer(sourceServer.Protocol);
@@ -61,7 +63,7 @@ namespace FileConductor.Configuration
 
         private OperationProperties FillOperationsProperties(TargetData destinationTarget, ServerData destinationServer,
             ScheduleData schedule, TargetData sourceTarget, ServerData sourceServer, WatcherData watcher,
-            DatabaseData dbData)
+            ProcedureData dbData)
         {
             var operationProperties = new OperationProperties(OperationScheduleFactory.GetSchedule(schedule))
             {
@@ -75,9 +77,35 @@ namespace FileConductor.Configuration
             if (dbData != null)
             {
                 operationProperties.ProcedureData =
-                    new ProcedureData(dbData.Host, dbData.User, dbData.Password, dbData.Name, dbData.DatabaseName);
+                    new Operations.ProcedureData(dbData.Host, dbData.User, dbData.Password, dbData.Name, dbData.DatabaseName);
             }
             return operationProperties;
+        }
+
+        public T GetEmptyObject<T>(ConfigurationData configuration) where T: IConfigurationElement, new()
+        {
+            // Configuration.Watchers.Add(watcher);
+            var properties = configuration.GetType().GetProperties();
+            var propertyOfType = properties.FirstOrDefault(x => x.PropertyType == typeof(List<T>));
+            if(propertyOfType == null) throw new Exception("Something wrong with configuration");
+            List<T> castedProperty = (List<T>)propertyOfType.GetValue(configuration);
+            int i = 1;
+            var newWatcherData = new T();
+            bool idNotFound = true;
+            while (idNotFound)
+            {
+                if (castedProperty.Any(x => x.Id == i))
+                {
+                    i++;
+                }
+                else
+                {
+                    idNotFound = false;
+                }
+            }
+            newWatcherData.Id = i;
+            castedProperty.Add(newWatcherData);
+            return newWatcherData;
         }
     }
 }
