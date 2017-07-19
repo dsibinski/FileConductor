@@ -9,6 +9,7 @@ using FileConductor.FileTransport;
 using FileConductor.Operations;
 using FileConductor.Protocols;
 using FileConductor.Schedule;
+using FileConductor.Transport;
 using Ninject;
 using ProcedureData = FileConductor.Configuration.XmlData.ProcedureData;
 
@@ -16,6 +17,9 @@ namespace FileConductor.Configuration
 {
     public class ConfigurationService : IConfigurationService
     {
+        [Inject]
+        public ITransportDictionary TransportDictionary { get; set; }
+
         private XmlSerializer<ConfigurationData> serializer;
         public void InitializeOperationProcessor(IOperationProcessor operationProcessor,ConfigurationData configurationData)
         {
@@ -41,8 +45,8 @@ namespace FileConductor.Configuration
             var procedureData = configurationData.Procedures.FirstOrDefault(x => x.Id == watcher.ProcedureId);
             var operationProperties = FillOperationsProperties(destinationTarget, destinationServer, schedule,
                 sourceTarget, sourceServer, watcher, procedureData);
-            var receiver = TransportFactory.GetTransfer(sourceServer.Protocol);
-            var sender = TransportFactory.GetTransfer(destinationServer.Protocol);
+            var receiver = TransportDictionary.GetTransfer(sourceServer.Protocol);
+            var sender = TransportDictionary.GetTransfer(destinationServer.Protocol);
             var protocol = new Protocol(receiver, sender);
             var operation = new Operation(protocol, operationProperties,watcher.Id);
             operation.Code = watcher.Code;

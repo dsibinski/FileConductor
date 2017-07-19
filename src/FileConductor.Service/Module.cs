@@ -6,6 +6,7 @@ using FileConductor.Operations.ProcedureExecution;
 using FileConductor.Protocols;
 using FileConductor.ProxyFile;
 using FileConductor.Schedule;
+using FileConductor.Transport;
 using Ninject.Modules;
 
 namespace FileConductor.Service
@@ -16,6 +17,7 @@ namespace FileConductor.Service
         {
             Bind<IFileConductor>().To<FileConductor>();
             Bind<IConfigurationService>().To<ConfigurationService>();
+            Bind<ITransportDictionary>().To<TransportDictionary>();
             Bind<ILoggingService>().To<LoggingService.LoggingService>();
             Bind<IOperationProcessor>().To<OperationProcessor>();
             Bind<IOperationExecutor>().To<OperationExecutor>();

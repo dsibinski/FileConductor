@@ -6,6 +6,7 @@ using FileConductor.Operations;
 using FileConductor.Operations.ProcedureExecution;
 using FileConductor.ProxyFile;
 using FileConductor.Schedule;
+using FileConductor.Transport;
 using Ninject.Modules;
 
 namespace ConfigurationTool
@@ -15,6 +16,7 @@ namespace ConfigurationTool
         public override void Load()
         {
             Bind<IFileConductor>().To<FileConductor.FileConductor>();
+            Bind<ITransportDictionary>().To<TransportDictionary>();
             Bind<IConfigurationService>().To<ConfigurationService>();
             Bind<ILoggingService>().To<LoggingService>();
             Bind<IOperationProcessor>().To<OperationProcessor>();

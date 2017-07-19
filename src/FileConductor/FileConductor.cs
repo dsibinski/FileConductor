@@ -31,7 +31,6 @@ namespace FileConductor
         {
             try
             {
-                TransportManager.Initialize();
                 ConfigurationService.InitializeOperationProcessor(OperationProcessor,configurationData);
             }
             catch (Exception exception)
