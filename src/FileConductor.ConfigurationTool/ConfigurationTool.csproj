@@ -90,6 +90,7 @@
     <Compile Include="Controls\CommonField.xaml.cs">
       <DependentUpon>CommonField.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomLoggingTarget.cs" />
     <Compile Include="Entities\Watcher.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\Annotations1.cs" />

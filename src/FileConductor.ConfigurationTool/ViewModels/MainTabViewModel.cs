@@ -18,19 +18,28 @@ using FileConductor.Protocols;
 using FileConductor.ProxyFile;
 using Microsoft.Expression.Interactivity.Core;
 using Ninject;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 
 namespace ConfigurationTool.ViewModels
 {
+
+    
     public class MainTabViewModel : Tab
     {
         public IFileConductor FileConductor { get; set; }
         public IConfigurationService ConfigurationService { get; set; }
-        public MainTabViewModel(ITabController controller) : base(controller) 
+        public MainTabViewModel(ITabController controller) : base(controller)
         {
+            IsClosable = false;
+            SimpleConfigurator.ConfigureForTargetLogging(LoggingTarget);
             Name = "Watchers";
-            TestCommand = new ActionCommand(TestWatcher);
+            StartCommand = new ActionCommand(TestWatcher);
+            StopCommand = new ActionCommand(StopWatcher);
             EditCommand = new ActionCommand(EditWatcher);
             AddCommand = new ActionCommand(AddWatcher);
+            ClearCommand = new ActionCommand(ClearLogs);
             SaveCommand = new ActionCommand(SaveConfig);
             RemoveCommand = new ActionCommand(RemoveWatcher);
             var kernel = new StandardKernel();
@@ -40,6 +49,15 @@ namespace ConfigurationTool.ViewModels
             LoadConfiguration();
         }
 
+        private void StopWatcher()
+        {
+          FileConductor.Stop();
+        }
+
+        private void ClearLogs()
+        {
+           LoggingTarget.Clear();
+        }
 
         private void AddWatcher()
         {
@@ -88,10 +106,12 @@ namespace ConfigurationTool.ViewModels
         public ActionCommand SaveCommand { get; set; }
         public ActionCommand AddCommand { get; set; }
         public ActionCommand RemoveCommand { get; set; }
-        public ActionCommand TestCommand { get; set; }
+        public ActionCommand StartCommand { get; set; }
+        public ActionCommand StopCommand { get; set; }
+        public ActionCommand ClearCommand { get; set; }
         public ConfigurationData Configuration { get; set; }
         public ObservableCollection<Watcher> Watchers { get; set; }
-        public ILoggingService LoggingService { get; set; }
+        public CustomLoggingTarget LoggingTarget { get; set; } = new CustomLoggingTarget();
 
     }
 }

@@ -40,6 +40,9 @@
                     <TabControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type tabs:ITab}">
                             <DockPanel >
+                                <DockPanel.InputBindings>
+                                    <MouseBinding Command="{Binding CloseCommand}" Gesture="MiddleClick" />
+                                </DockPanel.InputBindings>
                                 <TextBlock DockPanel.Dock="Left"> <Run Text="{Binding Name}"/></TextBlock>
                             </DockPanel>
                         </DataTemplate>
