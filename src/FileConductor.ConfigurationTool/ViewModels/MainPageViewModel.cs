@@ -34,7 +34,7 @@ namespace ConfigurationTool.ViewModels
 
         private void NewTab()
         {
-            CurrentTabController.OpenTab(new DatabaseEditTabViewModel(CurrentTabController));
+            CurrentTabController.OpenTab(new MainTabViewModel(CurrentTabController));
         }
     }
 }

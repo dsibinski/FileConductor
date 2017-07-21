@@ -4,12 +4,16 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using FileConductor.Configuration.XmlData;
 using ConfigurationTool.Properties;
 using ConfigurationTool.Tabs;
+using FileConductor.Configuration;
+using FileConductor.Operations;
 using Microsoft.Expression.Interactivity.Core;
+using Ninject;
 
 namespace ConfigurationTool.ViewModels
 {
@@ -21,17 +25,32 @@ namespace ConfigurationTool.ViewModels
         private string _user;
         private string _password;
         private string _dbName;
+        private string _code;
+
+        public ProcedureData Procedure { get; set; }
 
 
-        public DatabaseEditTabViewModel(ITabController controller) : base(controller)
+        public DatabaseEditTabViewModel(ITabController controller, ProcedureData procedureData) : base(controller)
         {
-            CheckConnectionCommand = new ActionCommand(CheckDBConenction);
+            Procedure = procedureData;
+            CheckConnectionCommand = new ActionCommand(CheckDbConenction);
             CloseHandler = new ActionCommand(CloseAction);
+            SaveCommand = new ActionCommand(SaveDatabase);
             Name = "Database";
+            SelectedDatabaseName = procedureData.Name;
+
         }
+
+        private void SaveDatabase()
+        {
+            OnProcedureModified?.Invoke();
+        }
+
+        public event Action OnProcedureModified;
 
         public ActionCommand CheckConnectionCommand { get; set; }
         public ActionCommand CloseHandler { get; set; }
+        public ActionCommand SaveCommand { get; set; }
 
         public string SelectedDatabaseName
         {
@@ -43,6 +62,15 @@ namespace ConfigurationTool.ViewModels
             }
         }
 
+        public string Code
+        {
+            get { return _code; }
+            set
+            {
+                _code = value;
+                OnPropertyChanged(nameof(Code));
+            }
+        }
 
         public string Host
         {
@@ -128,7 +156,7 @@ namespace ConfigurationTool.ViewModels
         }
 
 
-        private void CheckDBConenction()
+        private void CheckDbConenction()
         {
             IsServerConnected();
         }

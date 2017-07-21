@@ -16,9 +16,20 @@
                     <StackPanel HorizontalAlignment ="Left" Orientation="Vertical">
                         <controls:CommonField Text="Code : " Value="{Binding Watcher.WatcherData.Code}" HorizontalAlignment="Left"></controls:CommonField>
                         <controls:CommonField Text="Regex : " Value="{Binding Watcher.WatcherData.FileNameRegex}" HorizontalAlignment="Left"></controls:CommonField>
-                        <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:CommonComboBox>
-                        <!--<controls:ComboBoxWithFields></controls:ComboBoxWithFields>-->
                         <StackPanel Orientation="Horizontal">
+                            <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:CommonComboBox>
+                            <Button Content="Add" Margin="5"></Button>
+                            <Button Content="Edit" Margin="5"></Button>
+                            <GroupBox Margin="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontStyle="Italic" Content="path: "></Label>
+                                    <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.Source.Path}"></TextBox>
+                                    <Label FontStyle="Italic" Content="protocol: "></Label>
+                                    <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.SourceServerData.Protocol}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                            <StackPanel Orientation="Horizontal">
                             <controls:CommonComboBox Text="Source path:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
                             <Button Content="Add" Margin="5"></Button>
                             <Button Content="Edit" Margin="5"></Button>
@@ -49,9 +60,9 @@
                             <Label Content="Trigger SQL procedure"></Label>
                         </StackPanel>
                         <WrapPanel  IsEnabled ="{Binding IsProcedureTriggered}">
-                            <controls:CommonComboBox Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding Configuration.Databases}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:CommonComboBox>
-                            <Button Content="Add" Margin="5"></Button>
-                            <Button Content="Edit" Margin="5"></Button>
+                            <controls:CommonComboBox Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding Configuration.Procedures}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:CommonComboBox>
+                            <Button Content="Add" Command ="{Binding AddProcedureCommand}" Margin="5"></Button>
+                            <Button Content="Edit" Command ="{Binding EditProcedureCommand}" Margin="5"></Button>
                         </WrapPanel>
                     </StackPanel>
                 </Grid>

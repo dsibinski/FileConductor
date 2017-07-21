@@ -9,25 +9,28 @@
              xmlns:views="clr-namespace:ConfigurationTool.Views"
 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             Height="250" Width="400">
+             d:DesignHeight="300" d:DesignWidth="300" Width="400">
     <Grid>
-       <StackPanel Orientation="Vertical" Margin="10">
-            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+       <StackPanel Orientation="Vertical" Margin="10" HorizontalAlignment="Center">
+            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Width ="50" Text="Code :"></TextBlock>
+                <TextBox Width="150" Text="{Binding Procedure.Code}"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Left">
                <TextBlock Width ="50" Text="Host :"></TextBlock>
-                <TextBox Width="150" Text="{Binding Host}"></TextBox>
+                <TextBox Width="150" Text="{Binding Procedure.Host}"></TextBox>
             </StackPanel>
-            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Left">
                 <TextBlock Width ="50" Text="User :"></TextBlock>
-                <TextBox Width="150" Text="{Binding User}"></TextBox>
+                <TextBox Width="150" Text="{Binding Procedure.User}"></TextBox>
             </StackPanel>
-            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Width ="50" Text="Password :"></TextBlock>
-                <!--<PasswordBox Width="150" views:DatabaseEditView.BindPassword="true"  views:DatabaseEditView.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Width ="60" Text="Password :"></TextBlock>
+                <PasswordBox Width="150" views:DatabaseEditView.BindPassword="true"  views:DatabaseEditView.BoundPassword="{Binding Path=Procedure.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Width ="50" Text="DbName :"></TextBlock>
-                <ComboBox Width="150" Text ="{Binding DbName}" SelectedItem="{Binding SelectedDatabaseName}" ItemsSource="{Binding DatabaseList}" IsEditable="True" IsTextSearchEnabled="True" >
+            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="left">
+                <TextBlock Width ="60" Text="DbName :"></TextBlock>
+                <ComboBox Width="150" Text ="{Binding Procedure.Name}" SelectedItem="{Binding SelectedDatabaseName}" ItemsSource="{Binding DatabaseList}" IsEditable="True" IsTextSearchEnabled="True" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName ="DropDownOpened">
                             <core:CallMethodAction TargetObject="{Binding}" MethodName="LoadDatabases"/>
@@ -37,7 +40,10 @@
                 </ComboBox>
             </StackPanel>
            <Button Content="Check connection" HorizontalAlignment="Center" Margin ="10" Command="{Binding CheckConnectionCommand}"></Button>
-           <Button Content="Save" HorizontalAlignment="Center" Margin="10"></Button>
+           <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Save" HorizontalAlignment="Center" Margin="10" Command="{Binding SaveCommand}"></Button>
+                <Button Content="Exit" Command="{Binding CloseCommand}" Margin="10"></Button>
+            </WrapPanel>
 
         </StackPanel>
     </Grid>

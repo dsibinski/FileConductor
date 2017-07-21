@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Timers;
+using FileConductor.Configuration.XmlData;
 using FileConductor.Schedule.OperationSchedule;
 
 namespace FileConductor.Operations

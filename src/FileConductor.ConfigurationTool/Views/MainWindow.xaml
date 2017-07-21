@@ -15,16 +15,8 @@
         </intr:EventTrigger>
     </intr:Interaction.Triggers>
     <Grid Style="{StaticResource MainGridStyle}">
-        <!--Style="{ MainGridStyle}">-->
         <DockPanel >
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
-                <Grid VerticalAlignment="Top" >
-                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                        <Button x:Name="btnLaunch" Margin="10" Content="MOQ_Launch" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Command="{Binding NewTabCommand}"/>
-                        <Button x:Name="btnInstallation" Margin="10" Content="MOQ_Install" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
-                        <Button x:Name="settings" Margin="10" Content="MOQ_Settings" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75"/>
-                    </WrapPanel>
-                </Grid>
                 <TabControl  Name="MainTabControl" DockPanel.Dock="Top" ItemsSource="{Binding CurrentTabController.Tabs}" SelectedItem="{Binding CurrentTabController.SelectedTab}">
                     <TabControl.Resources>
                         <DataTemplate DataType="{x:Type viewModels1:DatabaseEditTabViewModel}">

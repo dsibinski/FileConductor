@@ -37,9 +37,9 @@ namespace FileConductor.Operations.ProcedureExecution
         public void ExecuteProcedure(IOperation operation)
         {
             string host = operation.Properties.ProcedureData.Host;
-            string login = operation.Properties.ProcedureData.Login;
+            string login = operation.Properties.ProcedureData.User;
             string password = operation.Properties.ProcedureData.Password;
-            string procedureName = operation.Properties.ProcedureData.ProcedureName;
+            string procedureName = operation.Properties.ProcedureData.Name;
             string databaseName = operation.Properties.ProcedureData.DatabaseName;
 
             ExecuteProcedure(host,databaseName,login,password,procedureName);

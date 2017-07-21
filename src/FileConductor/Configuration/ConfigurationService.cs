@@ -80,8 +80,7 @@ namespace FileConductor.Configuration
             };
             if (dbData != null)
             {
-                operationProperties.ProcedureData =
-                    new Operations.ProcedureData(dbData.Host, dbData.User, dbData.Password, dbData.Name, dbData.DatabaseName);
+                operationProperties.ProcedureData = dbData;
             }
             return operationProperties;
         }
