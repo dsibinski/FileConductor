@@ -4,20 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ConfigurationTool.Controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Name="CustomComboBoxWithFields"
              Style="{StaticResource CommonUserControlStyle}">
     <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
         <WrapPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label  Height="25" VerticalAlignment="Stretch" Content="{Binding ElementName=CustomComboBox, Path=Text}"></Label>
-            <ComboBox Height="25" VerticalAlignment="Stretch" DisplayMemberPath="{Binding ElementName=CustomComboBox, Path=DisplayedProperty}" ItemsSource="{Binding ElementName=CustomComboBox, Path=ItemSource}"  SelectedItem="{Binding ElementName=CustomComboBox,Path=SelectedItem}"></ComboBox>
+            <Label  Height="25" VerticalAlignment="Stretch" Content="{Binding ElementName=CustomComboBoxWithFields, Path=Text}"></Label>
+            <ComboBox Height="25" VerticalAlignment="Stretch" DisplayMemberPath="{Binding ElementName=CustomComboBoxWithFields, Path=DisplayedProperty}" ItemsSource="{Binding ElementName=CustomComboBoxWithFields, Path=ItemSource}"  SelectedItem="{Binding ElementName=CustomComboBoxWithFields,Path=SelectedItem}"></ComboBox>
         </WrapPanel>
-        <Button Margin="5" Width ="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Edit"></Button>
-        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-            <Label FontStyle="Italic" Content="property1: " VerticalAlignment="Center" ></Label>
-            <TextBox IsReadOnly="True" Text="PropertyValue1" VerticalAlignment="Center"/>
-            <Label FontStyle="Italic" Content="property2: "></Label>
-            <TextBox IsReadOnly="True" Text="PropertyValue2" VerticalAlignment="Center"></TextBox>
-        </WrapPanel>
+        <Button Command="{Binding ElementName=CustomComboBoxWithFields, Path=EditCommand}" Margin="2,5,0,5" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Edit"></Button>
+        <Button Margin="2,5,0,5" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add"></Button>
+        <Button Margin="2,5,0,5" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Remove"></Button>
+
     </WrapPanel>
 </UserControl>
 

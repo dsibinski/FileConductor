@@ -28,9 +28,17 @@ namespace ConfigurationTool.ViewModels
             SaveCommand = new ActionCommand(SaveWatcher);
             TestCommand = new ActionCommand(TestWatcher);
             AddProcedureCommand = new ActionCommand(AddProcedure);
+            RemoveProcedureCommand = new ActionCommand(RemoveProcedure);
             EditProcedureCommand = new ActionCommand(EditProcedure);
             Watcher = watcher;
             Configuration = config;
+        }
+
+        private void RemoveProcedure()
+        {
+            Configuration.Procedures.Remove(Watcher.ProcedureData);
+            Watcher.ProcedureData = Configuration.Procedures.FirstOrDefault();
+            OnOperationModified?.Invoke();
         }
 
         [Inject]
@@ -69,6 +77,7 @@ namespace ConfigurationTool.ViewModels
         public ActionCommand SaveCommand { get; set; }
         public ActionCommand TestCommand { get; set; }
         public ActionCommand AddProcedureCommand { get; set; }
+        public ActionCommand RemoveProcedureCommand { get; set; }
         public ActionCommand EditProcedureCommand { get; set; }
 
         public event Action OnOperationModified;

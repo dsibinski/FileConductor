@@ -17,9 +17,7 @@
                         <controls:CommonField Text="Code : " Value="{Binding Watcher.WatcherData.Code}" HorizontalAlignment="Left"></controls:CommonField>
                         <controls:CommonField Text="Regex : " Value="{Binding Watcher.WatcherData.FileNameRegex}" HorizontalAlignment="Left"></controls:CommonField>
                         <StackPanel Orientation="Horizontal">
-                            <controls:CommonComboBox Text="Schedule : " SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:CommonComboBox>
-                            <Button Content="Add" Margin="5"></Button>
-                            <Button Content="Edit" Margin="5"></Button>
+                            <controls:ComboBoxWithFields Text="Schedule : "  SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code"></controls:ComboBoxWithFields>
                             <GroupBox Margin="5">
                                 <StackPanel Orientation="Horizontal">
                                     <Label FontStyle="Italic" Content="path: "></Label>
@@ -29,10 +27,8 @@
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                            <controls:CommonComboBox Text="Source path:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
-                            <Button Content="Add" Margin="5"></Button>
-                            <Button Content="Edit" Margin="5"></Button>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ComboBoxWithFields Text="Source path:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:ComboBoxWithFields>
                             <GroupBox Margin="5">
                                 <StackPanel Orientation="Horizontal">
                                     <Label FontStyle="Italic" Content="path: "></Label>
@@ -43,9 +39,7 @@
                             </GroupBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <controls:CommonComboBox Text="Target path:" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:CommonComboBox>
-                            <Button Content="Add" Margin="5"></Button>
-                            <Button Content="Edit" Margin="5"></Button>
+                            <controls:ComboBoxWithFields Text="Target path:" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:ComboBoxWithFields>
                             <GroupBox Margin="5">
                                 <StackPanel Orientation="Horizontal">
                                     <Label FontStyle="Italic" Content="path: "></Label>
@@ -60,9 +54,9 @@
                             <Label Content="Trigger SQL procedure"></Label>
                         </StackPanel>
                         <WrapPanel  IsEnabled ="{Binding IsProcedureTriggered}">
-                            <controls:CommonComboBox Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding Configuration.Procedures}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:CommonComboBox>
+                            <controls:ComboBoxWithFields  EditCommand ="{Binding EditProcedureCommand}" Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding Configuration.Procedures}" DisplayedProperty="Code" HorizontalAlignment="Left"></controls:ComboBoxWithFields>
                             <Button Content="Add" Command ="{Binding AddProcedureCommand}" Margin="5"></Button>
-                            <Button Content="Edit" Command ="{Binding EditProcedureCommand}" Margin="5"></Button>
+                            <Button Content="Remove" Command ="{Binding RemoveProcedureCommand}" Margin="5"></Button>
                         </WrapPanel>
                     </StackPanel>
                 </Grid>
