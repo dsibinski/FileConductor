@@ -21,6 +21,7 @@
   <servers>
     <server>
       <id>1</id>
+      <code>lokalny</code>
       <protocol>Local</protocol>
       <ip>localhost</ip>
       <user></user>
@@ -29,6 +30,7 @@
     </server>
     <server>
       <id>2</id>
+      <code>ftp</code>
       <protocol>FTP</protocol>
       <ip></ip>
       <user></user>

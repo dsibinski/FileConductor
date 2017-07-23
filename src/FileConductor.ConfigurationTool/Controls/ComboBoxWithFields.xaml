@@ -13,8 +13,8 @@
             <ComboBox Height="25" VerticalAlignment="Stretch" DisplayMemberPath="{Binding ElementName=CustomComboBoxWithFields, Path=DisplayedProperty}" ItemsSource="{Binding ElementName=CustomComboBoxWithFields, Path=ItemSource}"  SelectedItem="{Binding ElementName=CustomComboBoxWithFields,Path=SelectedItem}"></ComboBox>
         </WrapPanel>
         <Button Command="{Binding ElementName=CustomComboBoxWithFields, Path=EditCommand}" Margin="2,5,0,5" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Edit"></Button>
-        <Button Margin="2,5,0,5" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add"></Button>
-        <Button Margin="2,5,0,5" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Remove"></Button>
+        <Button Command="{Binding ElementName=CustomComboBoxWithFields, Path=AddCommand}" Margin="2,5,0,5" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add"></Button>
+        <Button Command="{Binding ElementName=CustomComboBoxWithFields, Path=RemoveCommand}" Margin="2,5,0,5" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Remove"></Button>
 
     </WrapPanel>
 </UserControl>

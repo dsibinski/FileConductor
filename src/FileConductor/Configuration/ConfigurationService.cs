@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -87,7 +88,7 @@ namespace FileConductor.Configuration
 
         public T GetEmptyObject<T>(ConfigurationData configuration) where T: IConfigurationElement, new()
         {
-            List<T> castedListOfProperties = GetCastedListOfProperties<T>(configuration);
+            ObservableCollection<T> castedListOfProperties = GetCastedListOfProperties<T>(configuration);
             int i = 1;
             var newWatcherData = new T();
             bool idNotFound = true;
@@ -109,16 +110,16 @@ namespace FileConductor.Configuration
 
         public void RemoveObject<T>(ConfigurationData configuration, T obj) where T : IConfigurationElement, new()
         {
-            List<T> castedListOfProperties = GetCastedListOfProperties<T>(configuration);
+            ObservableCollection<T> castedListOfProperties = GetCastedListOfProperties<T>(configuration);
             castedListOfProperties.Remove(obj);
         }
 
-        private List<T> GetCastedListOfProperties<T>(ConfigurationData configuration) where T : new()
+        private ObservableCollection<T> GetCastedListOfProperties<T>(ConfigurationData configuration) where T : new()
         {
             var properties = configuration.GetType().GetProperties();
-            var propertyOfType = properties.FirstOrDefault(x => x.PropertyType == typeof(List<T>));
+            var propertyOfType = properties.FirstOrDefault(x => x.PropertyType == typeof(ObservableCollection<T>));
             if (propertyOfType == null) throw new Exception("Something wrong with configuration");
-            return (List<T>)propertyOfType.GetValue(configuration);
+            return (ObservableCollection<T>)propertyOfType.GetValue(configuration);
         }
     }
 }
