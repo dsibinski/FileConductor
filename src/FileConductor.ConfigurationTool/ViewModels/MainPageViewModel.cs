@@ -29,7 +29,7 @@ namespace ConfigurationTool.ViewModels
 
         private void SaveAndClose()
         {
-            MessageBox.Show("Do You want to save?"); //TODO: Wrong behaviour, it shouldn't happend in view model
+           /* MessageBox.Show("Do You want to save?");*/ //TODO: Wrong behaviour, it shouldn't happend in view model
         }
 
         private void NewTab()

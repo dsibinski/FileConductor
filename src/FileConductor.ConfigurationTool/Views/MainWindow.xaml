@@ -28,6 +28,9 @@
                         <DataTemplate DataType="{x:Type viewModels1:MainTabViewModel}">
                             <views:MainTabView/>
                         </DataTemplate>
+                        <DataTemplate DataType="{x:Type viewModels1:TargetEditViewModel}">
+                            <views:TargetEditView/>
+                        </DataTemplate>
                     </TabControl.Resources>
                     <TabControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type tabs:ITab}">

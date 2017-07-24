@@ -7,15 +7,23 @@
     </Style>
     
     <Style x:Key="CommonWrapPanel" TargetType="WrapPanel">
-        <Setter Property="Orientation" Value="Horizontal"></Setter>
+        
+        <Setter Property="Orientation" Value="Vertical"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="10"></Setter>
     </Style>
 
     <Style x:Key="CommonUserControlStyle" TargetType="UserControl">
+        <!--<Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Button Content="WAGAasdassd"></Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>-->
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="Height" Value="40"></Setter>
     </Style>
 
-    <!--<Style x:Key="ComboBoxWithFieldsStyle" TargetType="controls:ComboBoxWithFields">
-        <Setter Property="Text" Value="Yolo"></Setter>
-    </Style>-->
+    <!--<Style x:Key="CommonWrapP"></Style>-->
 </ResourceDictionary>

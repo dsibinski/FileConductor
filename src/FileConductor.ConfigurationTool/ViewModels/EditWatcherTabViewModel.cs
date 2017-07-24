@@ -30,8 +30,16 @@ namespace ConfigurationTool.ViewModels
             AddProcedureCommand = new ActionCommand(AddProcedure);
             RemoveProcedureCommand = new ActionCommand(RemoveProcedure);
             EditProcedureCommand = new ActionCommand(EditProcedure);
+            EditTargetCommand = new ActionCommand(EditTarget);
             Watcher = watcher;
             Configuration = config;
+        }
+
+        private void EditTarget()
+        {
+            var dbEditVm = new TargetEditViewModel(TabController, Watcher);
+            dbEditVm.OnTargetModified += SaveWatcher;
+            TabController.OpenTab(dbEditVm);
         }
 
         private void RemoveProcedure()
@@ -76,6 +84,7 @@ namespace ConfigurationTool.ViewModels
         public ConfigurationData Configuration { get; set; }
         public ActionCommand SaveCommand { get; set; }
         public ActionCommand TestCommand { get; set; }
+        public ActionCommand EditTargetCommand { get; set; }
         public ActionCommand AddProcedureCommand { get; set; }
         public ActionCommand RemoveProcedureCommand { get; set; }
         public ActionCommand EditProcedureCommand { get; set; }

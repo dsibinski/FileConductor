@@ -20,7 +20,7 @@
                             <controls:ComboBoxWithFields Text="Schedule : "  SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding Configuration.Schedules}" DisplayedProperty="Code"></controls:ComboBoxWithFields>
                          </WrapPanel>
                         <WrapPanel Orientation="Horizontal">
-                            <controls:ComboBoxWithFields Text="Source path:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:ComboBoxWithFields>
+                            <controls:ComboBoxWithFields Text="Source path:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code" EditCommand="{Binding EditTargetCommand}"></controls:ComboBoxWithFields>
                             <GroupBox Margin="5">
                                 <WrapPanel Orientation="Vertical">
                                     <WrapPanel Orientation="Horizontal">
@@ -34,7 +34,7 @@
                             </GroupBox>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal">
-                            <controls:ComboBoxWithFields Text="Target path:" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code"></controls:ComboBoxWithFields>
+                            <controls:ComboBoxWithFields Text="Target path:" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding Configuration.Targets}" DisplayedProperty="Code" EditCommand="{Binding EditTargetCommand}"></controls:ComboBoxWithFields>
                             <GroupBox Margin="5">
                                 <WrapPanel Orientation="Vertical ">
                                     <WrapPanel Orientation="Horizontal">
