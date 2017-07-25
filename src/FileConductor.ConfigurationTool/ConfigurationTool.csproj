@@ -90,6 +90,9 @@
     <Compile Include="Controls\CommonField.xaml.cs">
       <DependentUpon>CommonField.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NavigationFields.xaml.cs">
+      <DependentUpon>NavigationFields.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomLoggingTarget.cs" />
     <Compile Include="Entities\Watcher.cs" />
     <Compile Include="Module.cs" />
@@ -120,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CommonField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NavigationFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

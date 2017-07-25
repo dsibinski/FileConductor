@@ -9,9 +9,11 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <WrapPanel Style="{StaticResource CommonWrapPanel}" >
-            <controls:CommonField Text="Code: " Value="{Binding Watcher.Target.Code}"></controls:CommonField>
-            <controls:CommonField Text="Path: " Value="{Binding Watcher.Target.Path}"></controls:CommonField>
+            <controls:CommonField Text="Code: " Value="{Binding TargetData.Code}"></controls:CommonField>
+            <controls:CommonField Text="Path: " Value="{Binding TargetData.Path}"></controls:CommonField>
              <controls:ComboBoxWithFields Text="Server : "></controls:ComboBoxWithFields>
-          </WrapPanel>  
+             <controls:NavigationFields></controls:NavigationFields>
+        </WrapPanel>  
+     
     </Grid>
 </UserControl>

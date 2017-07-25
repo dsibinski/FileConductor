@@ -17,7 +17,7 @@ namespace ConfigurationTool.ViewModels
 {
     public class EditWatcherTabViewModel : Tab
     {
-        public EditWatcherTabViewModel(ITabController controller, ConfigurationData config, Watcher watcher)
+        public EditWatcherTabViewModel(ITabController controller, Watcher watcher)
             : base(controller)
         {
             var kernel = new StandardKernel();
@@ -25,32 +25,33 @@ namespace ConfigurationTool.ViewModels
             OperationExecutor = kernel.Get<IOperationExecutor>();
             ConfigurationService = kernel.Get<IConfigurationService>();
             Name = watcher.WatcherData.Code;
-            SaveCommand = new ActionCommand(SaveWatcher);
             TestCommand = new ActionCommand(TestWatcher);
             AddProcedureCommand = new ActionCommand(AddProcedure);
             RemoveProcedureCommand = new ActionCommand(RemoveProcedure);
             EditProcedureCommand = new ActionCommand(EditProcedure);
-            EditTargetCommand = new ActionCommand(EditTarget);
+            EditSourceTargetCommand = new ActionCommand(EditSourceTarget);
+            EditDestinationTargetCommand = new ActionCommand(EditDestinationTarget);
             Watcher = watcher;
-            Configuration = config;
+          
         }
 
-        private void EditTarget()
+        private void EditDestinationTarget()
         {
-            var dbEditVm = new TargetEditViewModel(TabController, Watcher);
-            dbEditVm.OnTargetModified += SaveWatcher;
+            var dbEditVm = new TargetEditViewModel(TabController, Watcher.Destination);
+            TabController.OpenTab(dbEditVm);
+        }
+
+        private void EditSourceTarget()
+        {
+            var dbEditVm = new TargetEditViewModel(TabController, Watcher.Source);
             TabController.OpenTab(dbEditVm);
         }
 
         private void RemoveProcedure()
         {
-            Configuration.Procedures.Remove(Watcher.ProcedureData);
-            Watcher.ProcedureData = Configuration.Procedures.FirstOrDefault();
-            OnOperationModified?.Invoke();
+            TabController.Configuration.Procedures.Remove(Watcher.ProcedureData);
         }
 
-        [Inject]
-        public IConfigurationService ConfigurationService { get; set; }
 
         [Inject]
         public IOperationExecutor OperationExecutor { get; set; }
@@ -67,9 +68,9 @@ namespace ConfigurationTool.ViewModels
                 }
                 else
                 {
-                    if (Configuration.Procedures.Any())
+                    if (TabController.Configuration.Procedures.Any())
                     {
-                        Watcher.ProcedureData = Configuration.Procedures.FirstOrDefault();
+                        Watcher.ProcedureData = TabController.Configuration.Procedures.FirstOrDefault();
                     }
                     else
                     {
@@ -81,22 +82,19 @@ namespace ConfigurationTool.ViewModels
         }
 
         public Watcher Watcher { get; set; }
-        public ConfigurationData Configuration { get; set; }
-        public ActionCommand SaveCommand { get; set; }
         public ActionCommand TestCommand { get; set; }
-        public ActionCommand EditTargetCommand { get; set; }
+        public ActionCommand EditSourceTargetCommand { get; set; }
+        public ActionCommand EditDestinationTargetCommand { get; set; }
         public ActionCommand AddProcedureCommand { get; set; }
         public ActionCommand RemoveProcedureCommand { get; set; }
         public ActionCommand EditProcedureCommand { get; set; }
 
-        public event Action OnOperationModified;
 
         private void AddProcedure()
         {
-            var procedureData = ConfigurationService.GetEmptyObject<ProcedureData>(Configuration);
+            var procedureData = ConfigurationService.GetEmptyObject<ProcedureData>(TabController.Configuration);
             procedureData.Code = "New procedure";
             var dbEditVm = new DatabaseEditTabViewModel(TabController, procedureData);
-            dbEditVm.OnProcedureModified += SaveWatcher;
             Watcher.ProcedureData = procedureData;
             TabController.OpenTab(dbEditVm);
         }
@@ -104,19 +102,13 @@ namespace ConfigurationTool.ViewModels
         private void EditProcedure()
         {
             var dbEditVm = new DatabaseEditTabViewModel(TabController, Watcher.ProcedureData);
-            dbEditVm.OnProcedureModified += SaveWatcher;
             TabController.OpenTab(dbEditVm);
         }
 
         private void TestWatcher()
         {
-            var operation = ConfigurationService.GetOperation(Configuration, Watcher.WatcherData);
+            var operation = ConfigurationService.GetOperation(TabController.Configuration, Watcher.WatcherData);
             OperationExecutor.Execute(operation);
-        }
-
-        private void SaveWatcher()
-        {
-            OnOperationModified?.Invoke();
         }
     }
 }

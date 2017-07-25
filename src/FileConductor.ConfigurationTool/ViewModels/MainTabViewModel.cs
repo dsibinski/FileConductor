@@ -29,7 +29,6 @@ namespace ConfigurationTool.ViewModels
     public class MainTabViewModel : Tab
     {
         public IFileConductor FileConductor { get; set; }
-        public IConfigurationService ConfigurationService { get; set; }
         public MainTabViewModel(ITabController controller) : base(controller)
         {
             IsClosable = false;
@@ -40,7 +39,6 @@ namespace ConfigurationTool.ViewModels
             EditCommand = new ActionCommand(EditWatcher);
             AddCommand = new ActionCommand(AddWatcher);
             ClearCommand = new ActionCommand(ClearLogs);
-            SaveCommand = new ActionCommand(SaveConfig);
             RemoveCommand = new ActionCommand(RemoveWatcher);
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
@@ -61,43 +59,37 @@ namespace ConfigurationTool.ViewModels
 
         private void AddWatcher()
         {
-            var watcher = ConfigurationService.GetEmptyObject<WatcherData>(Configuration);
+            var watcher = ConfigurationService.GetEmptyObject<WatcherData>(TabController.Configuration);
             watcher.Code = "New watcher";
-            Watchers.Add(new Watcher(Configuration, watcher));
+            Watchers.Add(new Watcher(TabController.Configuration, watcher));
         }
 
         private void RemoveWatcher()
         {
-            ConfigurationService.RemoveObject(Configuration,SelectedWatcher.WatcherData);
+            ConfigurationService.RemoveObject(TabController.Configuration,SelectedWatcher.WatcherData);
             Watchers.Remove(SelectedWatcher);
         }
 
         private void LoadConfiguration()
         {
-            Configuration = ConfigurationService.GetConfigurationData();
             Watchers = new ObservableCollection<Watcher>();
-            foreach (var watcherData in Configuration.Watchers)
+            foreach (var watcherData in TabController.Configuration.Watchers)
             {
-                Watchers.Add(new Watcher(Configuration, watcherData));
+                Watchers.Add(new Watcher(TabController.Configuration, watcherData));
             }
         }
 
         private void EditWatcher()
         {
             if (SelectedWatcher == null) return;
-            var editWatcherViewModel = new EditWatcherTabViewModel(TabController,Configuration, SelectedWatcher);
-            editWatcherViewModel.OnOperationModified += SaveConfig;
+            var editWatcherViewModel = new EditWatcherTabViewModel(TabController, SelectedWatcher);
             TabController.OpenTab(editWatcherViewModel);
         }
 
-        private void SaveConfig()
-        {
-           ConfigurationService.SaveConfigurationData(Configuration);
-        }
 
         private void TestWatcher()
         {
-            FileConductor.Start(Configuration);
+            FileConductor.Start(TabController.Configuration);
         }
 
 
@@ -109,7 +101,6 @@ namespace ConfigurationTool.ViewModels
         public ActionCommand StartCommand { get; set; }
         public ActionCommand StopCommand { get; set; }
         public ActionCommand ClearCommand { get; set; }
-        public ConfigurationData Configuration { get; set; }
         public ObservableCollection<Watcher> Watchers { get; set; }
         public CustomLoggingTarget LoggingTarget { get; set; } = new CustomLoggingTarget();
 

@@ -11,10 +11,11 @@ namespace ConfigurationTool.ViewModels
 {
     public class TargetEditViewModel : Tab
     {
-        public event Action OnTargetModified;
-        public TargetEditViewModel(ITabController tabController, Watcher data) : base(tabController)
+        public TargetData TargetData { get; set; }
+        public TargetEditViewModel(ITabController tabController, TargetData data) : base(tabController)
         {
-            Name = data.ProcedureData.Code;
+            Name = data.Code;
+            TargetData = data;
         }
     }
 }

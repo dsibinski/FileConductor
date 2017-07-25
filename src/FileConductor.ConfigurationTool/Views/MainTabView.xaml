@@ -10,7 +10,6 @@
              xmlns:nlogViewer="clr-namespace:NlogViewer;assembly=NlogViewer"
              x:Class="ConfigurationTool.Views.MainTabView" 
              mc:Ignorable="d" >
-
     <Grid>
         <StackPanel  Orientation="Vertical" VerticalAlignment="top" HorizontalAlignment="Stretch">
             <Grid Height="auto">
