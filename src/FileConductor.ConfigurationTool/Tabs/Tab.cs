@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using FileConductor.Configuration;
 using Microsoft.Expression.Interactivity.Core;
+using Ninject;
 
 namespace ConfigurationTool.Tabs
 {
@@ -24,6 +26,9 @@ namespace ConfigurationTool.Tabs
 
         private void SaveConfig()
         {
+            var kernel = new StandardKernel();
+            kernel.Load(Assembly.GetExecutingAssembly());
+            ConfigurationService = kernel.Get<IConfigurationService>(); //TODO: Need to be changed
             ConfigurationService.SaveConfigurationData(TabController.Configuration);
         }
 
@@ -46,6 +51,7 @@ namespace ConfigurationTool.Tabs
         }
 
         public ITabController TabController { get; set; }
+        [Inject]
         public IConfigurationService ConfigurationService { get; set; }
     }
 }

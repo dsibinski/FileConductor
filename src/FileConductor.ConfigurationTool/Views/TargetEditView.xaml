@@ -11,7 +11,7 @@
         <WrapPanel Style="{StaticResource CommonWrapPanel}" >
             <controls:CommonField Text="Code: " Value="{Binding TargetData.Code}"></controls:CommonField>
             <controls:CommonField Text="Path: " Value="{Binding TargetData.Path}"></controls:CommonField>
-             <controls:ComboBoxWithFields Text="Server : "></controls:ComboBoxWithFields>
+            <controls:ComboBoxWithFields Text="Server : " SelectedItem="{Binding ServerData}" ItemSource="{Binding TabController.Configuration.Servers}" ></controls:ComboBoxWithFields>
              <controls:NavigationFields></controls:NavigationFields>
         </WrapPanel>  
      
