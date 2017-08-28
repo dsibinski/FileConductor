@@ -4,22 +4,23 @@ using System.Linq;
 using System.Reflection;
 using FileConductor.Attributes;
 using FileConductor.FileTransport;
+using Ninject.Infrastructure.Language;
 
 namespace FileConductor.Transport
 {
     public class TransportDictionary : ITransportDictionary
     {
-        private readonly Dictionary<string, ITransfer> TransfersImplementations =
+        private readonly Dictionary<string, ITransfer> _transfersImplementations =
             new Dictionary<string, ITransfer>();
 
         public ITransfer GetTransfer(string type)
         {
-            return TransfersImplementations[type.ToUpper()];
+            return _transfersImplementations[type.ToUpper()];
         }
 
         public void AddTransferImplementation(ITransfer transfer)
         {
-            TransfersImplementations.Add(transfer.Name.ToUpper(), transfer);
+            _transfersImplementations.Add(transfer.Name.ToUpper(), transfer);
         }
 
         public TransportDictionary()
@@ -32,6 +33,11 @@ namespace FileConductor.Transport
                     AddTransferImplementation((ITransfer)Activator.CreateInstance(type));
                 }
             }
+        }
+
+        public IEnumerable<ITransfer> Transfers
+        {
+            get { return _transfersImplementations.Select(x=>x.Value); } 
         }
     }
 }

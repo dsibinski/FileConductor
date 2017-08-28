@@ -7,7 +7,7 @@
             xmlns:configurationTool="clr-namespace:ConfigurationTool"
             xmlns:controls="clr-namespace:ConfigurationTool.Controls"
             x:Class="ConfigurationTool.Views.EditWatcherTabView" 
-             mc:Ignorable="d" >
+            mc:Ignorable="d">
 
     <Grid>
         <DockPanel>
@@ -17,42 +17,21 @@
                         <controls:CommonField Text="Code : " Value="{Binding Watcher.WatcherData.Code}" HorizontalAlignment="Left"></controls:CommonField>
                         <controls:CommonField Text="Regex : " Value="{Binding Watcher.WatcherData.FileNameRegex}" HorizontalAlignment="Left"></controls:CommonField>
                         <WrapPanel Orientation="Horizontal">
-                            <controls:ComboBoxWithFields Text="Schedule : "  SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding TabController.Configuration.Schedules}" ></controls:ComboBoxWithFields>
+                            <controls:ComboBoxWithFields  Text="Schedule : "  SelectedItem="{Binding Watcher.Schedule}" ItemSource="{Binding TabController.Configuration.Schedules}" EditCommand="{Binding EditScheduleCommand}" AddCommand="{Binding AddScheduleCommand}" RemoveCommand="{Binding RemoveScheduleCommand}"></controls:ComboBoxWithFields>
                          </WrapPanel>
                         <WrapPanel Orientation="Horizontal">
-                            <controls:ComboBoxWithFields Text="Source:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding TabController.Configuration.Targets}" EditCommand="{Binding EditSourceTargetCommand}"></controls:ComboBoxWithFields>
-                            <GroupBox Margin="5">
-                                <WrapPanel Orientation="Vertical">
-                                    <WrapPanel Orientation="Horizontal">
-                                        <Label FontStyle="Italic" Content="path: "></Label>
-                                        <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.Source.Path}"></TextBox>
-                                        <Label FontStyle="Italic" Content="protocol: "></Label>
-                                        <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.SourceServerData.Protocol}"></TextBox>
-                                    </WrapPanel>
-                                    <controls:ComboBoxWithFields Text="Server: "  SelectedItem="{Binding Watcher.SourceServerData}" ItemSource="{Binding TabController.Configuration.Servers}"></controls:ComboBoxWithFields>
-                                </WrapPanel>
-                            </GroupBox>
+                            <controls:ComboBoxWithFields  Text="Source:" SelectedItem="{Binding Watcher.Source}" ItemSource="{Binding TabController.Configuration.Targets}" EditCommand="{Binding EditSourceTargetCommand}" AddCommand="{Binding AddSourceTargetCommand}" RemoveCommand="{Binding RemoveSourceTargetCommand}"></controls:ComboBoxWithFields>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal">
-                            <controls:ComboBoxWithFields Text="Destination:" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding TabController.Configuration.Targets}" DisplayedProperty="Code" EditCommand="{Binding EditDestinationTargetCommand}"></controls:ComboBoxWithFields>
-                            <GroupBox Margin="5">
-                                <WrapPanel Orientation="Vertical ">
-                                    <WrapPanel Orientation="Horizontal">
-                                        <Label FontStyle="Italic" Content="path: "></Label>
-                                        <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.Destination.Path}"></TextBox>
-                                        <Label FontStyle="Italic" Content="protocol: "></Label>
-                                        <TextBox  Margin="5" IsReadOnly="True" Text="{Binding Watcher.DestinationServerData.Protocol}"></TextBox>
-                                    </WrapPanel>
-                                    <controls:ComboBoxWithFields Text="Server: "  SelectedItem="{Binding Watcher.DestinationServerData}" ItemSource="{Binding TabController.Configuration.Servers}"></controls:ComboBoxWithFields>
-                                </WrapPanel>
-                            </GroupBox>
+                            <controls:ComboBoxWithFields  Text="Destination:" SelectedItem="{Binding Watcher.Destination}" ItemSource="{Binding TabController.Configuration.Targets}" DisplayedProperty="Code" EditCommand="{Binding EditDestinationTargetCommand}" RemoveCommand="{Binding RemoveDestinationTargetCommand}" AddCommand="{Binding AddDestinationTargetCommand}"></controls:ComboBoxWithFields>
+                           
                         </WrapPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <CheckBox Margin="5" IsChecked="{Binding IsProcedureTriggered}"></CheckBox>
                             <Label Content="Trigger SQL procedure"></Label>
                         </StackPanel>
                         <WrapPanel  IsEnabled ="{Binding IsProcedureTriggered}">
-                            <controls:ComboBoxWithFields RemoveCommand="{Binding RemoveProcedureCommand}" AddCommand="{Binding AddProcedureCommand}" EditCommand ="{Binding EditProcedureCommand}" Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding TabController.Configuration.Procedures}"  HorizontalAlignment="Left"></controls:ComboBoxWithFields>
+                            <controls:ComboBoxWithFields  RemoveCommand="{Binding RemoveProcedureCommand}" AddCommand="{Binding AddProcedureCommand}" EditCommand ="{Binding EditProcedureCommand}" Text="Procedure :" SelectedItem="{Binding Watcher.ProcedureData}" ItemSource="{Binding TabController.Configuration.Procedures}"  HorizontalAlignment="Left"></controls:ComboBoxWithFields>
                         </WrapPanel>
                     </StackPanel>
                 </Grid>

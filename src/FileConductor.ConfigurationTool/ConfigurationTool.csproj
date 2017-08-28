@@ -102,6 +102,8 @@
     <Compile Include="Tabs\TabController.cs" />
     <Compile Include="ViewModels\EditWatcherTabViewModel.cs" />
     <Compile Include="ViewModels\MainTabViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleEditTabViewModel.cs" />
+    <Compile Include="ViewModels\ServerEditViewModel.cs" />
     <Compile Include="ViewModels\TargetEditViewModel.cs" />
     <Compile Include="Views\EditWatcherTabView.xaml.cs">
       <DependentUpon>EditWatcherTabView.xaml</DependentUpon>
@@ -111,6 +113,12 @@
     </Compile>
     <Compile Include="Tabs\ITab.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Views\ScheduleEditView.xaml.cs">
+      <DependentUpon>ScheduleEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServerEditView.xaml.cs">
+      <DependentUpon>ServerEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TargetEditView.xaml.cs">
       <DependentUpon>TargetEditView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +171,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ScheduleEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ServerEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TargetEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

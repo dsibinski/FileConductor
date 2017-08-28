@@ -21,20 +21,10 @@ namespace ConfigurationTool.Tabs
             TabController = tabController;
             IsClosable = true;
             CloseCommand = new ActionCommand(x => CloseRequested?.Invoke(this, EventArgs.Empty));
-            SaveCommand = new ActionCommand(SaveConfig);
-        }
-
-        private void SaveConfig()
-        {
-            var kernel = new StandardKernel();
-            kernel.Load(Assembly.GetExecutingAssembly());
-            ConfigurationService = kernel.Get<IConfigurationService>(); //TODO: Need to be changed
-            ConfigurationService.SaveConfigurationData(TabController.Configuration);
         }
 
         public string Name { get; set; }
         public ICommand CloseCommand { get; set; }
-        public ICommand SaveCommand { get; set; }
         public event EventHandler CloseRequested;
 
         public bool IsClosable

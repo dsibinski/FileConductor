@@ -30,28 +30,103 @@ namespace ConfigurationTool.ViewModels
             RemoveProcedureCommand = new ActionCommand(RemoveProcedure);
             EditProcedureCommand = new ActionCommand(EditProcedure);
             EditSourceTargetCommand = new ActionCommand(EditSourceTarget);
+            AddSourceTargetCommand = new ActionCommand(AddSourceTarget);
+            RemoveSourceTargetCommand = new ActionCommand(RemoveSourceTarget);
             EditDestinationTargetCommand = new ActionCommand(EditDestinationTarget);
+            AddDestinationTargetCommand = new ActionCommand(AddDestinationTarget);
+            RemoveDestinationTargetCommand = new ActionCommand(RemoveDestinationTarget);
+            EditScheduleCommand = new ActionCommand(EditSchedule);
+            AddScheduleCommand = new ActionCommand(AddSchedule);
+            RemoveScheduleCommand = new ActionCommand(RemoveSchedule);
             Watcher = watcher;
-          
+        }
+
+        #region Adds
+        private void AddProcedure()
+        {
+            var procedureData = ConfigurationService.GetEmptyObject<ProcedureData>(TabController.Configuration);
+            procedureData.Code = "New procedure";
+            var dbEditVm = new DatabaseEditTabViewModel(TabController, procedureData);
+            Watcher.ProcedureData = procedureData;
+            TabController.OpenTab(dbEditVm);
+        }
+        private void AddSchedule()
+        {
+            var schedule = ConfigurationService.GetEmptyObject<ScheduleData>(TabController.Configuration);
+            schedule.Code = "New schedule";
+            var sEditVm = new ScheduleEditTabViewModel(TabController, schedule);
+            Watcher.Schedule = schedule;
+            TabController.OpenTab(sEditVm);
+        }
+        private void AddDestinationTarget()
+        {
+            var targetData = ConfigurationService.GetEmptyObject<TargetData>(TabController.Configuration);
+            targetData.Code = "New target";
+            var sEditVm = new TargetEditViewModel(TabController, targetData);
+            Watcher.Destination = targetData;
+            TabController.OpenTab(sEditVm);
+        }
+        private void AddSourceTarget()
+        {
+            var targetData = ConfigurationService.GetEmptyObject<TargetData>(TabController.Configuration);
+            targetData.Code = "New target";
+            var sEditVm = new TargetEditViewModel(TabController, targetData);
+            Watcher.Source = targetData;
+            TabController.OpenTab(sEditVm);
+        }
+        #endregion
+
+        #region Edits
+        private void EditSchedule()
+        {
+            if(Watcher.Schedule == null) return;
+            var schEditVm = new ScheduleEditTabViewModel(TabController,Watcher.Schedule);
+            TabController.OpenTab(schEditVm);
         }
 
         private void EditDestinationTarget()
         {
+            if (Watcher.Destination == null) return;
             var dbEditVm = new TargetEditViewModel(TabController, Watcher.Destination);
             TabController.OpenTab(dbEditVm);
         }
 
         private void EditSourceTarget()
         {
+            if (Watcher.Source == null) return;
             var dbEditVm = new TargetEditViewModel(TabController, Watcher.Source);
             TabController.OpenTab(dbEditVm);
         }
+        private void EditProcedure()
+        {
+            if (Watcher.ProcedureData == null) return;
+            var dbEditVm = new DatabaseEditTabViewModel(TabController, Watcher.ProcedureData);
+            TabController.OpenTab(dbEditVm);
+        }
 
+        #endregion
+
+        #region Removes
         private void RemoveProcedure()
         {
             TabController.Configuration.Procedures.Remove(Watcher.ProcedureData);
         }
 
+        private void RemoveSourceTarget()
+        {
+            TabController.Configuration.Targets.Remove(Watcher.Source);
+        }
+
+        private void RemoveDestinationTarget()
+        {
+            TabController.Configuration.Targets.Remove(Watcher.Destination);
+        }
+
+        private void RemoveSchedule()
+        {
+            TabController.Configuration.Schedules.Remove(Watcher.Schedule);
+        }
+#endregion
 
         [Inject]
         public IOperationExecutor OperationExecutor { get; set; }
@@ -84,27 +159,17 @@ namespace ConfigurationTool.ViewModels
         public Watcher Watcher { get; set; }
         public ActionCommand TestCommand { get; set; }
         public ActionCommand EditSourceTargetCommand { get; set; }
+        public ActionCommand RemoveSourceTargetCommand { get; set; }
+        public ActionCommand AddSourceTargetCommand { get; set; }
         public ActionCommand EditDestinationTargetCommand { get; set; }
+        public ActionCommand RemoveDestinationTargetCommand { get; set; }
+        public ActionCommand AddDestinationTargetCommand { get; set; }
+        public ActionCommand RemoveScheduleCommand { get; set; }
+        public ActionCommand AddScheduleCommand { get; set; }
+        public ActionCommand EditScheduleCommand { get; set; }
         public ActionCommand AddProcedureCommand { get; set; }
         public ActionCommand RemoveProcedureCommand { get; set; }
         public ActionCommand EditProcedureCommand { get; set; }
-
-
-        private void AddProcedure()
-        {
-            var procedureData = ConfigurationService.GetEmptyObject<ProcedureData>(TabController.Configuration);
-            procedureData.Code = "New procedure";
-            var dbEditVm = new DatabaseEditTabViewModel(TabController, procedureData);
-            Watcher.ProcedureData = procedureData;
-            TabController.OpenTab(dbEditVm);
-        }
-
-        private void EditProcedure()
-        {
-            var dbEditVm = new DatabaseEditTabViewModel(TabController, Watcher.ProcedureData);
-            TabController.OpenTab(dbEditVm);
-        }
-
         private void TestWatcher()
         {
             var operation = ConfigurationService.GetOperation(TabController.Configuration, Watcher.WatcherData);

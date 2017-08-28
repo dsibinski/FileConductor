@@ -22,6 +22,7 @@ namespace ConfigurationTool.ViewModels
         public ActionCommand CloseWindowCommand { get; }
         public TabController CurrentTabController { get; set; }
         public IConfigurationService ConfigurationService { get; set; }
+        public ActionCommand SaveConfigurationCommand { get; set; }
 
 
         public MainPageViewModel()
@@ -29,12 +30,17 @@ namespace ConfigurationTool.ViewModels
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
             ConfigurationService = kernel.Get<IConfigurationService>();
-
+            SaveConfigurationCommand = new ActionCommand(SaveConfiguration);
             var configuration = ConfigurationService.GetConfigurationData();
             CurrentTabController = new TabController(configuration);
             CloseWindowCommand = new ActionCommand(SaveAndClose);
             NewTabCommand = new ActionCommand(x => NewTab());
             CurrentTabController.OpenTab(new MainTabViewModel(CurrentTabController));
+        }
+
+        private void SaveConfiguration()
+        {
+            ConfigurationService.SaveConfigurationData(CurrentTabController.Configuration);
         }
 
         private void SaveAndClose()

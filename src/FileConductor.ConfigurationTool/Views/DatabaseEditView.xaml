@@ -8,7 +8,6 @@
              xmlns:core="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:views="clr-namespace:ConfigurationTool.Views"
              xmlns:controls="clr-namespace:ConfigurationTool.Controls"
-
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="400">
     <Grid>

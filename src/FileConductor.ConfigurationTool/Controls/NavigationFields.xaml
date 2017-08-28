@@ -7,7 +7,6 @@
              mc:Ignorable="d">
     <Grid>
             <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button Content="Save" Margin="5" Command="{Binding SaveCommand}"></Button>
                 <Button Content="Exit" Margin="5" Command="{Binding CloseCommand}"></Button>
             </WrapPanel>
     </Grid>

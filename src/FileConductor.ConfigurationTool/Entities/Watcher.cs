@@ -15,6 +15,7 @@ namespace ConfigurationTool.Entities
         private TargetData _source;
         private TargetData _destination;
         private ProcedureData _procedureData;
+        private ScheduleData _schedule;
 
         public Watcher(ConfigurationData configuration)
         {
@@ -23,15 +24,16 @@ namespace ConfigurationTool.Entities
 
         public Watcher(ConfigurationData configuration, WatcherData watcher)
         {
+             WatcherData = watcher;
             Configuration = configuration;
             ProcedureData = configuration.Procedures.FirstOrDefault(x => watcher.ProcedureId == x.Id);
             Schedule = configuration.Schedules.FirstOrDefault(x => watcher.ScheduleId == x.Id);
             Source = configuration.Targets.FirstOrDefault(x => watcher.WatcherRouting.SourceTargetId == x.Id);
             Destination = configuration.Targets.FirstOrDefault(x => watcher.WatcherRouting.DestinationTargetId == x.Id);
-            if (Source != null) SourceServerData = configuration.Servers.FirstOrDefault(x => x.Id == Source.ServerId);
-            if (Destination != null)
-                DestinationServerData = configuration.Servers.FirstOrDefault(x => x.Id == Destination.ServerId);
-            WatcherData = watcher;
+            //if (Source != null) SourceServerData = configuration.Servers.FirstOrDefault(x => x.Id == Source.ServerId);
+            //if (Destination != null)
+            //    DestinationServerData = configuration.Servers.FirstOrDefault(x => x.Id == Destination.ServerId);
+
         }
 
         public ProcedureData ProcedureData
@@ -41,10 +43,35 @@ namespace ConfigurationTool.Entities
             {
                 _procedureData = value;
                 OnPropertyChanged(nameof(ProcedureData));
+                if (value == null)
+                {
+                    WatcherData.ProcedureId = null;
+                }
+                else
+                {
+                    WatcherData.ProcedureId = value.Id;
+                } 
             }
         }
 
-        public ScheduleData Schedule { get; set; }
+        public ScheduleData Schedule
+        {
+            get { return _schedule; }
+            set
+            {
+                _schedule = value;
+                OnPropertyChanged(nameof(Schedule));
+                if (value == null)
+                {
+                    WatcherData.ScheduleId = null;
+                }
+                else
+                {
+                    WatcherData.ScheduleId = value.Id;
+                }
+            }
+        }
+
         public WatcherData WatcherData { get; set; }
 
         public TargetData Source
@@ -52,26 +79,33 @@ namespace ConfigurationTool.Entities
             get { return _source; }
             set
             {
-                SourceServerData = Configuration.Servers.FirstOrDefault(x => x.Id == value.ServerId);
-                OnPropertyChanged(nameof(SourceServerData));
+                //if (value != null)
+                //{
+                //    SourceServerData = Configuration.Servers.FirstOrDefault(x => x.Id == value.ServerId);
+                //    OnPropertyChanged(nameof(SourceServerData));
+                //}
+
                 _source = value;
                 
             }
         }
 
-        public ServerData SourceServerData { get; set; }
+        //public ServerData SourceServerData { get; set; }
         public TargetData Destination
         {
             get { return _destination; }
             set
             {
-                DestinationServerData = Configuration.Servers.FirstOrDefault(x => x.Id == value.ServerId);
-                OnPropertyChanged(nameof(DestinationServerData));
+                //if (value != null)
+                //{
+                //    DestinationServerData = Configuration.Servers.FirstOrDefault(x => x.Id == value.ServerId);
+                //    OnPropertyChanged(nameof(DestinationServerData));
+                //}
                 _destination = value;
             }
         }
 
-        public ServerData DestinationServerData { get; set; }
+        //public ServerData DestinationServerData { get; set; }
         public ConfigurationData Configuration { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 

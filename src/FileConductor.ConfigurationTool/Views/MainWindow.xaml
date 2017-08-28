@@ -17,6 +17,7 @@
     <Grid Style="{StaticResource MainGridStyle}">
         <DockPanel >
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                <Button Content="Save" DockPanel.Dock="Left" Width="50" HorizontalAlignment="Left" Margin="10" Command="{Binding SaveConfigurationCommand}"></Button>
                 <TabControl  Name="MainTabControl" DockPanel.Dock="Top" ItemsSource="{Binding CurrentTabController.Tabs}" SelectedItem="{Binding CurrentTabController.SelectedTab}">
                     <TabControl.Resources>
                         <DataTemplate DataType="{x:Type viewModels1:DatabaseEditTabViewModel}">
@@ -30,6 +31,12 @@
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type viewModels1:TargetEditViewModel}">
                             <views:TargetEditView/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type viewModels1:ScheduleEditTabViewModel}">
+                            <views:ScheduleEditView/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type viewModels1:ServerEditViewModel}">
+                            <views:ServerEditView/>
                         </DataTemplate>
                     </TabControl.Resources>
                     <TabControl.ItemTemplate>

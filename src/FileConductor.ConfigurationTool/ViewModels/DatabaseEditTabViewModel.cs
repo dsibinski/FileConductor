@@ -35,22 +35,14 @@ namespace ConfigurationTool.ViewModels
             Procedure = procedureData;
             CheckConnectionCommand = new ActionCommand(CheckDbConenction);
             CloseHandler = new ActionCommand(CloseAction);
-            SaveCommand = new ActionCommand(SaveDatabase);
             Name = "Database";
             SelectedDatabaseName = procedureData.Name;
 
         }
 
-        private void SaveDatabase()
-        {
-            OnProcedureModified?.Invoke();
-        }
-
-        public event Action OnProcedureModified;
 
         public ActionCommand CheckConnectionCommand { get; set; }
         public ActionCommand CloseHandler { get; set; }
-        public ActionCommand SaveCommand { get; set; }
 
         public string SelectedDatabaseName
         {

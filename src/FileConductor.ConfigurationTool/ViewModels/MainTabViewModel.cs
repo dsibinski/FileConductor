@@ -95,7 +95,6 @@ namespace ConfigurationTool.ViewModels
 
         public Watcher SelectedWatcher { get; set; }
         public ActionCommand EditCommand { get; set; }
-        public ActionCommand SaveCommand { get; set; }
         public ActionCommand AddCommand { get; set; }
         public ActionCommand RemoveCommand { get; set; }
         public ActionCommand StartCommand { get; set; }

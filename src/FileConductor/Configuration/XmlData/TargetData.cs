@@ -13,7 +13,7 @@ namespace FileConductor.Configuration.XmlData
         public string Code { get; set; }
 
         [XmlElement("serverId")]
-        public int ServerId { get; set; }
+        public int? ServerId { get; set; }
 
         [XmlElement("path")]
         public string Path { get; set; }

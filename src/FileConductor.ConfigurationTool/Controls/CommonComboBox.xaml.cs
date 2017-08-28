@@ -22,18 +22,14 @@ namespace ConfigurationTool.Controls
     public partial class CommonComboBox : UserControl
     {
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(String), typeof(CommonComboBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty DisplayedNameProperty = DependencyProperty.Register("DisplayedName", typeof(String), typeof(CommonComboBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(CommonComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty ItemSourceProperty = DependencyProperty.Register("ItemSource", typeof(IEnumerable), typeof(CommonComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public static readonly DependencyProperty DisplayedPropertyProperty = DependencyProperty.Register("DisplayedProperty", typeof(String), typeof(CommonComboBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+      
         public IEnumerable ItemSource
         {
             get { return GetValue(ItemSourceProperty).ToString(); }
             set { SetValue(ItemSourceProperty, value); }
-        }
-        public String DisplayedProperty
-        {
-            get { return GetValue(DisplayedPropertyProperty).ToString(); }
-            set { SetValue(DisplayedPropertyProperty, value); }
         }
 
         public String Text
@@ -42,6 +38,11 @@ namespace ConfigurationTool.Controls
             set { SetValue(TextProperty, value); }
         }
 
+        public String DisplayedName
+        {
+            get { return GetValue(DisplayedNameProperty).ToString(); }
+            set { SetValue(DisplayedNameProperty, value); }
+        }
         public object SelectedItem
         {
             get { return GetValue(SelectedItemProperty).ToString(); }

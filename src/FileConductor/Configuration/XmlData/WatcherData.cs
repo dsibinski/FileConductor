@@ -13,13 +13,13 @@ namespace FileConductor.Configuration.XmlData
         public string Code { get; set; } = string.Empty;
 
         [XmlElement("procedureId")]
-        public int ProcedureId { get; set; }
+        public int? ProcedureId { get; set; }
 
         [XmlElement("watcherRouting")]
         public WatcherRoutingData WatcherRouting { get; set; } = new WatcherRoutingData();
 
         [XmlElement("scheduleId")]
-        public int ScheduleId { get; set; }
+        public int? ScheduleId { get; set; }
 
         [XmlElement("fileNameRegex")]
         public string FileNameRegex { get; set; }
