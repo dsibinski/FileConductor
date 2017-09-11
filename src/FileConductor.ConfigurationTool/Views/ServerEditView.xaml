@@ -12,8 +12,8 @@
             <controls:CommonField Text="Code : " Value="{Binding CurrentServerData.Code}" HorizontalAlignment="Left"></controls:CommonField>
             <controls:CommonComboBox Text="Protocol : " SelectedItem="{Binding SelectedTransfer}" ItemSource="{Binding Transfers}" DisplayedName="Name"  HorizontalAlignment="Left"></controls:CommonComboBox>
             <StackPanel Orientation="Horizontal">
-                <controls:CommonField Text="IP : " Value="{Binding CurrentServerData.Ip}" HorizontalAlignment="Left"></controls:CommonField>
-                <controls:CommonField Text="Port : " Value="{Binding CurrentServerData.Port}" HorizontalAlignment="Left"></controls:CommonField>
+                <controls:CommonField Text="IP : " Value="{Binding CurrentServerData.Ip}" HorizontalAlignment="Left" NumberOfCharacters="15"></controls:CommonField>
+                <controls:CommonField Text="Port : " Value="{Binding CurrentServerData.Port}" HorizontalAlignment="Left" NumberOfCharacters="4"></controls:CommonField>
             </StackPanel>
             <controls:CommonField Text="Login : " Value="{Binding CurrentServerData.User}" HorizontalAlignment="Left"></controls:CommonField>
             <controls:CommonField Text="Password : " Value="{Binding CurrentServerData.Password}" HorizontalAlignment="Left"></controls:CommonField>

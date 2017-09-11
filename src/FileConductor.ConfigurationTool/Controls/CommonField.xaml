@@ -7,7 +7,7 @@
              d:DesignHeight="300" Name="CustomField" Style="{StaticResource CommonUserControlStyle}">
     <WrapPanel Height="30" Width="200" DockPanel.Dock ="Top" Orientation="Horizontal" Margin="5">
         <Label   Content="{Binding ElementName=CustomField, Path=Text}"></Label>
-        <TextBox Width ="Auto" Text="{Binding ElementName=CustomField,Path= Value}"></TextBox>
+        <TextBox Name="TextBox" Width ="{Binding ElementName=CustomField,Path= TextBoxWidth}" Text="{Binding ElementName=CustomField,Path= Value}" MaxLength="{Binding ElementName=CustomField, Path=NumberOfCharacters}"></TextBox>
     </WrapPanel>
 
 </UserControl>

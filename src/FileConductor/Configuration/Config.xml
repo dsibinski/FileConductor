@@ -32,10 +32,10 @@
       <id>2</id>
       <code>ftp</code>
       <protocol>FTP</protocol>
-      <ip></ip>
-      <user></user>
-      <password></password>
-      <port></port>
+      <ip>192.168.0.1</ip>
+      <user>admin</user>
+      <password>admin</password>
+      <port>1233</port>
     </server>
   </servers>
 
