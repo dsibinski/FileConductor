@@ -10,9 +10,11 @@ namespace ConfigurationTool.ViewModels
 {
     public class ScheduleEditTabViewModel :Tab
     {
+        public ScheduleData CurrentScheduleData{ get; set; }
         public ScheduleEditTabViewModel(ITabController tabController, ScheduleData schedule) : base(tabController)
         {
             Name = schedule.Code;
+            CurrentScheduleData = schedule;
         }
     }
 }
