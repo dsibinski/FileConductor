@@ -23,7 +23,6 @@ namespace ConfigurationTool.ViewModels
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
             OperationExecutor = kernel.Get<IOperationExecutor>();
-            ConfigurationService = kernel.Get<IConfigurationService>();
             Name = watcher.WatcherData.Code;
             TestCommand = new ActionCommand(TestWatcher);
             AddProcedureCommand = new ActionCommand(AddProcedure);
@@ -44,7 +43,7 @@ namespace ConfigurationTool.ViewModels
         #region Adds
         private void AddProcedure()
         {
-            var procedureData = ConfigurationService.GetEmptyObject<ProcedureData>(TabController.Configuration);
+            var procedureData = TabController.ConfigurationService.GetEmptyObject<ProcedureData>(TabController.Configuration);
             procedureData.Code = "New procedure";
             var dbEditVm = new DatabaseEditTabViewModel(TabController, procedureData);
             Watcher.ProcedureData = procedureData;
@@ -52,7 +51,7 @@ namespace ConfigurationTool.ViewModels
         }
         private void AddSchedule()
         {
-            var schedule = ConfigurationService.GetEmptyObject<ScheduleData>(TabController.Configuration);
+            var schedule = TabController.ConfigurationService.GetEmptyObject<ScheduleData>(TabController.Configuration);
             schedule.Code = "New schedule";
             var sEditVm = new ScheduleEditTabViewModel(TabController, schedule);
             Watcher.Schedule = schedule;
@@ -60,7 +59,7 @@ namespace ConfigurationTool.ViewModels
         }
         private void AddDestinationTarget()
         {
-            var targetData = ConfigurationService.GetEmptyObject<TargetData>(TabController.Configuration);
+            var targetData = TabController.ConfigurationService.GetEmptyObject<TargetData>(TabController.Configuration);
             targetData.Code = "New target";
             var sEditVm = new TargetEditViewModel(TabController, targetData);
             Watcher.Destination = targetData;
@@ -68,7 +67,7 @@ namespace ConfigurationTool.ViewModels
         }
         private void AddSourceTarget()
         {
-            var targetData = ConfigurationService.GetEmptyObject<TargetData>(TabController.Configuration);
+            var targetData = TabController.ConfigurationService.GetEmptyObject<TargetData>(TabController.Configuration);
             targetData.Code = "New target";
             var sEditVm = new TargetEditViewModel(TabController, targetData);
             Watcher.Source = targetData;
@@ -172,7 +171,7 @@ namespace ConfigurationTool.ViewModels
         public ActionCommand EditProcedureCommand { get; set; }
         private void TestWatcher()
         {
-            var operation = ConfigurationService.GetOperation(TabController.Configuration, Watcher.WatcherData);
+            var operation = TabController.ConfigurationService.GetOperation(TabController.Configuration, Watcher.WatcherData);
             OperationExecutor.Execute(operation);
         }
     }

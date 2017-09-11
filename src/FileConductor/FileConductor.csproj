@@ -73,7 +73,7 @@
     <Compile Include="Exceptions\InvalidTransferTypeException.cs" />
     <Compile Include="FileTransportTypes\Ftp\FtpTransfer.cs" />
     <Compile Include="FileTransportTypes\ITransfer.cs" />
-    <Compile Include="Transport\ITransportDictionary.cs" />
+    <Compile Include="TransportDictionary\ITransportDictionary.cs" />
     <Compile Include="FileTransportTypes\Local\LocalTransfer.cs" />
     <Compile Include="IFileConductor.cs" />
     <Compile Include="ProxyFile\IProxyFileProvider.cs" />
@@ -84,7 +84,7 @@
     <Compile Include="Operations\ProcedureExecution\ProcedureExecutionService.cs" />
     <Compile Include="Protocol\Protocol.cs" />
     <Compile Include="FileTransportTypes\SFTP\SftpTransfer.cs" />
-    <Compile Include="Transport\TransportDictionary.cs" />
+    <Compile Include="TransportDictionary\TransportDictionary.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="FileConductor.cs" />
     <Compile Include="ProxyFile\ProxyFileProvider.cs" />

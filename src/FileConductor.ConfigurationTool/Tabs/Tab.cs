@@ -41,7 +41,7 @@ namespace ConfigurationTool.Tabs
         }
 
         public ITabController TabController { get; set; }
-        [Inject]
-        public IConfigurationService ConfigurationService { get; set; }
+
+
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FileConductor.Attributes;
+using FileConductor.Exceptions;
 using FileConductor.FileTransport;
-using Ninject.Infrastructure.Language;
+using FileConductor.Transport;
 
-namespace FileConductor.Transport
+namespace FileConductor.TransportDictionary
 {
     public class TransportDictionary : ITransportDictionary
     {
@@ -15,12 +16,19 @@ namespace FileConductor.Transport
 
         public ITransfer GetTransfer(string type)
         {
-            return _transfersImplementations[type.ToUpper()];
+            try
+            {
+                return _transfersImplementations[type];
+            }
+            catch (Exception e)
+            {
+                throw new InvalidTransferTypeException(e);
+            }
         }
 
         public void AddTransferImplementation(ITransfer transfer)
         {
-            _transfersImplementations.Add(transfer.Name.ToUpper(), transfer);
+            _transfersImplementations.Add(transfer.Name, transfer);
         }
 
         public TransportDictionary()

@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 using Microsoft.Expression.Interactivity.Core;
 
@@ -18,9 +19,11 @@ namespace ConfigurationTool.Tabs
         private readonly ObservableCollection<ITab> tabs = new ObservableCollection<ITab>();
         private ITab _selectedTab;
         public ConfigurationData Configuration { get; set; }
+        public IConfigurationService ConfigurationService { get; set; }
 
-        public TabController(ConfigurationData configuration)
+        public TabController(IConfigurationService configurationService,ConfigurationData configuration)
         {
+            ConfigurationService = configurationService;
             Configuration = configuration;
             tabs.CollectionChanged += Tabs_CollectionChanged;
             Tabs = tabs;

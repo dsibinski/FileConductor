@@ -8,5 +8,11 @@ namespace FileConductor.Exceptions
 {
     public class InvalidTransferTypeException : Exception
     {
+        private Exception e;
+
+        public InvalidTransferTypeException(Exception e)
+        {
+            this.e = e;
+        }
     }
 }

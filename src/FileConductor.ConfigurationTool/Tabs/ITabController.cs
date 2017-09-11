@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileConductor.Configuration;
 using FileConductor.Configuration.XmlData;
 
 namespace ConfigurationTool.Tabs
@@ -11,5 +12,6 @@ namespace ConfigurationTool.Tabs
     {
         void OpenTab(ITab tab);
         ConfigurationData Configuration { get; set; }
+        IConfigurationService ConfigurationService { get; set; }
     }
 }

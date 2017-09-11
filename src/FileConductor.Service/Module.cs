@@ -17,7 +17,7 @@ namespace FileConductor.Service
         {
             Bind<IFileConductor>().To<FileConductor>();
             Bind<IConfigurationService>().To<ConfigurationService>();
-            Bind<ITransportDictionary>().To<TransportDictionary>();
+            Bind<ITransportDictionary>().To<TransportDictionary.TransportDictionary>();
             Bind<ILoggingService>().To<LoggingService.LoggingService>();
             Bind<IOperationProcessor>().To<OperationProcessor>();
             Bind<IOperationExecutor>().To<OperationExecutor>();

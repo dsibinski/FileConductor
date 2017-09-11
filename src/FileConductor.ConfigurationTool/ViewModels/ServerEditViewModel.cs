@@ -10,12 +10,14 @@ using ConfigurationTool.Tabs;
 using FileConductor.Configuration.XmlData;
 using FileConductor.FileTransport;
 using FileConductor.Transport;
+using FileConductor.TransportDictionary;
 
 namespace ConfigurationTool.ViewModels
 {
     public class ServerEditViewModel : Tab, INotifyPropertyChanged
     {
         public ITransfer[] Transfers { get; set; }
+        public ITransfer SelectedTransfer { get; set; }
         public ServerData CurrentServerData { get; set; }
         public ServerEditViewModel(ITabController tabController, ServerData data) : base(tabController)
         {
@@ -23,6 +25,7 @@ namespace ConfigurationTool.ViewModels
             CurrentServerData = data;
             TransportDictionary dic = new TransportDictionary();
             Transfers = dic.Transfers.ToArray();
+            SelectedTransfer = Transfers.FirstOrDefault(x => x.Name == data.Protocol);
             OnPropertyChanged(nameof(Transfers));
         }
 

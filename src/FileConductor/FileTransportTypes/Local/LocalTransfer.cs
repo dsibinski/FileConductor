@@ -8,7 +8,7 @@ namespace FileConductor.FileTransport.Local
     [FileTransferType]
     public class LocalTransfer : ITransfer
     {
-        public string Name => "Local";
+        public string Name => "LOCAL";
 
         public List<string> Receive(TargetTransformData sourceData, string targetPath, string regex)
         {

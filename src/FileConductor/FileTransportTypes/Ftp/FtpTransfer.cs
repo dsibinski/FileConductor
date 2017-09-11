@@ -22,7 +22,7 @@ namespace FileConductor.FileTransport.Ftp
         /// <param name="targetPath"></param>
         /// <param name="regex"></param>
         /// <returns></returns>
-        public string Name => "Ftp";
+        public string Name => "FTP";
 
         public List<string> Receive(TargetTransformData sourceData, string targetPath, string regex)
         {

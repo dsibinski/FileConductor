@@ -31,7 +31,7 @@ namespace ConfigurationTool.ViewModels
 
         private void AddServer()
         {
-            var server = ConfigurationService.GetEmptyObject<ServerData>(TabController.Configuration);
+            var server = TabController.ConfigurationService.GetEmptyObject<ServerData>(TabController.Configuration);
             server.Code = "New server";
             var sEditVm = new ServerEditViewModel(TabController, server);
             ServerData = server;

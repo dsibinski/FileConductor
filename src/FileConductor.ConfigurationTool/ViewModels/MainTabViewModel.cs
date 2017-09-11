@@ -24,8 +24,6 @@ using NLog.Targets;
 
 namespace ConfigurationTool.ViewModels
 {
-
-    
     public class MainTabViewModel : Tab
     {
         public IFileConductor FileConductor { get; set; }
@@ -43,7 +41,6 @@ namespace ConfigurationTool.ViewModels
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
             FileConductor = kernel.Get<IFileConductor>();
-            ConfigurationService = kernel.Get<IConfigurationService>();
             LoadConfiguration();
         }
 
@@ -59,14 +56,14 @@ namespace ConfigurationTool.ViewModels
 
         private void AddWatcher()
         {
-            var watcher = ConfigurationService.GetEmptyObject<WatcherData>(TabController.Configuration);
+            var watcher = TabController.ConfigurationService.GetEmptyObject<WatcherData>(TabController.Configuration);
             watcher.Code = "New watcher";
             Watchers.Add(new Watcher(TabController.Configuration, watcher));
         }
 
         private void RemoveWatcher()
         {
-            ConfigurationService.RemoveObject(TabController.Configuration,SelectedWatcher.WatcherData);
+            TabController.ConfigurationService.RemoveObject(TabController.Configuration,SelectedWatcher.WatcherData);
             Watchers.Remove(SelectedWatcher);
         }
 

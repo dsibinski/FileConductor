@@ -32,7 +32,7 @@ namespace ConfigurationTool.ViewModels
             ConfigurationService = kernel.Get<IConfigurationService>();
             SaveConfigurationCommand = new ActionCommand(SaveConfiguration);
             var configuration = ConfigurationService.GetConfigurationData();
-            CurrentTabController = new TabController(configuration);
+            CurrentTabController = new TabController(ConfigurationService, configuration);
             CloseWindowCommand = new ActionCommand(SaveAndClose);
             NewTabCommand = new ActionCommand(x => NewTab());
             CurrentTabController.OpenTab(new MainTabViewModel(CurrentTabController));

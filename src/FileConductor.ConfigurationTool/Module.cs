@@ -7,6 +7,7 @@ using FileConductor.Operations.ProcedureExecution;
 using FileConductor.ProxyFile;
 using FileConductor.Schedule;
 using FileConductor.Transport;
+using FileConductor.TransportDictionary;
 using Ninject.Modules;
 
 namespace ConfigurationTool
