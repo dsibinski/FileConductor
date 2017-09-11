@@ -32,7 +32,6 @@
                 <Button Margin="10"  Width="70" Content="Edit" Command="{Binding EditCommand}"/>
                 <Button Margin="10"  Width="70" Content="Remove" Command="{Binding RemoveCommand}"/>
                 <Button Margin="10"  Width="70" Content="Add" Command="{Binding AddCommand}"/>
-                <Button Margin="10"  Width="70" Content="Save" Command="{Binding SaveCommand}"/>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
             </WrapPanel>
