@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Reflection;
-using System.ServiceProcess;
-using System.Text;
+﻿using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
+using ConfigurationTool.Services;
 using ConfigurationTool.Tabs;
-using FileConductor;
 using FileConductor.Configuration;
 using Microsoft.Expression.Interactivity.Core;
 using Ninject;
@@ -18,18 +11,12 @@ namespace ConfigurationTool.ViewModels
 {
     public class MainPageViewModel
     {
-        public ICommand NewTabCommand { get; }
-        public ActionCommand CloseWindowCommand { get; }
-        public TabController CurrentTabController { get; set; }
-        public IConfigurationService ConfigurationService { get; set; }
-        public ActionCommand SaveConfigurationCommand { get; set; }
-
-
         public MainPageViewModel()
         {
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
             ConfigurationService = kernel.Get<IConfigurationService>();
+            NotificationService = kernel.Get<INotificationService>();
             SaveConfigurationCommand = new ActionCommand(SaveConfiguration);
             var configuration = ConfigurationService.GetConfigurationData();
             CurrentTabController = new TabController(ConfigurationService, configuration);
@@ -38,6 +25,13 @@ namespace ConfigurationTool.ViewModels
             CurrentTabController.OpenTab(new MainTabViewModel(CurrentTabController));
         }
 
+        public ICommand NewTabCommand { get; }
+        public ActionCommand CloseWindowCommand { get; }
+        public TabController CurrentTabController { get; set; }
+        public IConfigurationService ConfigurationService { get; set; }
+        public INotificationService NotificationService { get; set; }
+        public ActionCommand SaveConfigurationCommand { get; set; }
+
         private void SaveConfiguration()
         {
             ConfigurationService.SaveConfigurationData(CurrentTabController.Configuration);
@@ -45,13 +39,14 @@ namespace ConfigurationTool.ViewModels
 
         private void SaveAndClose()
         {
-           /* MessageBox.Show("Do You want to save?");*/ //TODO: Wrong behaviour, it shouldn't happend in view model
+            var result = NotificationService.ShowQuestion("Exit", "Do You want to save before exit?");
+            if (result == MessageBoxResult.Yes)
+                SaveConfiguration();
         }
 
         private void NewTab()
         {
             CurrentTabController.OpenTab(new MainTabViewModel(CurrentTabController));
         }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using FileConductor.Configuration;
+﻿using ConfigurationTool.Services;
+using FileConductor.Configuration;
 using FileConductor;
 using FileConductor.Helpers;
 using FileConductor.LoggingService;
@@ -17,6 +18,7 @@ namespace ConfigurationTool
         public override void Load()
         {
             Bind<IFileConductor>().To<FileConductor.FileConductor>();
+            Bind<INotificationService>().To<NotificationService>();
             Bind<ITransportDictionary>().To<TransportDictionary>();
             Bind<IConfigurationService>().To<ConfigurationService>();
             Bind<ILoggingService>().To<LoggingService>();

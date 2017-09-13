@@ -95,8 +95,15 @@
     </Compile>
     <Compile Include="CustomLoggingTarget.cs" />
     <Compile Include="Entities\Watcher.cs" />
+    <Compile Include="MessageBox\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBox\MessageBoxImage.cs" />
+    <Compile Include="MessageBox\MessageBoxType.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\Annotations1.cs" />
+    <Compile Include="Services\INotificationService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Tabs\ITabController.cs" />
     <Compile Include="Tabs\Tab.cs" />
     <Compile Include="Tabs\TabController.cs" />
@@ -135,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\NavigationFields.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageBox\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +235,7 @@
       <Name>FileConductor</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
